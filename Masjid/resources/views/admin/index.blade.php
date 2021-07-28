@@ -17,36 +17,23 @@
 <div class="wrapper">
   
   
+  @include('admin.partials.navbar')
   
   
-  {{-- @extends('admin.partials.navbar') --}}
-  
-
-  {{-- @extends('admin.partials.sidebar') --}}
+  @include('admin.partials.sidebar')
   
   
   
-  @extends('admin.partials.content')
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    
+  @yield('isi')
+  </div>
+  <!-- /.content-wrapper -->
 
 
-
-
-
-
-
-
-
-
-
- 
-
-
-
- 
-
- 
-
-@extends('admin.partials.footer')
+@include('admin.partials.footer')
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
