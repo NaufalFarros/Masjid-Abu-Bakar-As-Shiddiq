@@ -26,7 +26,7 @@
 
 
   <div id="nav-sticky">
-    @include('partials.navbar') 
+    @include('User.partials.navbar') 
   </div>
 
   
@@ -34,11 +34,11 @@
         
     <div class="my-5">
       
-        @include('partials.body')
+        @include('user.partials.body')
 
     </div>
 
-    @include('partials.footer')
+    @include('user.partials.footer')
 
     @yield('script')
     
