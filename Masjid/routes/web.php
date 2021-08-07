@@ -60,4 +60,8 @@ Route::resource('kas-masjid', PemasukanController::class);
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
 
+Route::get('/', function () {
+    return view('layouts.web');
+});
+
 require __DIR__.'/auth.php';

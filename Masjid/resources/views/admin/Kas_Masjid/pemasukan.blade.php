@@ -63,11 +63,23 @@
                     });
                     $("#total").text(convertToRupiah(total));
                     var tbody = $("#tablebody");
+                    $("#tb_pemasukan").DataTable().destroy();
                     tbody.html(tablebody);
+                    $("#tb_pemasukan").DataTable().draw();
                 }
             });
         }
-        datapemasukan();
+
+        $(document).ready(function() {
+            $("#tb_pemasukan").DataTable({
+                "responsive": true,
+                "lengthChange": true,
+                "autoWidth": false,
+                "buttons": ["pdf", "print", "colvis"],
+            }).buttons().container().appendTo('#tb_pemasukan_wrapper .col-md-6:eq(0)');
+            datapemasukan();
+        });
+
     </script>
 
 
@@ -431,14 +443,7 @@
 
     <!-- Page specific script -->
     <script>
-        $(document).ready(function() {
-            $("#tb_pemasukan").DataTable({
-                "responsive": true,
-                "lengthChange": true,
-                "autoWidth": false,
-                "buttons": ["pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#tb_pemasukan_wrapper .col-md-6:eq(0)');
-        });
+
     </script>
 
 
