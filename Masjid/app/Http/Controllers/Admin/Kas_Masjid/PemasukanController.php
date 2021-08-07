@@ -17,8 +17,8 @@ class PemasukanController extends Controller
      */
     public function index()
     {
-        $pemasukan = kas_masjid::all();
-        return view('admin.Kas_Masjid.pemasukan',compact('pemasukan'));
+        // $pemasukan = kas_masjid::all();
+        return view('admin.Kas_Masjid.pemasukan');
     }
 
     public function datapemasukan()
