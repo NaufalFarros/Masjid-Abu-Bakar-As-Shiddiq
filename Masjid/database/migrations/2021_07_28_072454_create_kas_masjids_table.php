@@ -16,7 +16,10 @@ class CreateKasMasjidsTable extends Migration
         Schema::create('kas_masjids', function (Blueprint $table) {
             $table->id();
             $table->string('keterangan', 100 );
-            $table->string('pemasukan');
+            $table->integer('pemasukan');
+            $table->integer('pengeluaran');
+            $table->date('tanggal');
+            $table->enum('jenis', ['masuk', 'keluar']);
             $table->timestamps();
         });
     }
