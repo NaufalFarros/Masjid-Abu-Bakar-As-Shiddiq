@@ -137,7 +137,23 @@ class PemasukanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $edit_data_pemasukan = kas_masjid::find($id);
+        if($edit_data_pemasukan)
+        {
+            return response()->json([
+                'status' => 200,
+                'data_edit' =>$edit_data_pemasukan,
+
+            ]);
+        }
+        else
+        {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Data tidak ditemukan',
+
+            ]);
+        }
     }
 
     /**

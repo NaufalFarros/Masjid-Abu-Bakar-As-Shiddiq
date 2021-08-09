@@ -51,6 +51,7 @@ Route::get('/kas-masjid/rekap', function () {
 Route::get('/admin',[HomeController::class,'index']);
 Route::get('/kas-masjid/pemasukan',[PemasukanController::class,'index']);
 Route::get('/data-pemasukan',[PemasukanController::class,'datapemasukan']);
+Route::get('/kas-masjid/pemasukan/edit/{id}', [PemasukanController::class, 'edit']);
 // Route::post('/kas-masjid/add',[PemasukanController::class,'store']);
 
 Route::resource('kas-masjid', PemasukanController::class);

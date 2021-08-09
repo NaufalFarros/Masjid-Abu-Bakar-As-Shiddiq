@@ -13,6 +13,34 @@
     <!-- jQuery -->
     <script src="{{ asset('AdminLTE/plugins/jquery/jquery.min.js') }}"></script>
     <script>
+        // Edit Ajax
+          $(document).on('click', '#edit_data_pm', function() {
+                var id_pm = $(this).data('id');
+                console.log(id_pm);
+                $('#modal-edit').modal('show');
+                $.ajax({
+                    type: "GET",
+                    url: "/kas-masjid/pemasukan/edit/"+id_pm,
+                    success: function (response) {
+                        console.log(response);
+                        if(response.status == 404 ){
+                            $('#fails_message').html("");
+                            $('#fails_message').addClass("alert alert-danger");
+                            $('#fails_message').text(response.message);
+                        }
+                        else
+                        {
+                            $('#edit_pm_id').val(response.data_edit.id);
+                            $('#keterangan_edit').val(response.data_edit.keterangan);
+                            $('#pemasukan_edit').val(convertToRupiah(response.data_edit.pemasukan));
+                            $('#tanggal_edit').val(formatDate(response.data_edit.tanggal));
+                        }
+                    }
+                });
+          });
+             
+          
+        // Format Tanggal On Read
         var total = 0;
 
         function formatDate(date) {
@@ -28,7 +56,7 @@
 
             return [day, month, year].join('-');
         }
-
+        // Format Rupiah on Read
         function convertToRupiah(angka) {
             var rupiah = '';
             var angkarev = angka.toString().split('').reverse().join('');
@@ -37,6 +65,22 @@
             return 'Rp. ' + rupiah.split('', rupiah.length - 1).reverse().join('');
         }
 
+
+        
+      //  Page specific script 
+                        // $(document).ready(function() {
+                        //     $("#tb_pemasukan").DataTable({
+                        //         "responsive": true,
+                        //         "lengthChange": true,
+                        //         "autoWidth": false,
+                        //         "buttons": ["pdf", "print", "colvis"],
+                        //     }).buttons().container().appendTo('#tb_pemasukan_wrapper .col-md-6:eq(0)');
+                        //     datapemasukan();
+                        // });
+                    
+                    
+        
+            //GET Data with ajax from json / Refresh data
         function datapemasukan() {
             var tablebody = "";
             $.ajax({
@@ -52,11 +96,11 @@
                                                 <td>` + formatDate(element.tanggal) + `</td>
                                                 <td>` + element.keterangan + `</td>
                                                 <td>` + convertToRupiah(element.pemasukan) + `</td>
-                                                <td>
-                                                    <a href="#" class="text-primary" id="edit_data"> <i
-                                                            class="fas fa-edit">Edit </i></a>
-                                                    <a href="#" class="text-danger"> <i
-                                                            class="fas fa-trash-alt">Hapus</i></a>
+                                                <td >
+                                                    <a class="btn btn-primary" id="edit_data_pm" data-id="`+element.id+`"> 
+                                                        <i class="fas fa-edit">Edit </i> </a>
+                                                    <a  class="btn btn-danger"> 
+                                                        <i class="fas fa-trash-alt">Hapus</i> </a>
                                                 </td>
                                             </tr>`
                         }
@@ -64,25 +108,30 @@
                     $("#total").text(convertToRupiah(total));
                     var tbody = $("#tablebody");
                     $("#tb_pemasukan").DataTable().destroy();
-                    tbody.html(tablebody);
+                    tbody.html(tablebody);     
                     $("#tb_pemasukan").DataTable().draw();
+                  
                 }
-            });
+                
+            });      
         }
+         
+      $(document).ready(function () {
+                             $('#tb_pemasukan').DataTable( {
+                                    dom: 'Bfrtip',
+                                    responsive: true,
+                                    lengthChange: true,
+                                    autoWidth: false,
 
-        $(document).ready(function() {
-            $("#tb_pemasukan").DataTable({
-                "responsive": true,
-                "lengthChange": true,
-                "autoWidth": false,
-                "buttons": ["pdf", "print", "colvis"],
-            }).buttons().container().appendTo('#tb_pemasukan_wrapper .col-md-6:eq(0)');
-            datapemasukan();
-        });
-
+                                    buttons: [
+                                        'copy', 'excel', 'pdf'
+                                    ]
+                                });
+                        });
+  
     </script>
 
-
+  
 
 
 @endsection
@@ -145,7 +194,7 @@
                             </div>
 
 
-
+                            <a href="" id></a>
 
                             <table id="tb_pemasukan" class="table table-bordered table-striped">
                                 <thead>
@@ -196,20 +245,20 @@
 
                         <div class="form-group">
                             <label for="keterangan">Keterangan</label>
-                            <input type="text" class="form-control" id="keterangan" name="keterangan"
+                            <input type="text" class="form-control" id="add_keterangan" name="keterangan"
                                 placeholder="Keterangan">
 
                         </div>
                         <div class="form-group">
                             <label for="pemasukan">Jumlah Pemasukan</label>
-                            <input type="text" class="form-control" id="pemasukan" name="pemasukan" placeholder="pemasukan">
+                            <input type="text" class="form-control" id="add_pemasukan" name="pemasukan" placeholder="pemasukan">
 
                         </div>
                         <!-- Date -->
                         <div class="form-group">
                             <label>Date:</label>
                             <div class="input-group date" id="reservationdate1" data-target-input="nearest">
-                                <input type="text" name="tanggal" id="tanggal" class="form-control datetimepicker-input"
+                                <input type="text" name="tanggal" id="add_tanggal" class="form-control datetimepicker-input"
                                     data-target="#reservationdate1" />
                                 <div class="input-group-append" data-target="#reservationdate1"
                                     data-toggle="datetimepicker">
@@ -250,6 +299,12 @@
                 <div class="modal-body">
                     <form action="#">
                         @csrf
+
+                        <ul id="updateform_errList"></ul>
+
+                        <div>
+                            <input type="text" id="edit_pm_id">
+                        </div>
                         <div class="form-group">
                             <label for="keterangan">Keterangan</label>
                             <input type="text" class="form-control" id="keterangan_edit" placeholder="Keterangan">
@@ -262,7 +317,7 @@
                         <div class="form-group">
                             <label>Date:</label>
                             <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                <input type="text" name="tanggal_edit" class="form-control datetimepicker-input"
+                                <input type="text" name="tanggal_edit" id="tanggal_edit" class="form-control datetimepicker-input"
                                     data-target="#reservationdate" />
                                 <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -275,7 +330,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-primary" id="edit_pemasukan">Simpan</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -329,7 +384,7 @@
     </script>
 
 
-
+{{-- Tambah Data --}}
     <script>
         $(document).ready(function() {
 
@@ -379,24 +434,67 @@
                                 timer: 1500
                             });
 
-
-
                             $('#modal-default').find('input').val("");
+                            datapemasukan();
 
                         }
                     }
 
                 });
-                datapemasukan();
             });
         });
     </script>
 
 
 
-    {{-- format rupiah Modal Pemasukan --}}
+    
+
+<script>
+   $('#add_pemasukan,#pemasukan_edit').keyup(function (e) { 
+        // tambahkan 'Rp.' pada saat form di ketik
+            // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+            $('#add_pemasukan,#pemasukan_edit').val(formatRupiah(this.value, 'Rp. '));
+             /* Fungsi formatRupiah */
+        function formatRupiah(angka, prefix) {
+            var number_string = angka.replace(/[^,\d]/g, '').toString(),
+                split = number_string.split(','),
+                sisa = split[0].length % 3,
+                rupiah = split[0].substr(0, sisa),
+                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+            // tambahkan titik jika yang di input sudah menjadi angka ribuan
+            if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+            return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+        }
+    });
+</script>
+
+
+
+
+    {{-- date picker --}}
     <script type="text/javascript">
-        var rupiah = document.getElementById('pemasukan');
+        $(function() {
+
+            $('#reservationdate,#reservationdate1').datetimepicker({
+                format: 'DD/MM/YYYY'
+            });
+            // $('#reservationdate1').datetimepicker({
+            //     format: 'L'
+            // });
+        });
+    </script>
+
+
+
+
+{{-- format rupiah Modal Pemasukan --}}
+    {{-- <script type="text/javascript">
+        var rupiah = document.getElementById('add_pemasukan');
         rupiah.addEventListener('keyup', function(e) {
             // tambahkan 'Rp.' pada saat form di ketik
             // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
@@ -419,33 +517,7 @@
             rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
             return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
         }
-    </script>
-
-
-
-
-
-    {{-- date picker --}}
-    <script type="text/javascript">
-        $(function() {
-
-            $('#reservationdate,#reservationdate1').datetimepicker({
-                format: 'DD/MM/YYYY'
-            });
-            // $('#reservationdate1').datetimepicker({
-            //     format: 'L'
-            // });
-        });
-    </script>
-
-
-
-
-    <!-- Page specific script -->
-    <script>
-
-    </script>
-
+    </script> --}}
 
 
 
