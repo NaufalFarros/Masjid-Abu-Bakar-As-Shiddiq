@@ -68,15 +68,9 @@
 
         
       //  Page specific script 
-                        // $(document).ready(function() {
-                        //     $("#tb_pemasukan").DataTable({
-                        //         "responsive": true,
-                        //         "lengthChange": true,
-                        //         "autoWidth": false,
-                        //         "buttons": ["pdf", "print", "colvis"],
-                        //     }).buttons().container().appendTo('#tb_pemasukan_wrapper .col-md-6:eq(0)');
-                        //     datapemasukan();
-                        // });
+                        $(document).ready(function() {
+                            datapemasukan();
+                        });
                     
                     
         
@@ -108,7 +102,13 @@
                     $("#total").text(convertToRupiah(total));
                     var tbody = $("#tablebody");
                     $("#tb_pemasukan").DataTable().destroy();
-                    tbody.html(tablebody);     
+                    tbody.html(tablebody);
+                    $("#tb_pemasukan").DataTable({
+                                "responsive": true,
+                                "lengthChange": true,
+                                "autoWidth": false,
+                                "buttons": ["pdf", "print", "colvis"],
+                            }).buttons().container().appendTo('#tb_pemasukan_wrapper .col-md-6:eq(0)');
                     $("#tb_pemasukan").DataTable().draw();
                   
                 }
@@ -116,18 +116,18 @@
             });      
         }
          
-      $(document).ready(function () {
-                             $('#tb_pemasukan').DataTable( {
-                                    dom: 'Bfrtip',
-                                    responsive: true,
-                                    lengthChange: true,
-                                    autoWidth: false,
+    //   $(document).ready(function () {
+    //                          $('#tb_pemasukan').DataTable( {
+    //                                 dom: 'Bfrtip',
+    //                                 responsive: true,
+    //                                 lengthChange: true,
+    //                                 autoWidth: false,
 
-                                    buttons: [
-                                        'copy', 'excel', 'pdf'
-                                    ]
-                                });
-                        });
+    //                                 buttons: [
+    //                                     'copy', 'excel', 'pdf'
+    //                                 ]
+    //                             });
+    //                     });
   
     </script>
 
