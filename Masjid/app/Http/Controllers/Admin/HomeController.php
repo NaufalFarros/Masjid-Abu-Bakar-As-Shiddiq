@@ -17,8 +17,7 @@ class HomeController extends Controller
     public function index()
     {
          $home = kas_masjid::all();
-         
-                     
+                         
         //  dd($kasmasjid);
          return view('admin.partials.home',compact('home'));
     }

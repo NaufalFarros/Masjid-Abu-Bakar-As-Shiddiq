@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers;
+use App\Http\Controllers\Admin\Admin_Users\AdminusersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\Kas_Masjid\RekapController;
@@ -52,6 +53,18 @@ use App\Http\Controllers\Admin\Laporan\LapkasmasjidController;
 //with Controllers
 
 Route::get('/admin',[HomeController::class,'index']);
+//Admin Users
+// Route::get('/admin-users', [AdminusersController::class,'index']);
+// Route::get('/admin-users/create', [AdminusersController::class,'create']);
+// Route::get('/admin-users/add', [AdminusersController::class,'store']);
+// Route::get('/admin-users/edit', [AdminusersController::class,'edit']);
+// Route::get('/admin-users/edit/{id}', [AdminusersController::class,'update']);
+// Route::get('/admin-users/hapus/{id}', [AdminusersController::class,'destroy']);
+
+Route::resource('/Admin-Users', AdminusersController::class);
+
+
+
 Route::get('/kas-masjid/pemasukan',[PemasukanController::class,'index']);
 Route::get('/kas-masjid/pengeluaran',[PengeluaranController::class,'index']);
 Route::get('/kas-masjid/rekap',[RekapController::class,'index']);
