@@ -1304,160 +1304,179 @@ DataTable.ext.buttons.excelHtml5 = {
 // PDF export - using pdfMake - http://pdfmake.org
 //
 DataTable.ext.buttons.pdfHtml5 = {
-	className: 'buttons-pdf buttons-html5',
+    className: "buttons-pdf buttons-html5",
 
-	available: function () {
-		return window.FileReader !== undefined && _pdfMake();
-	},
+    available: function () {
+        return window.FileReader !== undefined && _pdfMake();
+    },
 
-	text: function ( dt ) {
-		return dt.i18n( 'buttons.pdf', 'PDF' );
-	},
+    text: function (dt) {
+        return dt.i18n("buttons.pdf", "PDF");
+    },
 
-	action: function ( e, dt, button, config ) {
-		this.processing( true );
+    action: function (e, dt, button, config) {
+        this.processing(true);
 
-		var that = this;
-		var data = dt.buttons.exportData( config.exportOptions );
-		var info = dt.buttons.exportInfo( config );
-		var rows = [];
+        var that = this;
+        var data = dt.buttons.exportData(config.exportOptions);
+        var info = dt.buttons.exportInfo(config);
+        var rows = [];
 
-		if ( config.header ) {
-			rows.push( $.map( data.header, function ( d ) {
-				return {
-					text: typeof d === 'string' ? d : d+'',
-					style: 'tableHeader'
-				};
-			} ) );
-		}
+        if (config.header) {
+            rows.push(
+                $.map(data.header, function (d) {
+                    return {
+                        text: typeof d === "string" ? d : d + "",
+                        style: "tableHeader",
+                    };
+                })
+            );
+        }
 
-		for ( var i=0, ien=data.body.length ; i<ien ; i++ ) {
-			rows.push( $.map( data.body[i], function ( d ) {
-				if ( d === null || d === undefined ) {
-					d = '';
-				}
-				return {
-					text: typeof d === 'string' ? d : d+'',
-					style: i % 2 ? 'tableBodyEven' : 'tableBodyOdd'
-				};
-			} ) );
-		}
+        for (var i = 0, ien = data.body.length; i < ien; i++) {
+            rows.push(
+                $.map(data.body[i], function (d) {
+                    if (d === null || d === undefined) {
+                        d = "";
+                    }
+                    return {
+                        text: typeof d === "string" ? d : d + "",
+                        style: i % 2 ? "tableBodyEven" : "tableBodyOdd",
+                    };
+                })
+            );
+        }
 
-		if ( config.footer && data.footer) {
-			rows.push( $.map( data.footer, function ( d ) {
-				return {
-					text: typeof d === 'string' ? d : d+'',
-					style: 'tableFooter'
-				};
-			} ) );
-		}
+        if (config.footer && data.footer) {
+            rows.push(
+                $.map(data.footer, function (d) {
+                    return {
+                        text: typeof d === "string" ? d : d + "",
+                        style: "tableFooter",
+                    };
+                })
+            );
+        }
 
-		var doc = {
-			pageSize: config.pageSize,
-			pageOrientation: config.orientation,
-			content: [
-				{
-					table: {
-						headerRows: 1,
-						body: rows
-					},
-					layout: 'noBorders'
-				}
-			],
-			styles: {
-				tableHeader: {
-					bold: true,
-					fontSize: 11,
-					color: 'white',
-					fillColor: '#2d4154',
-					alignment: 'center'
+        var doc = {
+            pageSize: config.pageSize,
+            pageOrientation: config.orientation,
+            content: [
+                {
+                    table: {
+                        widths: [100, "*", 200, "*"],
+                        headerRows: 1,
+                        body: rows,
+                    },
+                    layout: "noBorders",
+                },
+            ],
+            styles: {
+                tableHeader: {
+                    bold: true,
+                    fontSize: 11,
+                    color: "white",
+                    fillColor: "#2d4154",
+                    alignment: "center",
+                },
+                tableBodyEven: {
+                    alignment: "center",
+                },
+                tableBodyOdd: {
+                    alignment: "center",
+                    fillColor: "#f3f3f3",
+                },
+                tableFooter: {
+                    bold: true,
+                    fontSize: 11,
+                    color: "white",
+                    fillColor: "#2d4154",
+                },
+                title: {
+                    alignment: "center",
+                    fontSize: 15,
+                },
+                message: {},
+            },
+            defaultStyle: {
+                fontSize: 10,
+            },
+        };
+
+        if (info.messageTop) {
+            doc.content.unshift({
+                text: info.messageTop,
+                style: {
+					alignment: "center",
+					fontSize:12,
 				},
-				tableBodyEven: {},
-				tableBodyOdd: {
-					fillColor: '#f3f3f3'
-				},
-				tableFooter: {
-					bold: true,
-					fontSize: 11,
-					color: 'white',
-					fillColor: '#2d4154'
-				},
-				title: {
-					alignment: 'center',
-					fontSize: 15
-				},
-				message: {}
-			},
-			defaultStyle: {
-				fontSize: 10
-			}
-		};
+                margin: [0, 0, 0, 12],
+            });
+        }
 
-		if ( info.messageTop ) {
-			doc.content.unshift( {
-				text: info.messageTop,
-				style: 'message',
-				margin: [ 0, 0, 0, 12 ]
-			} );
-		}
+        if (info.messageBottom) {
+            doc.content.push({
+                text: info.messageBottom,
+                style: {
+                    fontSize: 15,
+                    bold: true,
+                    alignment: "right",
+                },
+                margin: [0, 15, 0, 12],
+            });
+        }
 
-		if ( info.messageBottom ) {
-			doc.content.push( {
-				text: info.messageBottom,
-				style: 'message',
-				margin: [ 0, 0, 0, 12 ]
-			} );
-		}
+        if (info.title) {
+            doc.content.unshift({
+                text: info.title,
+                style: "title",
+                margin: [0, 0, 0, 12],
+            });
+        }
 
-		if ( info.title ) {
-			doc.content.unshift( {
-				text: info.title,
-				style: 'title',
-				margin: [ 0, 0, 0, 12 ]
-			} );
-		}
+        if (config.customize) {
+            config.customize(doc, config, dt);
+        }
 
-		if ( config.customize ) {
-			config.customize( doc, config, dt );
-		}
+        var pdf = _pdfMake().createPdf(doc);
 
-		var pdf = _pdfMake().createPdf( doc );
+        if (config.download === "open" && !_isDuffSafari()) {
+            pdf.open();
+        } else {
+            pdf.download(info.filename);
+        }
 
-		if ( config.download === 'open' && ! _isDuffSafari() ) {
-			pdf.open();
-		}
-		else {
-			pdf.download( info.filename );
-		}
+        this.processing(false);
+    },
 
-		this.processing( false );
-	},
+    title: "DATA PENGELUARAN KAS MASJID ABU BAKAR AS-SHIDDIQ ",
 
-	title: 'Data Pengeluaran Kas Masjid Abu Bakar As Shiddiq',
+    filename: "Data Pengeluaran Kas Masjid Abu Bakar As-Shiddiq",
 
-	filename: 'Data Pengeluaran Kas Masjid Abu Bakar As Shiddiq',
+    extension: ".pdf",
 
-	extension: '.pdf',
+    exportOptions: {
+        columns: [0, 1, 2, 3],
+    },
 
-	exportOptions: {
-		columns: [ 0, 1, 2, 3 ]
-	},
+    orientation: "portrait",
 
-	orientation: 'portrait',
+    pageSize: "A4",
 
-	pageSize: 'A4',
+    header: true,
 
-	header: true,
+    footer: false,
 
-	footer: false,
+    messageTop:
+        "Jl. Kaca Piring ,Kel. Gebang, Kec. Patrang, Kab. Jember , Jawa Timur, Kode Pos : 68117 ",
 
-	messageTop: '*',
+    messageBottom: function () {
+        return "Total Pengeluaran : " + $("#total").text();
+    },
 
-	messageBottom: '*',
+    customize: null,
 
-	customize: null,
-
-	download: 'download'
+    download: "download",
 };
 
 

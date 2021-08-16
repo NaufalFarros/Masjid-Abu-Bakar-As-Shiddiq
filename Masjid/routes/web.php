@@ -1,9 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\Kas_Masjid\RekapController;
 use App\Http\Controllers\Admin\Kas_Masjid\PemasukanController;
+use App\Http\Controllers\Admin\Kas_Masjid\PengeluaranController;
+use App\Http\Controllers\Admin\Laporan\LapkasmasjidController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,24 +41,50 @@ use App\Http\Controllers\Admin\Kas_Masjid\PemasukanController;
 // Route::get('/kas-masjid/pemasukan', function () {
 //     return view('admin.Kas Masjid.pemasukan');
 // });
-Route::get('/kas-masjid/pengeluaran', function () {
-    return view('admin.Kas_Masjid.pengeluaran');
-});
-Route::get('/kas-masjid/rekap', function () {
-    return view('admin.Kas Masjid.rekap');
-});
+// Route::get('/kas-masjid/pengeluaran', function () {
+//     return view('admin.Kas_Masjid.pengeluaran');
+// });
+// Route::get('/kas-masjid/rekap', function () {
+//     return view('admin.Kas Masjid.rekap');
+// });
 
 
 //with Controllers
 
-// Route::resource('kas_masjid',KasmasjidController::class);
 Route::get('/admin',[HomeController::class,'index']);
 Route::get('/kas-masjid/pemasukan',[PemasukanController::class,'index']);
-Route::get('/data-pemasukan',[PemasukanController::class,'datapemasukan']);
-Route::get('/kas-masjid/pemasukan/edit/{id}', [PemasukanController::class, 'edit']);
-// Route::post('/kas-masjid/add',[PemasukanController::class,'store']);
+Route::get('/kas-masjid/pengeluaran',[PengeluaranController::class,'index']);
+Route::get('/kas-masjid/rekap',[RekapController::class,'index']);
 
-Route::resource('kas-masjid', PemasukanController::class);
+//AJAX JSON
+//Pemasukan
+Route::get('/data-pemasukan',[PemasukanController::class,'datapemasukan']);
+Route::post('/data-pemasukan/add',[PemasukanController::class,'store']);
+Route::get('/data-pemasukan/edit/{id}', [PemasukanController::class, 'edit']);
+Route::put('/data-pemasukan/update/{id}', [PemasukanController::class, 'update']);
+Route::delete('/data-pemasukan/delete{id}', [PemasukanController::class, 'destroy']);
+//Pengeluaran
+Route::get('/data-pengeluaran', [PengeluaranController::class, 'datapengeluaran']);
+Route::post('/data-pengeluaran/add', [PengeluaranController::class, 'store']);
+Route::get('/data-pengeluaran/edit/{id}', [PengeluaranController::class, 'edit']);
+Route::put('/data-pengeluaran/update/{id}', [PengeluaranController::class, 'update']);
+Route::delete('/data-pengeluaran/delete/{id}', [PengeluaranController::class, 'destroy']);
+// Rekap kas-masjid
+Route::get('/data-rekap', [RekapController::class,'datarekap']);
+
+// Laporan Kas Masjid
+Route::get('/laporan/kas-masjid',[LapkasmasjidController::class,'index'] );
+Route::get('/download-pdf',[LapkasmasjidController::class, 'DownloadSemuapdf'] );
+Route::get('/download-pdf-periode/{tglawal}/{tglakhir}',[LapkasmasjidController::class, 'DownloadPeriode'])->name('download-pdf-periode');
+
+//download pdf
+// Route::get('/download-pdf-KasMasjid', );
+
+
+
+
+
+// Route::resource('kas-masjid', PemasukanController::class);
 
 
 // Route::get('/dashboard', function () {

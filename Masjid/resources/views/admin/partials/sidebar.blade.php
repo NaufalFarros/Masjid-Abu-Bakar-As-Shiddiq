@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href=" {{ url('/admin') }} " class="brand-link">
       <img src="{{asset('AdminLTE/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Admin</span>
+      <span class="brand-text font-weight-light">Admin Masjid</span>
     </a>
 
     <!-- Sidebar -->
@@ -43,9 +43,10 @@
               </p>
             </a>
           </li>
+          {{-- Kas Masjid --}}
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
+              <i class="nav-icon fas fa-mosque"></i>
               <p>
                 Kas Masjid
                 <i class="fas fa-angle-left right"></i>
@@ -68,6 +69,60 @@
                 <a href="{{ url('/kas-masjid/rekap')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Rekap Kas Masjid</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          {{-- Kas Sosial --}}
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-hand-holding-usd"></i>
+              <p>
+                Kas Sosial
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> Pemasukan </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> Pengeluaran </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Rekap Kas Masjid</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          {{-- Laporan --}}
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Laporan
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href=" {{ url('/laporan/kas-masjid') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> Kas-Masjid </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> Kas-Sosial </p>
                 </a>
               </li>
             </ul>

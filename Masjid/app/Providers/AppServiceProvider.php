@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Pagination\Paginator;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -30,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
           Blade::directive('datetime', function ($expression) {
               return "<?php echo ($expression)->format('d-m-Y'); ?>";
           });
-        
+
+        Paginator::useBootstrap();
     }
 }

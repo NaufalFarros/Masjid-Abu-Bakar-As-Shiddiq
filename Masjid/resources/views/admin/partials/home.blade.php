@@ -40,7 +40,7 @@
             <!-- /.card-header -->
             <div class="card-body">
              
-              <h2> @currency($home->sum('pemasukan'))</h2>
+              <h2> @currency($home->sum('pemasukan') - $home->sum('pengeluaran'))</h2>
               
             </div>
             <!-- /.card-body -->
@@ -62,7 +62,7 @@
             <!-- /.card-header -->
             <div class="card-body">
              
-              <h2>{{ $home->sum('pengeluaran') }}</h2>
+              {{-- <h2>{{ $home->sum('pengeluaran') }}</h2> --}}
              
             </div>
             <!-- /.card-body -->

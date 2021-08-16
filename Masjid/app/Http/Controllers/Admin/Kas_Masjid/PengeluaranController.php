@@ -7,9 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\kas_masjid;
 use Carbon\Carbon;
-// use RealRashid\SweetAlert\Facades\Alert;
-
-class PemasukanController extends Controller
+class PengeluaranController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,18 +16,15 @@ class PemasukanController extends Controller
      */
     public function index()
     {
-        // $pemasukan = kas_masjid::all();
-        return view('admin.Kas_Masjid.pemasukan');
+        return view('admin.Kas_Masjid.pengeluaran');
     }
-
-    public function datapemasukan()
-    {
-        $pemasukan = kas_masjid::all()->where('jenis', "masuk");
-        return response()->json([
-            'pemasukan' => $pemasukan,
+    public function datapengeluaran(){
+        $get_data = kas_masjid::all()->where('jenis', "keluar");
+         return response()->json([
+                'pengeluaran' => $get_data,
+    
         ]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -48,63 +43,46 @@ class PemasukanController extends Controller
      */
     public function store(Request $request)
     {
-   
-        $validator = validator::make($request->all(), [
+        $validator = validator::make($request->all(),[
             'keterangan' => 'required|max:100',
-            'pemasukan' => 'required',
+            'pengeluaran' => 'required',
             'tanggal' => 'required',
-        ], [
+        
+        ],[
             'keterangan.required' => 'Keterangan Harus Di Isi',
-            'pemasukan.required' => 'Pemasukan Harus Di Isi',
+            'pengeluaran.required' => 'Pengeluaran Harus Di Isi',
             'tanggal.required' => 'Tanggal Harus Di Isi',
         ]);
 
-        if ($validator->fails()) {
+        if($validator->fails()){
             return response()->json([
                 'status' => 400,
                 'errors' => $validator->messages(),
-
             ]);
-        } else {
+        }else{
             // menghilangkan string selain angka
-            $angka = $request->pemasukan;
+            $angka = $request->pengeluaran;
             $result = preg_replace("/[^0-9]/", "", $angka);
             // Format Tanggal Masuk
 
             $data_masuk = new kas_masjid;
             $data_masuk->keterangan = $request->input('keterangan');
-            $data_masuk->pemasukan = $result;
-            $data_masuk->pengeluaran = 0;
+            $data_masuk->pemasukan = 0;
+            $data_masuk->pengeluaran = $result;
             // $data_masuk->tanggal = $request->input('tanggal');
             $data_masuk->tanggal = Carbon::createFromFormat('d/m/Y', $request->tanggal)->format('Y/m/d');
-            $data_masuk->jenis = 'masuk';
+            $data_masuk->jenis = 'keluar';
             $data_masuk->save();
             return response()->json([
                 'status' => 200,
-                'message' => 'Tambah Data Pemasukan Berhasil',
+                'message' => 'Tambah Data Pengeluaran Berhasil',
 
             ]);
         }
-        // return redirect('/kas-masjid/pemasukan');
+            
 
 
-
-
-
-
-        // return kas_masjid::create([
-        //         'keterangan' => $request['keterangan'],
-        //         'pemasukan' => $result,
-        //         'pengeluaran' => '0',
-        //         'tanggal' => $request['tanggal'],
-        //         'jenis' => 'masuk',
-        //     ]);
-
-        // Alert::success('Tambah Data', 'Berhasil Menambah Data');
-
-
-        // kas_masjid::create($request->all());
-
+        
     }
 
     /**
@@ -126,18 +104,16 @@ class PemasukanController extends Controller
      */
     public function edit($id)
     {
-        $edit_data_pemasukan = kas_masjid::find($id);
-        if ($edit_data_pemasukan) {
+        $edit_data_pengeluaran = kas_masjid::find($id);
+        if($edit_data_pengeluaran){
             return response()->json([
                 'status' => 200,
-                'data_edit' => $edit_data_pemasukan,
-
+                'data_edit' => $edit_data_pengeluaran,
             ]);
-        } else {
+        }else{
             return response()->json([
                 'status' => 404,
-                'message' => 'Data tidak ditemukan',
-
+                'message' => 'Data Tidak Ditemukan',
             ]);
         }
     }
@@ -153,11 +129,11 @@ class PemasukanController extends Controller
     {
         $validator = validator::make($request->all(), [
             'keterangan' => 'required|max:100',
-            'pemasukan' => 'required',
+            'pengeluaran' => 'required',
             'tanggal' => 'required',
         ], [
             'keterangan.required' => 'Keterangan Harus Di Isi',
-            'pemasukan.required' => 'Pemasukan Harus Di Isi',
+            'pengeluaran.required' => 'Pengeluaran Harus Di Isi',
             'tanggal.required' => 'Tanggal Harus Di Isi',
         ]);
 
@@ -167,27 +143,25 @@ class PemasukanController extends Controller
                 'errors' => $validator->messages(),
             ]);
         } else {
-
             // menghilangkan string selain angka
-            $angka = $request->pemasukan;
+            $angka = $request->pengeluaran;
             $result = preg_replace("/[^0-9]/", "", $angka);
-                // Format Tanggal Masuk  
-            
-            $data_edit = kas_masjid::find($id);         
-            if ($data_edit) {                  
+            // Format Tanggal Masuk  
+
+            $data_edit = kas_masjid::find($id);
+            if ($data_edit) {
                 $data_edit->keterangan = $request->input('keterangan');
-                $data_edit->pemasukan = $result;
-                $data_edit->pengeluaran = 0;
+                $data_edit->pemasukan = 0;
+                $data_edit->pengeluaran = $result;
                 // $data_edit->tanggal = $request->input('tanggal');
                 $data_edit->tanggal = Carbon::createFromFormat('d/m/Y', $request->tanggal)->format('Y/m/d');
-                $data_edit->jenis = 'masuk';
+                $data_edit->jenis = 'keluar';
                 $data_edit->update();
                 return response()->json([
                     'status' => 200,
-                    'message' => 'Edit Data Pemasukan Berhasil',
+                    'message' => 'Edit Data Pengeluaran Berhasil',
                 ]);
-            } else 
-            {
+            } else {
                 return response()->json([
                     'status' => 404,
                     'message' => 'Data tidak ditemukan',
@@ -195,6 +169,7 @@ class PemasukanController extends Controller
                 ]);
             }
         }
+
     }
 
     /**
@@ -207,10 +182,9 @@ class PemasukanController extends Controller
     {
         $data_delete = kas_masjid::find($id);
         $data_delete->delete();
-            return response()->json([
-                'status' => 200,
-                'message' => 'Hapus Data Berhasil',
-            ]);
-        
+        return response()->json([
+            'status' => 200,
+            'message' => 'Data Berhasil Di Hapus',
+        ]);
     }
 }

@@ -163,6 +163,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         //sweet alert
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        //DOM PDF
+        Barryvdh\DomPDF\ServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -230,6 +232,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         //swett alert
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        //Dom PDF
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];
