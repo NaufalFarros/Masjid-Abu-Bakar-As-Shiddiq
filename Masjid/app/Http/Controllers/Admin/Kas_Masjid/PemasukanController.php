@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin\Kas_Masjid;
 
-use Illuminate\Support\Facades\Validator;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\kas_masjid;
 use Carbon\Carbon;
+use App\Models\kas_masjid;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 // use RealRashid\SweetAlert\Facades\Alert;
 
 class PemasukanController extends Controller
@@ -20,6 +21,7 @@ class PemasukanController extends Controller
     {
         // $pemasukan = kas_masjid::all();
         return view('admin.Kas_Masjid.pemasukan');
+        
     }
 
     public function datapemasukan()
@@ -48,7 +50,7 @@ class PemasukanController extends Controller
      */
     public function store(Request $request)
     {
-   
+        
         $validator = validator::make($request->all(), [
             'keterangan' => 'required|max:100',
             'pemasukan' => 'required',
@@ -78,6 +80,7 @@ class PemasukanController extends Controller
             // $data_masuk->tanggal = $request->input('tanggal');
             $data_masuk->tanggal = Carbon::createFromFormat('d/m/Y', $request->tanggal)->format('Y/m/d');
             $data_masuk->jenis = 'masuk';
+            $data_masuk->user_id = 1 ;
             $data_masuk->save();
             return response()->json([
                 'status' => 200,

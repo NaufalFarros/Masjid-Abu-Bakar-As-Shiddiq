@@ -40,14 +40,14 @@
                             <div class="col-6">
                                 <form>
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Nama</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1"
-                                            aria-describedby="emailHelp" placeholder="Enter email" name="nama">
+                                        <label for="nama">Nama</label>
+                                        <input type="text" class="form-control" id="nama"
+                                            aria-describedby="emailHelp" placeholder="Nama" name="nama" value="{{$edit->name}}">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1"
-                                            aria-describedby="emailHelp" placeholder="Email" name="email">
+                                        <label for="email">Email address</label>
+                                        <input type="email" class="form-control" id="email"
+                                            aria-describedby="emailHelp" placeholder="Email" name="email" value="{{$edit->email}}">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Password</label>
@@ -55,9 +55,9 @@
                                             placeholder="Password" name="password">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputPassword2">Confirm Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword2"
-                                            placeholder="Confirm Password" name="confirm_password">
+                                        <label for="password_confirmation">Confirm Password</label>
+                                        <input type="password" class="form-control" id="password_confirmation"
+                                            placeholder="Confirm Password" name="password_confirmation">
                                     </div>
                                     <div class="form-group">
                                         <label for="selectRole">Pilih Role</label>

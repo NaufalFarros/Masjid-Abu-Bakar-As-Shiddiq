@@ -44,7 +44,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{route('Admin-Users.index')}}" class="nav-link">
+            <a href="{{route('users.index')}}" class="nav-link">
               <i class="fas fa-user-tie"></i>
               <p>
                 Tambah Admin User
@@ -62,19 +62,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href=" {{ url('/kas-masjid/pemasukan') }}" class="nav-link">
+                <a href=" {{ url('admin/kas-masjid/pemasukan') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p> Pemasukan </p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{url('/kas-masjid/pengeluaran')}}" class="nav-link">
+                <a href="{{url('admin/kas-masjid/pengeluaran')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p> Pengeluaran </p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('/kas-masjid/rekap')}}" class="nav-link">
+                <a href="{{ url('admin/kas-masjid/rekap')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Rekap Kas Masjid</p>
                 </a>

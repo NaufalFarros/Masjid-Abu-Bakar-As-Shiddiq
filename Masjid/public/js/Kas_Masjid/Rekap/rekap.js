@@ -38,14 +38,25 @@ function datarekap(){
             // console.log(response);
             $.each(response.rekap, function (index, element) { 
                  total_pm += element.pemasukan       
-                 total_pg += element.pengeluaran            
-                            tablebody += `<tr>
+                 total_pg += element.pengeluaran 
+                 if(element.jenis == 'masuk'){
+                    tablebody += `<tr>
                                                 <td>` + (nomor += 1) + `</td>
                                                 <td>` + formatDate(element.tanggal) + `</td>
                                                 <td>` + element.keterangan + `</td>
                                                 <td>` + convertToRupiah(element.pemasukan) + `</td>
+                                                <td > - </td>
+                                            </tr>`
+                 }else if(element.jenis == 'keluar'){
+                        tablebody += `<tr>
+                                                <td>` + (nomor += 1) + `</td>
+                                                <td>` + formatDate(element.tanggal) + `</td>
+                                                <td>` + element.keterangan + `</td>
+                                                <td> - </td>
                                                 <td >`+ convertToRupiah(element.pengeluaran) +`</td>
                                             </tr>`
+                 }          
+                            
                     });
                     // $("#pemasukan").text(convertToRupiah(total_pm));
                     $('')

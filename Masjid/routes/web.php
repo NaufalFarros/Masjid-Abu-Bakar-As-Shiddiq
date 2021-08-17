@@ -51,8 +51,8 @@ use App\Http\Controllers\Admin\Laporan\LapkasmasjidController;
 
 
 //with Controllers
-
-Route::get('/admin',[HomeController::class,'index']);
+Route::prefix('admin')->group(function () {
+Route::get('/',[HomeController::class,'index']);
 //Admin Users
 // Route::get('/admin-users', [AdminusersController::class,'index']);
 // Route::get('/admin-users/create', [AdminusersController::class,'create']);
@@ -61,7 +61,7 @@ Route::get('/admin',[HomeController::class,'index']);
 // Route::get('/admin-users/edit/{id}', [AdminusersController::class,'update']);
 // Route::get('/admin-users/hapus/{id}', [AdminusersController::class,'destroy']);
 
-Route::resource('/Admin-Users', AdminusersController::class);
+Route::resource('/users', AdminusersController::class);
 
 
 
@@ -88,8 +88,9 @@ Route::get('/data-rekap', [RekapController::class,'datarekap']);
 // Laporan Kas Masjid
 Route::get('/laporan/kas-masjid',[LapkasmasjidController::class,'index'] );
 Route::get('/download-pdf',[LapkasmasjidController::class, 'DownloadSemuapdf'] );
-Route::get('/download-pdf-periode/{tglawal}/{tglakhir}',[LapkasmasjidController::class, 'DownloadPeriode'])->name('download-pdf-periode');
+Route::get('/download-pdf-periode',[LapkasmasjidController::class, 'DownloadPeriode'])->name('download-pdf-periode');
 
+});
 //download pdf
 // Route::get('/download-pdf-KasMasjid', );
 

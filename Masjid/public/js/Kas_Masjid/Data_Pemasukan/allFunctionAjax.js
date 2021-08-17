@@ -15,7 +15,7 @@
                     if (result.isConfirmed) {
                          $.ajax({
                              type: "DELETE",
-                             url: "/data-pemasukan/delete" + id_hps,
+                             url: "/admin/data-pemasukan/delete" + id_hps,
                              success: function (response) {
                                  if (response.status == 200) {
                                      Swal.fire(
@@ -60,7 +60,7 @@
                 
             $.ajax({
                 type: "PUT",
-                url: "/data-pemasukan/update/"+id_pm,
+                url: "/admin/data-pemasukan/update/"+id_pm,
                 data: data,
                 dataType: "json",
                 success: function(response) {
@@ -110,7 +110,7 @@
             $('#modal-edit').modal('show');
             $.ajax({
                 type: "GET",
-                url: "/data-pemasukan/edit/" + id_pm,
+                url: "/admin/data-pemasukan/edit/" + id_pm,
                 success: function(response) {
                     // console.log(response);
                     if (response.status == 404) {
@@ -167,7 +167,7 @@
             var tablebody = "";
             $.ajax({
                 type: "GET",
-                url: "/data-pemasukan",
+                url: "/admin/data-pemasukan",
                 dataType: "json",
                 success: function(response) {
                     var total = 0;
@@ -241,7 +241,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "/data-pemasukan/add",
+                    url: "/admin/data-pemasukan/add",
                     data: data,
                     dataType: "json",
                     success: function (response) {

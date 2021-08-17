@@ -38,7 +38,7 @@
                         <div class="card-body">
                             <!-- Date -->
                             <div class="col-6">
-                                <form action="{{route('Admin-Users.store')}}" method="post">
+                                <form action="{{route('users.store')}}" method="post">
                                     @csrf
                                     <div class="form-group">
                                         <label for="nama">Nama</label>

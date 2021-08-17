@@ -34,8 +34,24 @@
                         <div class="card-header">
                             <h3 class="card-title">Admin Users</h3>
                         </div>
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                        @if (session('delete'))
+                            <div class="alert alert-danger">
+                                {{ session('delete') }}
+                            </div>
+                        @endif
+                        @if (session('edit'))
+                            <div class="alert alert-success">
+                                {{ session('edit') }}
+                            </div>
+                        @endif
                         <div class="card-body">
-                           <a href="{{route('Admin-Users.create')}}" class="btn btn-primary my-3"><i class="fas fa-user-plus"></i>Tambah Admin Users</a>
+                            <a href="{{ route('users.create') }}" class="btn btn-primary my-3"><i
+                                    class="fas fa-user-plus"></i>Tambah Admin Users</a>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -47,23 +63,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ( $users as $d )
                                     <tr>
-                                        <th scope="row" class="col-1">1</th>
-                                        <td class="col-3">Mark</td>
-                                        <td class="col-4">Otto</td>
-                                        <td class="col-2">Otto</td>
+                                        <th scope="row" class="col-1">{{$loop->iteration}}</th>
+                                        <td class="col-3">{{$d->name}}</td>
+                                        <td class="col-4">{{$d->email}}</td>
+                                        <td class="col-2">{{$d->role}}</td>
                                         <td class="col-2">
-                                            <a href="" class="btn btn-warning btn-sm"> <i class="fas fa-user-edit"></i> Edit </a>
-                                            <a href="#" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i> Hapus </a>
+                                            <a href="{{route('users.edit',$d->id)}}" class="btn btn-warning btn-sm"> <i class="fas fa-user-edit"></i> Edit
+                                            </a>
+                                            <a href="#" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i> Hapus
+                                            </a>
                                         </td>
                                     </tr>
-                                
+                                    @endforeach
                                 </tbody>
                             </table>
-                        
+
                         </div>
                         <!-- /.card -->
-                      
+
 
                     </div>
 

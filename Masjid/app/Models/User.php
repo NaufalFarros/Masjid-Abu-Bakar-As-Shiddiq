@@ -43,4 +43,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+   /**
+    * Get the kas_masjid associated with the User
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\HasOne
+    */
+   public function kas_masjid()
+   {
+       return $this->hasMany(kas_masjid::class);
+   }
+
+
 }

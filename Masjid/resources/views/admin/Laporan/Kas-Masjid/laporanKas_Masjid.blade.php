@@ -38,7 +38,7 @@
                                     <div class="card-body">
                                         <!-- Date -->
                                     
-                                         <form action="{{url('/download-pdf-periode/tglawal/tglakhir')}}" method="GET" target="_blank">
+                                         <form action="{{url('/download-pdf-periode')}}" method="GET" target="_blank">
                                         <div class="form-group col-md-6">
                                             <label> Tanggal Awal </label>
                                             <div class="input-group date" id="reservationdate1" data-target-input="nearest">
@@ -64,9 +64,9 @@
                                         </div>
 
                                         <!-- /.card-body -->
-                                        <a href=""  id="cetak_periode" ><button type="submit" class="btn btn-primary"> Cetak Periode</button></a>                    
+                                        <a href=""  id="cetak_periode" ><button type="submit" class="btn btn-primary"><i class="fas fa-print"></i> Cetak Periode</button></a>                    
                                     </form>
-                                        <a href="{{url('/download-pdf')}}" target="_blank" ><button type="submit" class="btn btn-primary mt-3">Cetak Semu</button></a>
+                                        <a href="{{url('/download-pdf')}}" target="_blank" ><button type="submit" class="btn btn-primary mt-3"><i class="fas fa-print"></i> Cetak Semua</button></a>
                                     </div>
                                     <!-- /.card -->
                                 </div>               
@@ -98,7 +98,7 @@
 <script>
     //  Timepicker
     $('#reservationdate1,#reservationdate2').datetimepicker({
-      format: 'DD-MM-YYYY'
+      format: 'DD-MM-YYYY',
     });
   
     // $('#reservationdate1,#reservationdate2').datetimepicker({

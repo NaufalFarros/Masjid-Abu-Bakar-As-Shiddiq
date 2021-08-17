@@ -15,8 +15,21 @@ class kas_masjid extends Model
         'pengeluaran',
         'tanggal',
         'jenis',
+        'user_id',
 ];
 protected $dates = [
     'tanggal',
 ];
+
+    /**
+     * Get the user that owns the kas_masjid
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
 }

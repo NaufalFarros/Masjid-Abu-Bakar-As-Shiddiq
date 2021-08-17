@@ -20,7 +20,8 @@ class AdminusersController extends Controller
      */
     public function index()
     {
-        return view('admin.Admin_Users.list_admin');
+        $users = User::all();
+        return view('admin.Admin_Users.list_admin',compact('users'));
     }
 
     /**
@@ -77,7 +78,7 @@ class AdminusersController extends Controller
         ]);
         $user->save();
 
-        return redirect('/Admin-Users')->with('succces','Data Berhasil Ditambah');
+        return redirect('/admin-users')->with('succces','Data Berhasil Ditambah');
 
     }
 
@@ -100,7 +101,8 @@ class AdminusersController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.Admin_Users.edit_admin');
+        $edit = User::find($id);
+        return view('admin.Admin_Users.edit_admin',compact('edit'));
     }
 
     /**

@@ -39,17 +39,28 @@
             </thead>
             <tbody>
                 @foreach ($data as $d)
-
-
-
-
-                    <tr>
+                    @if ($d->jenis == 'masuk')
+                         <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
                         <td>@datetime($d->tanggal)</td>
                         <td>{{ $d->keterangan }}</td>
                         <td>@currency($d->pemasukan)</td>
+                        <td>-</td>
+                    </tr>
+                    @elseif ($d->jenis == 'keluar')
+                             <tr>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>@datetime($d->tanggal)</td>
+                        <td>{{ $d->keterangan }}</td>
+                        <td>-</td>
                         <td>@currency($d->pengeluaran)</td>
                     </tr>
+
+
+                    @endif
+                    
+
+                   
                 @endforeach
                 <tr>
                     <td></td>

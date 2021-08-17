@@ -73,7 +73,7 @@ $(document).ready(function () {
             var tablebody = "";
             $.ajax({
                 type: "GET",
-                url: "/data-pengeluaran",
+                url: "/admin/data-pengeluaran",
                 dataType: "json",
                 success: function(response) {
                     var total = 0;
@@ -131,7 +131,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "/data-pengeluaran/add",
+            url: "/admin/data-pengeluaran/add",
             data: data,
             dataType: "json",
             success: function (response) {
@@ -177,7 +177,7 @@ $(document).on("click", "#edit_data_pg", function (e) {
    
     $.ajax({
         type: "GET",
-        url: "/data-pengeluaran/edit/"+id_pg,
+        url: "/admin/data-pengeluaran/edit/"+id_pg,
         success: function (response) {
             //  console.log(response); 
             if (response.status == 404) {
@@ -213,7 +213,7 @@ $(document).on("click", "#edit_pengeluaran", function (e) {
     });  
     $.ajax({
         type: "PUT",
-        url: "/data-pengeluaran/update/"+ id_pg,
+        url: "/admin/data-pengeluaran/update/"+ id_pg,
         data: data,
         dataType: "json",
         success: function (response) {
@@ -277,7 +277,7 @@ Swal.fire({
             if (result.isConfirmed) {
                    $.ajax({
                        type: "DELETE",
-                       url: "/data-pengeluaran/delete/" + id_hps,
+                       url: "/admin/data-pengeluaran/delete/" + id_hps,
                        success: function (response) {
                            if (response.status == 200) {
                                Swal.fire(
