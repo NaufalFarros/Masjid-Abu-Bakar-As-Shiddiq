@@ -1,13 +1,16 @@
 <?php
 
-use App\Http\Controllers;
-use App\Http\Controllers\Admin\Admin_Users\AdminusersController;
+
+
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\Kas_Masjid\RekapController;
 use App\Http\Controllers\Admin\Kas_Masjid\PemasukanController;
-use App\Http\Controllers\Admin\Kas_Masjid\PengeluaranController;
 use App\Http\Controllers\Admin\Laporan\LapkasmasjidController;
+use App\Http\Controllers\Admin\Admin_Users\AdminusersController;
+use App\Http\Controllers\Admin\Kas_Masjid\PengeluaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,17 +24,17 @@ use App\Http\Controllers\Admin\Laporan\LapkasmasjidController;
 */
 
 
-
+Auth::routes();
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // Admin
-Route::get('/login-admin', function () {
-    return view('admin.konfirmasi._login');
-});
+Route::get('/login-admin', [LoginController::class,'index']);
 Route::get('/lupa-password', function () {
     return view('admin.konfirmasi.LupaPassword');
 });
 //with Controllers
-Route::prefix('admin')->group(function () {
-    Route::get('/', [HomeController::class, 'index']);
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
+
+    Route::get('/', [HomeController::class, 'index'])->name('admin');
     //Admin Users
     // Route::get('/admin-users', [AdminusersController::class,'index']);
     // Route::get('/admin-users/create', [AdminusersController::class,'create']);
@@ -39,12 +42,12 @@ Route::prefix('admin')->group(function () {
     // Route::get('/admin-users/edit', [AdminusersController::class,'edit']);
     // Route::get('/admin-users/edit/{id}', [AdminusersController::class,'update']);
     // Route::get('/admin-users/hapus/{id}', [AdminusersController::class,'destroy']);
-    Route::resource('/users', AdminusersController::class);
+    Route::resource('/users', AdminusersController::class)->middleware('admin:admin');
 
 
 
-    Route::get('/kas-masjid/pemasukan', [PemasukanController::class, 'index']);
-    Route::get('/kas-masjid/pengeluaran', [PengeluaranController::class, 'index']);
+    Route::get('/kas-masjid/pemasukan', [PemasukanController::class, 'index'])->middleware('admin:admin|bendahara');
+    Route::get('/kas-masjid/pengeluaran', [PengeluaranController::class, 'index'])->middleware('admin:admin|bendahara');
     Route::get('/kas-masjid/rekap', [RekapController::class, 'index']);
 
     //AJAX JSON
@@ -74,12 +77,7 @@ Route::get('/', function () {
     return view('layouts.web');
 });
 
-require __DIR__ . '/auth.php';
+// require __DIR__ . '/auth.php';
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -44,6 +44,7 @@ class AdminusersController extends Controller
     {
         $request->validate([
             'nama' => 'required|string|min:3|max:100',
+            'username' => 'required|string|min:6|max:100|unique:users',
             'email' => ' required|email|string|max:100|unique:users',
             'password'=> ['required','min:6', 'confirmed', Rules\Password::defaults()],
             'role'=> 'in:admin,ketua,wakil,bendahara,sekretaris',
@@ -51,9 +52,12 @@ class AdminusersController extends Controller
             'nama.required'=> 'Nama Harus Di Isi',
             'nama.min' => 'Nama Minimal 3 Huruf',
             'nama.max'=> 'Nama Maksimal 100 Huruf',
+            'username.required'=>'Username Harus Di isi',
+            'username.min'=>'Username Harus Minimal 6',
+            'username.unique'=>'Username Sudah Ada Silahkan Membuat Username Lain',
             'email.required'=>'Email Harus Di Isi',
             'email.email'=>'Masukkan Email Dengan Benar @... ',
-            'email.unique'=>'Email Sudah Digunakan',
+            'email.unique'=>'Email Sudah Sudah Ada',
             'password.required'=>'Password Harus Di Isi',
             'password.min'=>'Password Minimal 6 Huruf',
             'password.confirmed'=>'Password Konfirmasi Tidak Cocok ',
@@ -72,13 +76,14 @@ class AdminusersController extends Controller
         // ]);
         $user = User::create([
             'name' => $request->nama,
+            'username'=>$request->username,
             'email'=> $request->email,
             'password'=>Hash::make($request->password),
             'role'=> $request->role,
         ]);
         $user->save();
 
-        return redirect('/admin-users')->with('succces','Data Berhasil Ditambah');
+        return redirect('/admin/users')->with('success','Data Berhasil Ditambah');
 
     }
 
@@ -114,7 +119,29 @@ class AdminusersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    //   dd($request);
+        $request->validate([
+            'name' => 'required|string|min:3|max:100',
+            'username' => 'required|string|min:6|max:100|unique:users,username,'.$id,
+            'email' => ' required|email|string|max:100|unique:users,email,'.$id,
+            'role' => 'in:admin,ketua,wakil,bendahara,sekretaris',
+        ], [
+            'nama.required' => 'Nama Harus Di Isi',
+            'nama.min' => 'Nama Minimal 3 Huruf',
+            'nama.max' => 'Nama Maksimal 100 Huruf',
+            'username.required' => 'Username Harus Di isi',
+            'username.min' => 'Username Harus Minimal 6',
+            'username.unique' => 'Username Sudah Ada Silahkan Membuat Username Lain',
+            'email.required' => 'Email Harus Di Isi',
+            'email.email' => 'Masukkan Email Dengan Benar @... ',
+            'email.unique' => 'Email Sudah Sudah Ada',
+            'role.in' => 'Role Harus Di  '
+        ]);
+      
+        User::find($id)->update($request->all());
+        return redirect('/admin/users')->with('edit', 'Data Berhasil di Edit');
+        
+
     }
 
     /**

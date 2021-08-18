@@ -1,14 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\kas_masjid;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 
-class HomeController extends Controller
+class LoginController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +13,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-         $home = kas_masjid::all();
-         $user = User::all();                
-        //  dd($kasmasjid);
-         return view('admin.partials.home',compact('home','user'));
+        return view('admin.konfirmasi._login');
     }
 
     /**

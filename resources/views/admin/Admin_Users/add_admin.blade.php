@@ -44,9 +44,20 @@
                                         <label for="nama">Nama</label>
                                         <input type="text" class="form-control @error('nama')
                                             is-invalid
-                                        @enderror" id="nama"  value="{{old('name')}}"
+                                        @enderror" id="nama"  value="{{old('nama')}}"
                                             aria-describedby="emailHelp" placeholder="Nama" name="nama">
                                             @error('nama')
+                                            <div class="invalid-feedback">{{ $message }}</div>     
+                                            @enderror
+                                            
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="username">username</label>
+                                        <input type="text" class="form-control @error('username')
+                                            is-invalid
+                                        @enderror" id="username"  value="{{old('username')}}"
+                                            aria-describedby="emailHelp" placeholder="Username" name="username">
+                                            @error('username')
                                             <div class="invalid-feedback">{{ $message }}</div>     
                                             @enderror
                                             

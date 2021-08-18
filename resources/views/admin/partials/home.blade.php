@@ -83,7 +83,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-            <h2 class="text-center">1</h2>
+            <h2 class="text-center">{{$user->count()}}</h2>
             </div>
             <!-- /.card-body -->
           </div>

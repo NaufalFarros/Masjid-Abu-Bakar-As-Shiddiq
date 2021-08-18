@@ -22,19 +22,7 @@
                         <li class="breadcrumb-item"><a href="#">Admin Users</a></li>
                     </ol>
                 </div>
-            </div>
-        </div><!-- /.container-fluid -->
-    </section>
-
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <h3 class="card-title">Admin Users</h3>
-                        </div>
-                        @if (session('success'))
+                  @if (session('success'))
                             <div class="alert alert-success">
                                 {{ session('success') }}
                             </div>
@@ -49,33 +37,51 @@
                                 {{ session('edit') }}
                             </div>
                         @endif
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Admin Users</h3>
+                        </div>
+                      
                         <div class="card-body">
                             <a href="{{ route('users.create') }}" class="btn btn-primary my-3"><i
                                     class="fas fa-user-plus"></i>Tambah Admin Users</a>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Nama</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Role</th>
-                                        <th scope="col">Aksi</th>
+                                        <th scope="col" class="col-1">No</th>
+                                        <th scope="col" class="col-2">Nama</th>
+                                        <th scope="col" class="col-2">Username</th>
+                                        <th scope="col" class="col-2">Email</th>
+                                        <th scope="col" class="col-2">Role</th>
+                                        <th scope="col" class="col-2">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ( $users as $d )
-                                    <tr>
-                                        <th scope="row" class="col-1">{{$loop->iteration}}</th>
-                                        <td class="col-3">{{$d->name}}</td>
-                                        <td class="col-4">{{$d->email}}</td>
-                                        <td class="col-2">{{$d->role}}</td>
-                                        <td class="col-2">
-                                            <a href="{{route('users.edit',$d->id)}}" class="btn btn-warning btn-sm"> <i class="fas fa-user-edit"></i> Edit
-                                            </a>
-                                            <a href="#" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i> Hapus
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    @foreach ($users as $d)
+                                        
+                                        <tr>
+                                            <th scope="row">{{ $loop->iteration }}</th>
+                                            <td >{{ $d->name }}</td>
+                                            <td >{{ $d->username}}</td>
+                                            <td >{{ $d->email }}</td>
+                                            <td >{{ $d->role }}</td>
+                                            <td >
+                                                <a href="{{ route('users.edit', $d->id) }}" class="btn btn-warning btn-sm">
+                                                    <i class="fas fa-user-edit"></i> Edit
+                                                </a>
+                                                <a href="#" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i>
+                                                    Hapus
+                                                </a>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -111,6 +117,27 @@
     <!-- Tempusdominus Bootstrap 4 -->
     <script src="{{ asset('AdminLTE/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 
+    <script>
+        $(document).ready(function() {
+            function mask($str, $first, $last) {
+                $len = strlen($str);
+                $toShow = $first + $last;
+                return substr($str, 0, $len <= $toShow ? 0 : $first).str_repeat("*", $len - ($len <= $toShow ? 0 :
+                    $toShow)).substr($str, $len - $last, $len <= $toShow ? 0 : $last);
+            }
+
+            function mask_email($email) {
+                $mail_parts = explode("@", $email);
+                $domain_parts = explode('.', $mail_parts[1]);
+
+                $mail_parts[0] = mask($mail_parts[0], 2, 1); // show first 2 letters and last 1 letter
+                $domain_parts[0] = mask($domain_parts[0], 2, 1); // same here
+                $mail_parts[1] = implode('.', $domain_parts);
+
+                return implode("@", $mail_parts);
+            }
+        });
+    </script>
 
 
 @endsection

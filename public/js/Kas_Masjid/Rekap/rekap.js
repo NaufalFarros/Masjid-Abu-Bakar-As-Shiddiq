@@ -29,7 +29,7 @@ function datarekap(){
     var tablebody = "";
     $.ajax({
         type: "GET",
-        url: "/data-rekap",
+        url: "/admin/data-rekap",
         dataType: "json",
         success: function (response) {
             var nomor = 0 ; 

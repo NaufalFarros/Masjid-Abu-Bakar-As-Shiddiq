@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Kas_Masjid;
 
 use Carbon\Carbon;
+use App\Models\User;
 use App\Models\kas_masjid;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -20,16 +21,18 @@ class PemasukanController extends Controller
     public function index()
     {
         // $pemasukan = kas_masjid::all();
+      
         return view('admin.Kas_Masjid.pemasukan');
         
     }
 
     public function datapemasukan()
     {
-        $pemasukan = kas_masjid::all()->where('jenis', "masuk");
+        $pemasukan = kas_masjid::join('users', 'users.id', '=', 'kas_masjids.user_id')->where('jenis', "masuk")->get(['users.name','kas_masjids.*']);
         return response()->json([
             'pemasukan' => $pemasukan,
         ]);
+
     }
 
     /**
@@ -80,7 +83,7 @@ class PemasukanController extends Controller
             // $data_masuk->tanggal = $request->input('tanggal');
             $data_masuk->tanggal = Carbon::createFromFormat('d/m/Y', $request->tanggal)->format('Y/m/d');
             $data_masuk->jenis = 'masuk';
-            $data_masuk->user_id = 1 ;
+            $data_masuk->user_id = Auth::user()->id;
             $data_masuk->save();
             return response()->json([
                 'status' => 200,
