@@ -1,0 +1,486 @@
+/* css untuk semua element (dipake berkali") */
+:root {
+  --main : #136c20;
+  --sf-main : #168827;
+  --secondary : #b0dfa0;
+  --st-black : #1b231c;
+  --sf-black : #29342b;
+  --sf-white : rgb(226, 226, 226);
+  --orange : #ff982f;
+  --section-space : 50px;
+}
+
+body {
+  font-family: 'Rubik', sans-serif;
+}
+
+section {
+  margin-top: var(--section-space);
+}
+
+h4 {
+  color: var(--main);
+}
+
+h5 {
+  color: var(--main);
+  font-weight: 600;
+  font-size: .9rem;
+}
+
+.btn-show-details {
+  background-color: var(--secondary);
+  border: none;
+  font-weight: 700;
+  color: var(--main);
+  padding: 0.5rem 1rem;
+  float: right;
+}
+
+/* css untuk navbar */
+.navbar-toggler-icon {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.btn-show-details:hover {
+  background-color: var(--main);
+  color: var(--secondary);
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.nav-item, .btn-search {
+  font-weight: 700;
+  color: var(--sf-black);
+}
+
+.nav-item:hover, .btn-search:hover {
+  color: var(--st-black);
+}
+
+.nav-item, .get-involved, .btn-search, .search-input, .search-action, .submit-search, .carousel-button, .btn-show-details,
+.card-list .title, .event p, footer p {
+  font-size: 0.8rem;
+}
+
+.get-involved {
+  background-color: var(--main);
+  color: white;
+  outline: none;
+  border: none;
+  font-weight: 400;
+  padding: 0.5rem 1rem;
+}
+
+.get-involved:hover {
+  background-color: var(--sf-main);
+  color: var(--sf-white);
+}
+
+/* css untuk semua carousel */
+.carousel-inner {
+  background-color: var(--main);
+  border-radius: 20px;
+  padding: 4rem 3rem;
+  color: white;
+}
+
+.carousel-item .row .order:first-child {
+  order: 2;
+}
+.carousel-item .row .order:last-child {
+  order: 1;
+  margin-bottom: 1rem;
+}
+
+.carousel-item .title {
+  font-weight: bold;
+}
+
+.carousel-item .subtitle {
+  color: var(--sf-white);
+  font-weight: 300;
+  font-size: 0.9rem;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 300px;
+}
+
+/* css buat quick link */
+.link-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.card-list {
+  flex: 0 0 14.87%;
+  margin: 10px;
+  border: solid 1px var(--sf-white);
+  padding: 1rem 0;
+  text-decoration: none;
+  color: var(--st-black);
+}
+
+.card-list:hover {
+  color: var(--main);
+  transform: scale(1.1);
+}
+
+.card-list:hover .view-details {
+  opacity: 1!important;
+}
+
+.card-list .donate-icon {
+  font-size: 2rem;
+  margin: 3rem;
+}
+
+.card-list .view-details {
+  font-size: 0.7rem;
+  text-decoration: underline;
+  opacity: 0;
+}
+
+.card-list .title {
+  font-weight: 500;
+}
+
+/* css untuk waktu sholat */
+.prayer-times {
+  background-image: url("./images/BDwLWz.png");
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+  padding: 3rem;
+}
+
+.prayer-times h3 {
+  color: var(--main);
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.prayer-times span {
+  color: var(--orange);
+}
+
+.prayer-times .times img {
+  width: 35px;
+}
+
+.prayer-times .times span {
+  color: var(--main);
+  font-weight: 400;
+}
+
+/* css untuk event */
+.event h5, .event p {
+  margin: 0;
+}
+
+.event .date {
+  color: var(--st-black);
+}
+
+.event .day {
+  font-size: 0.9rem;
+}
+
+.event p {
+  color: var(--sf-black);
+}
+
+/* css untuk carousel upcoming event */
+.event .carousel-indicators {
+  margin: 0;
+  position: relative;
+}
+
+.event .carousel-inner {
+  background-color: white;
+  padding: 0;
+}
+
+.event .carousel-indicator{
+  background-color: rgb(184, 184, 184);
+  width: 15px;
+  border-radius: 10px;
+}
+
+.event .carousel-item {
+  
+}
+
+.event .carousel-item img {
+  height: 192px;
+}
+
+.upcoming-event h5 {
+  color: var(--st-black);
+}
+
+/* css untuk carousel bawahnya event */
+.event-banner .carousel-control-next, .event-banner .carousel-control-prev {
+  width: 5.5%;
+}
+
+.event-banner .carousel-inner {
+  padding: 3rem;
+}
+
+.event-banner .carousel-item .title {
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+.event-banner .carousel-item .name {
+  color: var(--sf-white);
+  margin: 1.5rem 0 0 0;
+}
+
+.event-banner .carousel-item .subtitle {
+  color: var(--sf-white);
+  font-weight: 300;
+  font-size: 0.9rem;
+}
+
+/* css untuk galeri */
+.photo {
+  background-image: linear-gradient(#c6ebba, white);
+  padding: 2rem;
+}
+
+.photo .image-wrapper {
+  height: 290px;
+  display: flex;
+  justify-content: center;
+}
+
+/* css untuk bagian donasi */
+.donation-wrapper {
+  background-color: var(--main);
+  padding: 100px;
+}
+
+.donation {
+  max-width: 768px;
+  margin: auto;
+}
+
+.donation h1 {
+  color: white;
+}
+
+.donation p {
+  color: var(--secondary);
+}
+
+.donation button {
+  background-color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--main);
+  margin-top: 20px;
+}
+
+/* css untuk bagian subcribe */
+.subcribe {
+  border-radius: 20px;
+  padding: 50px;
+  top: -50px;
+  position: relative;
+  background-color: white;
+}
+
+.subcribe h3 {
+  color: var(--main);
+}
+
+.subcribe p {
+  color: var(--sf-black);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.subcribe input, .message input {
+  padding: 4px 16px;
+  width: 100%;
+  position: relative;
+}
+
+.subcribe button {
+  position: relative;
+  bottom: 1px;
+  max-width: 86px;
+}
+
+/* css untuk footer */
+footer h4 {
+  font-size: 22px;
+}
+
+footer h5 {
+  margin-bottom: 15px;
+}
+
+footer p {
+  color: var(--sf-black);
+  font-weight: 600;
+  margin: 0;
+  margin-top: 10px!important;
+}
+
+.contact i {
+  font-size: 1.3rem;
+  bottom: -3px;
+  position: relative;
+}
+
+footer .icon {
+  font-size: 2rem;
+  width: auto;
+  color: var(--sf-black);
+  margin-right: 5px;
+}
+
+.message {
+  position: relative;
+}
+
+.message input {
+  padding: 7px 15px;
+}
+
+.btn-send {
+  float: right;
+  background-color: var(--secondary);
+  color: var(--main);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 10px 20px;
+}
+
+
+.btn-search {
+  cursor: pointer;
+}
+
+.search-wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff91;
+  display: flex;
+}
+
+.search {
+  margin: auto;
+  align-items: center;
+  width: 95%;
+  height: 20%;
+  background-color: var(--main);
+  padding: 1rem;
+}
+
+.search-action {
+  margin: 0.8rem 0;
+}
+
+.cancel-search {
+  text-decoration: none;
+  color: white;
+}
+
+.cancel-search:hover {
+  color: var(--sf-white);
+  text-decoration: underline;
+}
+
+/* css untuk responsive */
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .search {
+    width: 90%;
+  }
+
+  .subcribe input {
+    width: 75%;
+    left: 25px;
+  }
+  
+  .subcribe button {
+    left: -25px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .search {
+    width: 80%;
+  }
+
+  .carousel-item .row .order:first-child {
+    order: 1;
+  }
+  .carousel-item .row .order:last-child {
+    order: 2;
+  }
+
+  .event-banner .carousel-inner {
+    height: 350px;
+  }
+
+  .subcribe input {
+    width: 50%;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .get-involved {
+    width: auto!important;
+  }
+
+  .search {
+    width: 70%;
+  }
+
+  .event-banner .carousel-inner {
+    height: 310px;
+  }
+
+  .btn-send {
+    position: absolute;
+    top: -9px;
+    right: 0;
+    width: 120px!important;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .search {
+    width: 60%;
+    padding: 2rem;
+  }
+
+  .event-banner .carousel-inner {
+    height: 270px;
+  }
+
+  .subcribe input {
+    width: 40%;
+  }
+}

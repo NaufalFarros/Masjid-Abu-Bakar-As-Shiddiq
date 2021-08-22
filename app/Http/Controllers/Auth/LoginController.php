@@ -37,6 +37,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        // $this->middleware(['auth', 'verified']);
     }
     public function Login(Request $request)
     {
@@ -55,7 +56,7 @@ class LoginController extends Controller
         if (auth()->attempt($login)) {
             return redirect()->route('admin');
         } else {
-            return redirect()->route('login')->with(['error' => 'Username Atau Password Salah']);
+            return redirect()->route('login')->withErrors(['email' => 'Username Atau Password Salah']);
         }
     }
 }

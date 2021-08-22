@@ -1,11 +1,12 @@
 @extends('admin.index')
 
 @section('head')
-    <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet"
-        href="{{ asset('AdminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
-    <!-- daterange picker -->
-    <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/daterangepicker/daterangepicker.css') }}">
+    <script>
+
+
+
+
+    </script>
 @endsection
 
 @section('content')
@@ -22,21 +23,21 @@
                         <li class="breadcrumb-item"><a href="#">Admin Users</a></li>
                     </ol>
                 </div>
-                  @if (session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
-                        @endif
-                        @if (session('delete'))
-                            <div class="alert alert-danger">
-                                {{ session('delete') }}
-                            </div>
-                        @endif
-                        @if (session('edit'))
-                            <div class="alert alert-success">
-                                {{ session('edit') }}
-                            </div>
-                        @endif
+                {{-- @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                @if (session('delete'))
+                    <div class="alert alert-danger">
+                        {{ session('delete') }}
+                    </div>
+                @endif
+                @if (session('edit'))
+                    <div class="alert alert-success">
+                        {{ session('edit') }}
+                    </div>
+                @endif --}}
             </div>
         </div><!-- /.container-fluid -->
     </section>
@@ -49,7 +50,7 @@
                         <div class="card-header">
                             <h3 class="card-title">Admin Users</h3>
                         </div>
-                      
+
                         <div class="card-body">
                             <a href="{{ route('users.create') }}" class="btn btn-primary my-3"><i
                                     class="fas fa-user-plus"></i>Tambah Admin Users</a>
@@ -66,20 +67,26 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($users as $d)
-                                        
+
+                                      
                                         <tr>
                                             <th scope="row">{{ $loop->iteration }}</th>
-                                            <td >{{ $d->name }}</td>
-                                            <td >{{ $d->username}}</td>
-                                            <td >{{ $d->email }}</td>
-                                            <td >{{ $d->role }}</td>
-                                            <td >
-                                                <a href="{{ route('users.edit', $d->id) }}" class="btn btn-warning btn-sm">
-                                                    <i class="fas fa-user-edit"></i> Edit
-                                                </a>
-                                                <a href="#" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i>
-                                                    Hapus
-                                                </a>
+                                            <td>{{ $d->name }}</td>
+                                            <td>{{ $d->username }}</td>
+                                            <td>{{ hideEmailAddress($d->email)}}</td>
+                                            <td>{{ $d->role }}</td>
+                                            <td>
+                                                <form action="{{ route('users.destroy', $d->id) }} " method="post">
+                                                    <a href="{{ route('users.edit', $d->id) }}"
+                                                        class="btn btn-warning btn-sm">
+                                                        <i class="fas fa-user-edit"></i> Edit
+                                                    </a>
+                                                    @csrf
+                                                    @method('delete')
+
+                                                    <button type="submit" class="btn btn-danger btn-sm" id="Hapus"><i
+                                                            class="far fa-trash-alt"></i>Hapus</button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -93,8 +100,6 @@
                     </div>
 
                 </div>
-                {{-- onclick="this.href='/download-pdf-periode/'+document.getElementById('tgl_awal').value+'/'+document.getElementById('tgl_akhir').value" --}}
-
                 {{-- /. Row --}}
             </div>
             <!-- /.container-fluid -->
@@ -106,38 +111,15 @@
 
 
 @section('script')
+
     <!-- jQuery -->
     <script src="{{ asset('AdminLTE/plugins/jquery/jquery.min.js') }}"></script>
-    <!-- InputMask/Moment JS -->
-    <script src="{{ asset('AdminLTE/plugins/moment/moment.min.js') }}"></script>
-    <!-- date-range-picker -->
-    <script src="{{ asset('AdminLTE/plugins/daterangepicker/daterangepicker.js') }}"></script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- Tempusdominus Bootstrap 4 -->
-    <script src="{{ asset('AdminLTE/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 
-    <script>
-        $(document).ready(function() {
-            function mask($str, $first, $last) {
-                $len = strlen($str);
-                $toShow = $first + $last;
-                return substr($str, 0, $len <= $toShow ? 0 : $first).str_repeat("*", $len - ($len <= $toShow ? 0 :
-                    $toShow)).substr($str, $len - $last, $len <= $toShow ? 0 : $last);
-            }
 
-            function mask_email($email) {
-                $mail_parts = explode("@", $email);
-                $domain_parts = explode('.', $mail_parts[1]);
 
-                $mail_parts[0] = mask($mail_parts[0], 2, 1); // show first 2 letters and last 1 letter
-                $domain_parts[0] = mask($domain_parts[0], 2, 1); // same here
-                $mail_parts[1] = implode('.', $domain_parts);
 
-                return implode("@", $mail_parts);
-            }
-        });
-    </script>
 
 
 @endsection

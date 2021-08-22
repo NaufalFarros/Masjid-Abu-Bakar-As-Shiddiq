@@ -81,8 +81,9 @@
                                     <tr>
                                         <th class="col-1">No</th>
                                         <th class="col-2">Tanggal</th>
-                                        <th class="col-5">Keterangan</th>
+                                        <th class="col-3">Keterangan</th>
                                         <th class="col-2">Jumlah</th>
+                                        <th class="col-2">Admin</th>
                                         <th class="col-2">Aksi</th>
                                     </tr>
                                 </thead>

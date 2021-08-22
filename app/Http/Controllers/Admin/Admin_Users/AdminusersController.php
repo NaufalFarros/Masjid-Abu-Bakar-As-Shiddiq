@@ -8,7 +8,9 @@ use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 
 class AdminusersController extends Controller
@@ -18,9 +20,13 @@ class AdminusersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
+ 
+
     public function index()
     {
-        $users = User::all();
+       
+        $users = User::all();     
         return view('admin.Admin_Users.list_admin',compact('users'));
     }
 
@@ -44,9 +50,9 @@ class AdminusersController extends Controller
     {
         $request->validate([
             'nama' => 'required|string|min:3|max:100',
-            'username' => 'required|string|min:6|max:100|unique:users',
+            'username' => 'required|string|alpha_dash|min:6|max:100|unique:users',
             'email' => ' required|email|string|max:100|unique:users',
-            'password'=> ['required','min:6', 'confirmed', Rules\Password::defaults()],
+            'password'=> ['required','min:6','confirmed', Rules\Password::defaults()],
             'role'=> 'in:admin,ketua,wakil,bendahara,sekretaris',
         ],[
             'nama.required'=> 'Nama Harus Di Isi',
@@ -54,6 +60,7 @@ class AdminusersController extends Controller
             'nama.max'=> 'Nama Maksimal 100 Huruf',
             'username.required'=>'Username Harus Di isi',
             'username.min'=>'Username Harus Minimal 6',
+            'username.alpha_dash' => 'Hanya Boleh Huruf,Nomor, _ , -',
             'username.unique'=>'Username Sudah Ada Silahkan Membuat Username Lain',
             'email.required'=>'Email Harus Di Isi',
             'email.email'=>'Masukkan Email Dengan Benar @... ',
@@ -82,8 +89,8 @@ class AdminusersController extends Controller
             'role'=> $request->role,
         ]);
         $user->save();
-
-        return redirect('/admin/users')->with('success','Data Berhasil Ditambah');
+        Alert::success('Tambah Data', 'Data Berhasil Di Tambah');
+        return redirect('/admin/users');
 
     }
 
@@ -139,6 +146,7 @@ class AdminusersController extends Controller
         ]);
       
         User::find($id)->update($request->all());
+        Alert::success('Edit Data', 'Data Berhasil Di Edit');
         return redirect('/admin/users')->with('edit', 'Data Berhasil di Edit');
         
 
@@ -152,6 +160,10 @@ class AdminusersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // dd($id);
+       $delete = User::find($id);
+       $delete->delete();
+       Alert::success('Menghapus Data', 'Data Berhasil Di Hapus');
+        return redirect('/admin/users');
     }
 }

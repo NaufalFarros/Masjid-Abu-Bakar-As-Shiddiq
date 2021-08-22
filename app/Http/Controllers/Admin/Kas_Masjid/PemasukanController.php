@@ -18,6 +18,8 @@ class PemasukanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     
     public function index()
     {
         // $pemasukan = kas_masjid::all();

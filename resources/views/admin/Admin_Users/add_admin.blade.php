@@ -1,12 +1,7 @@
 @extends('admin.index')
 
 @section('head')
-    <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet"
-        href="{{ asset('AdminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
-    <!-- daterange picker -->
-    <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/daterangepicker/daterangepicker.css') }}">
-  
+   
 @endsection
 
 @section('content')
@@ -124,7 +119,6 @@
                     </div>
 
                 </div>
-                {{-- onclick="this.href='/download-pdf-periode/'+document.getElementById('tgl_awal').value+'/'+document.getElementById('tgl_akhir').value" --}}
 
                 {{-- /. Row --}}
             </div>
@@ -139,15 +133,7 @@
 @section('script')
     <!-- jQuery -->
     <script src="{{ asset('AdminLTE/plugins/jquery/jquery.min.js') }}"></script>
-    <!-- InputMask/Moment JS -->
-    <script src="{{ asset('AdminLTE/plugins/moment/moment.min.js') }}"></script>
-    <!-- date-range-picker -->
-    <script src="{{ asset('AdminLTE/plugins/daterangepicker/daterangepicker.js') }}"></script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- Tempusdominus Bootstrap 4 -->
-    <script src="{{ asset('AdminLTE/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-
-
-
+    
 @endsection

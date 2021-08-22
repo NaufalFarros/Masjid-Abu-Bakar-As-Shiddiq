@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin\Kas_Masjid;
 
-use Illuminate\Support\Facades\Validator;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\kas_masjid;
 use Carbon\Carbon;
+use App\Models\kas_masjid;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+
 class PengeluaranController extends Controller
 {
     /**
@@ -14,12 +16,14 @@ class PengeluaranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     
     public function index()
     {
         return view('admin.Kas_Masjid.pengeluaran');
     }
     public function datapengeluaran(){
-        $get_data = kas_masjid::all()->where('jenis', "keluar");
+        $get_data = kas_masjid::join('users','users.id','=','kas_masjids.user_id')->where('jenis', "keluar")->get(['users.name','kas_masjids.*']);
          return response()->json([
                 'pengeluaran' => $get_data,
     
@@ -72,6 +76,7 @@ class PengeluaranController extends Controller
             // $data_masuk->tanggal = $request->input('tanggal');
             $data_masuk->tanggal = Carbon::createFromFormat('d/m/Y', $request->tanggal)->format('Y/m/d');
             $data_masuk->jenis = 'keluar';
+            $data_masuk->user_id = Auth::user()->id;
             $data_masuk->save();
             return response()->json([
                 'status' => 200,

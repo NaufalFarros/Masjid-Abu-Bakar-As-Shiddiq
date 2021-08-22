@@ -181,7 +181,7 @@
                                                 <td>` + element.keterangan + `</td>
                                                 <td>` + convertToRupiah(element.pemasukan) + `</td>
                                                 <td>` + (element.name)+ `</td>
-                                                <td >
+                                                <td>
                                                     <a class="btn btn-primary btn-sm" id="edit_data_pm" data-id="` +
                                 element.id + `"> 
                                                         <i class="fas fa-edit">Edit</i> </a>
