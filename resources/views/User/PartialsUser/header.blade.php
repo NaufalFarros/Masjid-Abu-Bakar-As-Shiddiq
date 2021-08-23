@@ -13,8 +13,8 @@
                 </div>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav m-auto mb-2 mb-lg-0 justify-content-center">
-                         <li class="nav-item mx-lg-4">
-                            <a class="nav-link" href="#">Home</a>
+                        <li class="nav-item mx-lg-4">
+                             <a class="nav-link" href="{{url('/')}}">Home</a>
                         </li>
                         <li class="nav-item mx-lg-4">
                             <a class="nav-link" href="{{url('/about')}}">About Us</a>
