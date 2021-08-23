@@ -1,4 +1,4 @@
-@extends('User.web')
+
  
         <div class="container-fluid container-lg">
             <div class="row">

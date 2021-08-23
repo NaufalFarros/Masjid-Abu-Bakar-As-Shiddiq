@@ -22,9 +22,11 @@ use App\Http\Controllers\Admin\Kas_Masjid\PengeluaranController;
 */
 
 Route::get('/', function () {
-    return view('User.web');
+    return view('User.PartialsUser.home');
 });
-
+Route::get('/about', function () {
+    return view('User.About Us.about');
+});
 
 Auth::routes();
 

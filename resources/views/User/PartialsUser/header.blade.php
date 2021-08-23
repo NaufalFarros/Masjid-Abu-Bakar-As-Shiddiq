@@ -1,9 +1,8 @@
-@extends('User.web')
 
-<header>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
             <div class="container-fluid container-lg py-2">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" href="#">Abu Bakar As Shiddiq</a>
                 <div>
                     <i class="fas fa-search d-lg-none d-inline-block btn-search"></i>
                     <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
@@ -14,14 +13,11 @@
                 </div>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav m-auto mb-2 mb-lg-0 justify-content-center">
-                        <li class="nav-item mx-lg-4">
-                            <a class="nav-link" href="#">About Us</a>
+                         <li class="nav-item mx-lg-4">
+                            <a class="nav-link" href="#">Home</a>
                         </li>
                         <li class="nav-item mx-lg-4">
-                            <a class="nav-link" href="#">News</a>
-                        </li>
-                        <li class="nav-item mx-lg-4">
-                            <a class="nav-link" href="#">Educational</a>
+                            <a class="nav-link" href="{{url('/about')}}">About Us</a>
                         </li>
                         <li class="nav-item mx-lg-4">
                             <a class="nav-link" href="#">Event</a>
@@ -40,6 +36,6 @@
                 </div>
             </div>
 </nav>
- </header>
+ 
         
     

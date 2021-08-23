@@ -31,7 +31,7 @@
                                      </div>
                                  </div>
                                  <div class="col-md order">
-                                     <img src="./images/masjid-png-clipart-best-3.png" alt="">
+                                     <img src="{{asset('image/masjid-png-clipart-best-3.png')}}" alt="">
                                  </div>
                              </div>
                          </div>
@@ -50,7 +50,7 @@
                                      </div>
                                  </div>
                                  <div class="col-md order">
-                                     <img src="./images/Mosque-PNG-Image-HD.png" alt="">
+                                     <img src="{{asset('image/Mosque-PNG-Image-HD.png')}}" alt="">
                                  </div>
                              </div>
                          </div>
@@ -69,7 +69,7 @@
                                      </div>
                                  </div>
                                  <div class="col-md order">
-                                     <img src="./images/masjid-png-clipart-best-3.png" alt="">
+                                     <img src="{{asset('image/masjid-png-clipart-best-3.png')}}" alt="">
                                  </div>
                              </div>
                          </div>
@@ -88,7 +88,7 @@
                                      </div>
                                  </div>
                                  <div class="col-md order">
-                                     <img src="./images/Mosque-PNG-Image-HD.png" alt="">
+                                     <img src="{{asset('image/Mosque-PNG-Image-HD.png')}}" alt="">
                                  </div>
                              </div>
                          </div>
@@ -149,27 +149,27 @@
                          <h5><span>5:15</span> Sunrise</h5>
                          <div class="row times mt-4">
                              <div class="col">
-                                 <img src="./images/fajr.png" alt="">
+                                 <img src="{{ asset('image/fajr.png')}}" alt="">
                                  <h5>FAJR</h5>
                                  <h5>5:00<span>am</span></h5>
                              </div>
                              <div class="col">
-                                 <img src="./images/zhur.png" alt="">
+                                 <img src="{{asset('image/zhur.png')}}" alt="">
                                  <h5>ZHUR</h5>
                                  <h5>1:30<span>pm</span></h5>
                              </div>
                              <div class="col">
-                                 <img src="./images/asr.png" alt="">
+                                 <img src="{{asset('image/asr.png')}}" alt="">
                                  <h5>ASR</h5>
                                  <h5>4:30<span>pm</span></h5>
                              </div>
                              <div class="col">
-                                 <img src="./images/maghrib.png" alt="">
+                                 <img src="{{asset('image/maghrib.png')}}" alt="">
                                  <h5>MAGHRIB</h5>
                                  <h5>6:30<span>pm</span></h5>
                              </div>
                              <div class="col">
-                                 <img src="./images/isha.png" alt="">
+                                 <img src="{{asset('image/isha.png')}}" alt="">
                                  <h5>ISHA</h5>
                                  <h5>8:00<span>pm</span></h5>
                              </div>
@@ -252,15 +252,15 @@
 
                                  <div class="carousel-inner rounded border overflow-hidden">
                                      <div class="carousel-item active">
-                                         <img src="./images/BDwLWz.png" class="d-block w-100" alt="...">
+                                         <img src="{{asset('image/BDwLWz.png')}}" class="d-block w-100" alt="...">
                                          <h5 class="p-4">The Ten Most Common Misconceptions about Islam</h5>
                                      </div>
                                      <div class="carousel-item">
-                                         <img src="./images/BDwLWz.png" class="d-block w-100" alt="...">
+                                         <img src="{{asset('image/BDwLWz.png')}}" class="d-block w-100" alt="...">
                                          <h5 class="p-4">The Ten Most Common Misconceptions about Islam</h5>
                                      </div>
                                      <div class="carousel-item">
-                                         <img src="./images/BDwLWz.png" class="d-block w-100" alt="...">
+                                         <img src="{{asset('image/BDwLWz.png')}}" class="d-block w-100" alt="...">
                                          <h5 class="p-4">The Ten Most Common Misconceptions about Islam</h5>
                                      </div>
                                  </div>
@@ -291,7 +291,7 @@
                                      <p class="subtitle">Mashad, Iran.</p>
                                  </div>
                                  <div class="col-md order">
-                                     <img src="./images/masjid-png-clipart-best-3.png" alt="">
+                                     <img src="{{asset('image/masjid-png-clipart-best-3.png')}}" alt="">
                                  </div>
                              </div>
                          </div>
@@ -304,7 +304,7 @@
                                      <p class="subtitle">Mashad, Iran.</p>
                                  </div>
                                  <div class="col-md order">
-                                     <img src="./images/Mosque-PNG-Image-HD.png" alt="">
+                                     <img src="{{asset('image/Mosque-PNG-Image-HD.png')}}" alt="">
                                  </div>
                              </div>
                          </div>
@@ -317,7 +317,7 @@
                                      <p class="subtitle">Mashad, Iran.</p>
                                  </div>
                                  <div class="col-md order">
-                                     <img src="./images/masjid-png-clipart-best-3.png" alt="">
+                                     <img src="{{asset('image/masjid-png-clipart-best-3.png')}}" alt="">
                                  </div>
                              </div>
                          </div>
@@ -342,17 +342,17 @@
                  <div class="row mt-5 pt-4">
                      <div class="col-4">
                          <div class="rounded overflow-hidden image-wrapper">
-                             <img src="./images/BDwLWz.png" alt="">
+                             <img src="{{asset('image/BDwLWz.png')}}" alt="">
                          </div>
                      </div>
                      <div class="col-4">
                          <div class="rounded overflow-hidden image-wrapper">
-                             <img src="./images/BDwLWz.png" alt="">
+                             <img src="{{asset('image/BDwLWz.png')}}" alt="">
                          </div>
                      </div>
                      <div class="col-4">
                          <div class="rounded overflow-hidden image-wrapper">
-                             <img src="./images/BDwLWz.png" alt="">
+                             <img src="{{asset('image/BDwLWz.png')}}" alt="">
                          </div>
                      </div>
                  </div>
@@ -374,7 +374,7 @@
                  <h3>Subcribe Now to Receive Updates!</h3>
                  <p>As always, the best way to keep in touch is to join our mailing list</p>
                  <div class="subcribe-input">
-                     <input type="email" name="" class="rounded-pill border" placeholder="Email" id="">
+                     <input type="email" name="" class="rounded-pill border" placeholder="Email" id="email">
                      <button class="rounded-pill w-100 get-involved my-2 btn-subcribe">
                          Subcribe
                      </button>
