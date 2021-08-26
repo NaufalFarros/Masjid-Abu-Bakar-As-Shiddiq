@@ -20,13 +20,13 @@
                             <a class="nav-link" href="{{url('/about')}}">About Us</a>
                         </li>
                         <li class="nav-item mx-lg-4">
-                            <a class="nav-link" href="#">Event</a>
+                            <a class="nav-link" href="{{url('/event')}}">Event</a>
                         </li>
                         <li class="nav-item mx-lg-4">
-                            <a class="nav-link" href="#">Donate</a>
+                            <a class="nav-link" href="{{url('/donate')}}">Donate</a>
                         </li>
                         <li class="nav-item mx-lg-4">
-                            <a class="nav-link" href="#">Service</a>
+                            <a class="nav-link" href="{{url('/service')}}">Service</a>
                         </li>
                     </ul>
                     <i class="fas fa-search me-xl-5 me-lg-3 d-none d-lg-inline-block btn-search"></i>

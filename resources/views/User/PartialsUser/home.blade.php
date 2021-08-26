@@ -1,8 +1,22 @@
  @extends('User.web')
 
+ @section('head')
+ <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet"
+        href="{{ asset('AdminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/daterangepicker/daterangepicker.css') }}">
+    <!-- jQuery -->
+    <script src="{{ asset('AdminLTE/plugins/jquery/jquery.min.js') }}"></script>
+
+ @endsection
 @section('content')
     
-         <div class="container-fluid container-lg">
+         <div class="container container">
              <section class="mt-3 banner">
                  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                      <div class="carousel-indicators">
@@ -19,15 +33,10 @@
                          <div class="carousel-item active">
                              <div class="row">
                                  <div class="col-md order">
-                                     <h1 class="title">Are you ready to start learning?</h1>
-                                     <p class="subtitle">We strive to congregate at least once a weaek to discuss share and
-                                         learn.</p>
+                                     <h1 class="title">Website Masjid Abu Bakar As-Shiddiq</h1>
+                                     <p class="subtitle">Website Ini Dibuat Agar Seluruh Masyarakat Dapat Melihat Secara Langsung Kegiatan Maupun Laporan Kas Masjid </p>
                                      <div class="d-flex justify-content-center d-md-block">
-                                         <button type="button" class="btn btn-light rounded-pill px-4 carousel-button">Read
-                                             More</button>
-                                         <button type="button"
-                                             class="btn btn-outline-light rounded-pill px-3 ms-3 carousel-button">Get
-                                             Involved</button>
+                                        
                                      </div>
                                  </div>
                                  <div class="col-md order">
@@ -38,15 +47,10 @@
                          <div class="carousel-item">
                              <div class="row">
                                  <div class="col-md order">
-                                     <h1 class="title">Are you ready to start learning?</h1>
-                                     <p class="subtitle">We strive to congregate at least once a weaek to discuss share and
-                                         learn.</p>
+                                     <h1 class="title">Sejarah Masjid Abu Bakar As-Shiddiq</h1>
+                                     <p class="subtitle">Sejarah Masjid Abu Bakar As-Shiddiq Lorem ipsum dolor sit amet consectetur adipisicing elit. Error architecto facilis assumenda accusamus expedita rem quo eligendi amet consequatur sit nulla, maxime in sapiente explicabo necessitatibus corporis quibusdam nemo? Non.</p>
                                      <div class="d-flex justify-content-center d-md-block">
-                                         <button type="button" class="btn btn-light rounded-pill px-4 carousel-button">Read
-                                             More</button>
-                                         <button type="button"
-                                             class="btn btn-outline-light rounded-pill px-3 ms-3 carousel-button">Get
-                                             Involved</button>
+                                         
                                      </div>
                                  </div>
                                  <div class="col-md order">
@@ -57,15 +61,10 @@
                          <div class="carousel-item">
                              <div class="row">
                                  <div class="col-md order">
-                                     <h1 class="title">Are you ready to start learning?</h1>
-                                     <p class="subtitle">We strive to congregate at least once a weaek to discuss share and
-                                         learn.</p>
+                                     <h1 class="title">Mari Beramal Jariyah</h1>
+                                     <p class="subtitle">Kami Selaku Pengurus Takmir Masjid Abu Bakar As-Shiddiq, Mengucapkan Banyak Terimakasih Atas Amal Jariyah Yang Di Berikan Oleh Masyarakat. Berkat Bantuan Dan DO'A Masyarakat, Masjid Abu Bakar As-Shiddiq Dapat Berkembang Hingga Saat Ini .</p>
                                      <div class="d-flex justify-content-center d-md-block">
-                                         <button type="button" class="btn btn-light rounded-pill px-4 carousel-button">Read
-                                             More</button>
-                                         <button type="button"
-                                             class="btn btn-outline-light rounded-pill px-3 ms-3 carousel-button">Get
-                                             Involved</button>
+                                         
                                      </div>
                                  </div>
                                  <div class="col-md order">
@@ -76,15 +75,14 @@
                          <div class="carousel-item">
                              <div class="row">
                                  <div class="col-md order">
-                                     <h1 class="title">Are you ready to start learning?</h1>
-                                     <p class="subtitle">We strive to congregate at least once a weaek to discuss share and
-                                         learn.</p>
+                                     <h1 class="title">Mari Kita Dukung Bersama Pelayanan Masjid</h1>
+                                     <p class="subtitle">Kami Pengurus Takmir Masjid Akan Terus Bekerja Semaksimal Mungkin Untuk Memberikan Pelayanan Terbaik Kepada Masyarakat . Terimaksih :)</p>
                                      <div class="d-flex justify-content-center d-md-block">
-                                         <button type="button" class="btn btn-light rounded-pill px-4 carousel-button">Read
+                                         {{-- <button type="button" class="btn btn-light rounded-pill px-4 carousel-button">Read
                                              More</button>
                                          <button type="button"
                                              class="btn btn-outline-light rounded-pill px-3 ms-3 carousel-button">Get
-                                             Involved</button>
+                                             Involved</button> --}}
                                      </div>
                                  </div>
                                  <div class="col-md order">
@@ -103,36 +101,32 @@
                      <button class="rounded-pill btn-show-details">Show all</button>
                  </div>
                  <div class="link-wrapper">
-                     <a href="" class="card-list">
+                     <a href="{{url('/')}}" class="card-list">
+                         <i class="fas fa-home donate-icon"></i>
+                         <p class="title">Home</p>
+                         <p class="view-details">View Details</p>
+                     </a>
+                     <a href="{{url('/about')}}" class="card-list">
+                        <i class="fas fa-mosque donate-icon"></i>
+                         <p class="title">About Us</p>
+                         <p class="view-details">View Details</p>
+                     </a>
+                     <a href="{{url('/event')}}" class="card-list">
+                         <i class="far fa-calendar-alt donate-icon"></i>
+                         <p class="title">Event</p>
+                         <p class="view-details">View Details</p>
+                     </a>
+                     <a href="{{url('/donate')}}" class="card-list">
                          <i class="fas fa-hand-holding-usd donate-icon"></i>
                          <p class="title">Donate</p>
                          <p class="view-details">View Details</p>
                      </a>
-                     <a href="" class="card-list">
-                         <i class="fas fa-hand-holding-usd donate-icon"></i>
-                         <p class="title">Donate</p>
+                     <a href="{{url('/service')}}" class="card-list">
+                         <i class="fas fa-concierge-bell donate-icon"></i>
+                         <p class="title">Service</p>
                          <p class="view-details">View Details</p>
                      </a>
-                     <a href="" class="card-list">
-                         <i class="fas fa-hand-holding-usd donate-icon"></i>
-                         <p class="title">Donate</p>
-                         <p class="view-details">View Details</p>
-                     </a>
-                     <a href="" class="card-list">
-                         <i class="fas fa-hand-holding-usd donate-icon"></i>
-                         <p class="title">Donate</p>
-                         <p class="view-details">View Details</p>
-                     </a>
-                     <a href="" class="card-list">
-                         <i class="fas fa-hand-holding-usd donate-icon"></i>
-                         <p class="title">Donate</p>
-                         <p class="view-details">View Details</p>
-                     </a>
-                     <a href="" class="card-list">
-                         <i class="fas fa-hand-holding-usd donate-icon"></i>
-                         <p class="title">Donate</p>
-                         <p class="view-details">View Details</p>
-                     </a>
+                     
                  </div>
              </section>
 
@@ -140,12 +134,12 @@
                  <div class="row">
                      <div class="col-md ps-5 ps-md-0">
                          <div class="float-md-end">
-                             <h3>West covina,</h3>
-                             <h5>California</h5>
+                             <h3>WIB,</h3>
+                             <h5>Indonesia</h5>
                          </div>
                      </div>
                      <div class="col-md-7 px-5">
-                         <h3>Prayer Times</h3>
+                         <h3>Waktu Sholat</h3>
                          <h5><span>5:15</span> Sunrise</h5>
                          <div class="row times mt-4">
                              <div class="col">
@@ -279,78 +273,56 @@
                  </div>
              </section>
 
-             <section class="event-banner">
-                 <div id="carouselExampleControls3" class="carousel slide" data-bs-ride="carousel">
-                     <div class="carousel-inner">
-                         <div class="carousel-item active">
-                             <div class="row">
-                                 <div class="col-md order">
-                                     <h1 class="title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur,
-                                         error!</h1>
-                                     <p class="name">Nama ustad, (Speaker)</p>
-                                     <p class="subtitle">Mashad, Iran.</p>
-                                 </div>
-                                 <div class="col-md order">
-                                     <img src="{{asset('image/masjid-png-clipart-best-3.png')}}" alt="">
-                                 </div>
-                             </div>
-                         </div>
-                         <div class="carousel-item">
-                             <div class="row">
-                                 <div class="col-md order">
-                                     <h1 class="title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur,
-                                         error!</h1>
-                                     <p class="name">Nama ustad, (Speaker)</p>
-                                     <p class="subtitle">Mashad, Iran.</p>
-                                 </div>
-                                 <div class="col-md order">
-                                     <img src="{{asset('image/Mosque-PNG-Image-HD.png')}}" alt="">
-                                 </div>
-                             </div>
-                         </div>
-                         <div class="carousel-item">
-                             <div class="row">
-                                 <div class="col-md order">
-                                     <h1 class="title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur,
-                                         error!</h1>
-                                     <p class="name">Nama ustad, (Speaker)</p>
-                                     <p class="subtitle">Mashad, Iran.</p>
-                                 </div>
-                                 <div class="col-md order">
-                                     <img src="{{asset('image/masjid-png-clipart-best-3.png')}}" alt="">
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls3"
-                         data-bs-slide="prev">
-                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                         <span class="visually-hidden">Previous</span>
-                     </button>
-                     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls3"
-                         data-bs-slide="next">
-                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                         <span class="visually-hidden">Next</span>
-                     </button>
-                 </div>
+             <section class="">
+                 <h4>Kas Masjid Abu Bakar As-Shiddiq</h4>
+            <div class="card">
+              
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Tanggal</th>
+                    <th>Keterangan</th>
+                    <th>Pemasukan</th>
+                    <th>Pengeluaran</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>28-08-2021
+                    </td>
+                    <td>Masuk 1</td>
+                    <td> Rp. 100.000</td>
+                    <td>-</td>
+                  </tr>
+               
+                  </tbody>
+                  
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
              </section>
          </div>
          <section class="photo">
-             <div class="container-fluid container-lg">
+             <div class="container container">
                  <h4>Photo Gallery</h4>
                  <button class="rounded-pill btn-show-details">Show all</button>
                  <div class="row mt-5 pt-4">
-                     <div class="col-4">
+                     <div class="col-md-4 my-3">
                          <div class="rounded overflow-hidden image-wrapper">
                              <img src="{{asset('image/BDwLWz.png')}}" alt="">
                          </div>
                      </div>
-                     <div class="col-4">
+                     <div class="col-md-4 my-3">
                          <div class="rounded overflow-hidden image-wrapper">
                              <img src="{{asset('image/BDwLWz.png')}}" alt="">
                          </div>
                      </div>
-                     <div class="col-4">
+                     <div class="col-md-4 my-3">
                          <div class="rounded overflow-hidden image-wrapper">
                              <img src="{{asset('image/BDwLWz.png')}}" alt="">
                          </div>
@@ -362,25 +334,44 @@
          <section class="donation-subcribe text-center">
              <div class="donation-wrapper">
                  <div class="donation">
-                     <h1>Help us Better Serve You</h1>
-                     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque corrupti eum quis. Asperiores ipsa,
-                         minima assumenda sit quia quisquam quidem ducimus aliquam, est repellat vero alias laborum
-                         voluptate
-                         animi deleniti.</p>
-                     <button class="btn rounded-pill px-4">Donate Today!</button>
+                     <h1>Bantu Kami Dalam Memberikan Pelayan Terbaik</h1>
+                     <p>Dengan Bantuan dan Do'a Masyarakat Kami Takmir Masjid  Akan Bekerja Semaksimal Mungkin Dalam Manyediakan dan Memberikan Pelayanan </p>
+                     <button class="btn rounded-pill px-4">Mari Beramal Jariyah:)</button>
                  </div>
              </div>
-             <div class="container-fluid container-lg shadow subcribe">
-                 <h3>Subcribe Now to Receive Updates!</h3>
-                 <p>As always, the best way to keep in touch is to join our mailing list</p>
-                 <div class="subcribe-input">
+             <div class="container container shadow subcribe">
+                 <h3>Lihat Terus Event/Acara Ter-Update Di Website Ini</h3>
+                 <p>Kami Akan Update Event/Acara Yang Ada Di Masjid Abu Bakar As-Shiddiq</p>
+                 {{-- <div class="subcribe-input">
                      <input type="email" name="" class="rounded-pill border" placeholder="Email" id="email">
                      <button class="rounded-pill w-100 get-involved my-2 btn-subcribe">
                          Subcribe
                      </button>
-                 </div>
+                 </div> --}}
              </div>
 
          </section>
      
+@endsection
+
+@section('script')
+
+    <!-- InputMask/Moment JS -->
+    <script src="{{ asset('AdminLTE/plugins/moment/moment.min.js') }}"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="{{ asset('AdminLTE/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+     <!-- DataTables  & Plugins -->
+    <script src="{{ asset('AdminLTE/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('AdminLTE/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('AdminLTE/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('AdminLTE/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('AdminLTE/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('AdminLTE/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+
+
+         <script>
+             $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+         </script>
 @endsection

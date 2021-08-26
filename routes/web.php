@@ -27,6 +27,15 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('User.About Us.about');
 });
+Route::get('/event', function () {
+    return view('User.About Us.event');
+});
+Route::get('/donate', function () {
+    return view('User.About Us.donate');
+});
+Route::get('/service', function () {
+    return view('User.About Us.service');
+});
 
 Auth::routes();
 
