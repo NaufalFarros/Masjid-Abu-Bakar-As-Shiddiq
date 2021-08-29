@@ -2,30 +2,34 @@
 
 
 @section('content')
-<section class="">
-            <h4 class="text-center">Profil Masjid</h4>
-            <div class="card-profile-masjid">
-                <div class="row text-md-center">
-                    <div class="col-md-6">
-                        <h4>Luas Tanah : 500M</h4>
-                        <h4>Status Tanah : WAQAF</h4>
-                    </div>
-                    <div class="col-md-6">
-                        <h4>Luas Bangunan : 4500M</h4>
-                        <h4>Daya Tampung Jamaah : 250</h4>
-                    </div>
+    <section class="">
+        <h4 class="text-center">Profil Masjid</h4>
+        <div class="card-profile-masjid">
+            <div class="row text-md-center">
+                <div class="col-md-6">
+                    <h4>Luas Tanah : 500M</h4>
+                    <h4>Status Tanah : WAQAF</h4>
+                </div>
+                <div class="col-md-6">
+                    <h4>Luas Bangunan : 4500M</h4>
+                    <h4>Daya Tampung Jamaah : 250</h4>
                 </div>
             </div>
+        </div>
 
-            <div class="container shadow card-sejarah-masjid">
-                <h4>Sejarah Masjid</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, laborum aspernatur quaerat qui consequatur similique, ex quod reiciendis ducimus exercitationem commodi magni dicta beatae eum quae? Ipsum deleniti quis hic. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus molestiae quas eaque optio doloremque velit dolor sit eos, maiores at. Aliquam officiis quos consequuntur, ad velit similique eos sequi quibusdam.</p>
-            </div>
+        <div class="container shadow card-sejarah-masjid">
+            <h4>Sejarah Masjid</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, laborum aspernatur quaerat qui consequatur
+                similique, ex quod reiciendis ducimus exercitationem commodi magni dicta beatae eum quae? Ipsum deleniti
+                quis hic. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus molestiae quas eaque optio
+                doloremque velit dolor sit eos, maiores at. Aliquam officiis quos consequuntur, ad velit similique eos sequi
+                quibusdam.</p>
+        </div>
 
-        </section>
+    </section>
     <div class="container-fluid container-lg">
 
-        
+
 
 
         <section class="">
@@ -95,12 +99,9 @@
 
         <section class="">
             <h4 class="text-center">Seksi-seksi Dll</h4>
-            
 
-                <button class="rounded-pill btn-hide" id="hideAll">Hide All</button>
             <div class="list-card-takmirs">
-                          
-                    {{-- < Kebersihan > --}}
+                {{-- < Kebersihan > --}}
                 <div class="card-takmirs">
                     <img class="card-img" src="{{ asset('image/kebersihan.png') }}" alt="">
                     <div class="container-card-takmirs">
@@ -110,20 +111,59 @@
                     </div>
                 </div>
 
-               
-                {{-- </ Kebersihan>  --}}
 
-                {{-- < Humas > --}}
+                {{-- </ Kebersihan> --}}
+                <div class="list-card-takmirs kebersihan_epl" id="kebersihan_epl_side">
                     <div class="card-takmirs">
-                        <img class="card-img" src="{{ asset('image/humas.jpg') }}" alt="">
+                        <img class="card-img" src="{{ asset('image/kebersihan.png') }}" alt="">
                         <div class="container-card-takmirs">
-                            <h3>Humas</h3>
-                            <h4>4 Orang</h4>
-                            <button class="rounded-pill" id="humas"> Show </button>
+                            <h3>Kebersihan 1</h3>
+                            <h4>Bpk. Saripin </h4>
+                            <p>091231231388</p>
+                            <p> Jaln Kaca Piring</p>
                         </div>
                     </div>
-               
-                
+
+                    <div class="card-takmirs">
+                        <img class="card-img" src="{{ asset('image/kebersihan.png') }}" alt="">
+                        <div class="container-card-takmirs">
+                            <h3>Kebersihan 2</h3>
+                            <h4>Bpk. Anton </h4>
+                            <p>091231231388</p>
+                            <p> Jaln Kaca Piring</p>
+                        </div>
+                    </div>
+                    <div class="card-takmirs">
+                        <img class="card-img" src="{{ asset('image/kebersihan.png') }}" alt="">
+                        <div class="container-card-takmirs">
+                            <h3>Kebersihan 3</h3>
+                            <h4>Bpk. David </h4>
+                            <p>091231231388</p>
+                            <p> Jaln Kaca Piring</p>
+                        </div>
+                    </div>
+                    <div class="card-takmirs">
+                        <img class="card-img" src="{{ asset('image/kebersihan.png') }}" alt="">
+                        <div class="container-card-takmirs">
+                            <h3>Kebersihan 4</h3>
+                            <h4>Bpk. Kir </h4>
+                            <p>091231231388</p>
+                            <p> Jaln Kaca Piring</p>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- < Humas > --}}
+                <div class="card-takmirs">
+                    <img class="card-img" src="{{ asset('image/humas.jpg') }}" alt="">
+                    <div class="container-card-takmirs">
+                        <h3>Humas</h3>
+                        <h4>4 Orang</h4>
+                        <button class="rounded-pill" id="humas"> Show </button>
+                    </div>
+                </div>
+
+
                 {{-- </ Humas > --}}
 
                 {{-- < Imam > --}}
@@ -136,7 +176,7 @@
                     </div>
                 </div>
 
-               
+
                 {{-- </ Imam > --}}
 
                 <div class="card-takmirs">
@@ -147,7 +187,7 @@
                     </div>
                 </div>
 
-                 <div class="list-card-takmirs" id="kebersihan_epl">
+                <div class="list-card-takmirs kebersihan_epl" id="kebersihan_epl_bottom">
                     <div class="card-takmirs">
                         <img class="card-img" src="{{ asset('image/kebersihan.png') }}" alt="">
                         <div class="container-card-takmirs">
@@ -225,7 +265,7 @@
                         </div>
                     </div>
                 </div>
-                 <div class="list-card-takmirs" id="imam_epl">
+                <div class="list-card-takmirs" id="imam_epl">
                     <div class="card-takmirs">
                         <img class="card-img" src="{{ asset('image/imam.png') }}" alt="">
                         <div class="container-card-takmirs">
@@ -245,7 +285,7 @@
                             <p> Jaln Kaca Piring</p>
                         </div>
                     </div>
-                    
+
                 </div>
 
 

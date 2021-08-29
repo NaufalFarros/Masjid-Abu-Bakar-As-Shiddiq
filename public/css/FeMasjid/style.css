@@ -670,8 +670,6 @@ footer .contact p {
   position: relative;
   background-color: white;
 }
-
- 
   
 }
 
@@ -688,5 +686,22 @@ footer .contact p {
 
   .subcribe input {
     width: 40%;
+  }
+
+  #kebersihan_epl_side {
+    display: none!important;
+  }
+
+  #kebersihan_epl_bottom[style*='display: block'] {
+    display: flex!important;
+  }
+}
+
+@media (max-width: 1200px) {
+  #kebersihan_epl_bottom {
+    display: none!important;
+  }
+  #kebersihan_epl_side[style*='display: block'] {
+    display: flex!important;
   }
 }
