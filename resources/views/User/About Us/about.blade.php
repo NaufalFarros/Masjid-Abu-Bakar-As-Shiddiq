@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <section class="">
+    <section class="___class_+?0___">
         <h4 class="text-center">Profil Masjid</h4>
         <div class="card-profile-masjid">
             <div class="row text-md-center">
@@ -32,7 +32,7 @@
 
 
 
-        <section class="">
+        <section class="___class_+?8___">
             <h4 class="text-center">Pengurus Harian Takmir</h4>
 
             <div class="list-card-takmirs">
@@ -97,58 +97,74 @@
         </section>
 
 
-        <section class="">
+        <section class="___class_+?29___">
             <h4 class="text-center">Seksi-seksi Dll</h4>
 
             <div class="list-card-takmirs">
                 {{-- < Kebersihan > --}}
-                <div class="card-takmirs">
-                    <img class="card-img" src="{{ asset('image/kebersihan.png') }}" alt="">
-                    <div class="container-card-takmirs">
-                        <h3>Kebersihan</h3>
-                        <h4>4 Orang</h4>
-                        <button class="rounded-pill" id="kebersihan">Show</button>
+                <div class="d-flex" id="kebersihan_content">
+                    <div class="card-takmirs p-0 py-4">
+                        <img class="card-img" src="{{ asset('image/kebersihan.png') }}" alt="">
+                        <div class="container-card-takmirs">
+                            <h3>Kebersihan</h3>
+                            <h4>4 Orang</h4>
+                            <button class="rounded-pill" id="kebersihan">Show</button>
+                        </div>
                     </div>
                 </div>
 
 
                 {{-- </ Kebersihan> --}}
-                <div class="list-card-takmirs kebersihan_epl" id="kebersihan_epl_side">
-                    <div class="card-takmirs">
-                        <img class="card-img" src="{{ asset('image/kebersihan.png') }}" alt="">
-                        <div class="container-card-takmirs">
-                            <h3>Kebersihan 1</h3>
-                            <h4>Bpk. Saripin </h4>
-                            <p>091231231388</p>
-                            <p> Jaln Kaca Piring</p>
-                        </div>
-                    </div>
 
-                    <div class="card-takmirs">
-                        <img class="card-img" src="{{ asset('image/kebersihan.png') }}" alt="">
-                        <div class="container-card-takmirs">
-                            <h3>Kebersihan 2</h3>
-                            <h4>Bpk. Anton </h4>
-                            <p>091231231388</p>
-                            <p> Jaln Kaca Piring</p>
+                <div class="bg-warning kebersihan_epl">
+                    <div class="py-2">
+                        <div class="card-takmirs">
+                            <img class="card-img" src="{{ asset('image/kebersihan.png') }}" alt="">
+                            <div class="container-card-takmirs">
+                                <h3>Kebersihan 1</h3>
+                                <h4>Bpk. Saripin </h4>
+                                <p>091231231388</p>
+                                <p> Jaln Kaca Piring</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="card-takmirs">
-                        <img class="card-img" src="{{ asset('image/kebersihan.png') }}" alt="">
-                        <div class="container-card-takmirs">
-                            <h3>Kebersihan 3</h3>
-                            <h4>Bpk. David </h4>
-                            <p>091231231388</p>
-                            <p> Jaln Kaca Piring</p>
+                </div>
+                <div class="bg-warning kebersihan_epl">
+                    <div class="py-2">
+                        <div class="card-takmirs">
+                            <img class="card-img" src="{{ asset('image/kebersihan.png') }}" alt="">
+                            <div class="container-card-takmirs">
+                                <h3>Kebersihan 2</h3>
+                                <h4>Bpk. Anton </h4>
+                                <p>091231231388</p>
+                                <p> Jaln Kaca Piring</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="card-takmirs">
-                        <img class="card-img" src="{{ asset('image/kebersihan.png') }}" alt="">
-                        <div class="container-card-takmirs">
-                            <h3>Kebersihan 4</h3>
-                            <h4>Bpk. Kir </h4>
-                            <p>091231231388</p>
-                            <p> Jaln Kaca Piring</p>
+                </div>
+                <div class="bg-warning kebersihan_epl">
+                    <div class="py-2">
+                        <div class="card-takmirs">
+                            <img class="card-img" src="{{ asset('image/kebersihan.png') }}" alt="">
+                            <div class="container-card-takmirs">
+                                <h3>Kebersihan 3</h3>
+                                <h4>Bpk. David </h4>
+                                <p>091231231388</p>
+                                <p> Jaln Kaca Piring</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-warning kebersihan_epl">
+                    <div class="py-2">
+                        <div class="card-takmirs">
+                            <img class="card-img" src="{{ asset('image/kebersihan.png') }}" alt="">
+                            <div class="container-card-takmirs">
+                                <h3>Kebersihan 4</h3>
+                                <h4>Bpk. Kir </h4>
+                                <p>091231231388</p>
+                                <p> Jaln Kaca Piring</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -187,45 +203,6 @@
                     </div>
                 </div>
 
-                <div class="list-card-takmirs kebersihan_epl" id="kebersihan_epl_bottom">
-                    <div class="card-takmirs">
-                        <img class="card-img" src="{{ asset('image/kebersihan.png') }}" alt="">
-                        <div class="container-card-takmirs">
-                            <h3>Kebersihan 1</h3>
-                            <h4>Bpk. Saripin </h4>
-                            <p>091231231388</p>
-                            <p> Jaln Kaca Piring</p>
-                        </div>
-                    </div>
-
-                    <div class="card-takmirs">
-                        <img class="card-img" src="{{ asset('image/kebersihan.png') }}" alt="">
-                        <div class="container-card-takmirs">
-                            <h3>Kebersihan 2</h3>
-                            <h4>Bpk. Anton </h4>
-                            <p>091231231388</p>
-                            <p> Jaln Kaca Piring</p>
-                        </div>
-                    </div>
-                    <div class="card-takmirs">
-                        <img class="card-img" src="{{ asset('image/kebersihan.png') }}" alt="">
-                        <div class="container-card-takmirs">
-                            <h3>Kebersihan 3</h3>
-                            <h4>Bpk. David </h4>
-                            <p>091231231388</p>
-                            <p> Jaln Kaca Piring</p>
-                        </div>
-                    </div>
-                    <div class="card-takmirs">
-                        <img class="card-img" src="{{ asset('image/kebersihan.png') }}" alt="">
-                        <div class="container-card-takmirs">
-                            <h3>Kebersihan 4</h3>
-                            <h4>Bpk. Kir </h4>
-                            <p>091231231388</p>
-                            <p> Jaln Kaca Piring</p>
-                        </div>
-                    </div>
-                </div>
                 <div class="list-card-takmirs" id="humas_epl">
                     <div class="card-takmirs">
                         <img class="card-img" src="{{ asset('image/humas.jpg') }}" alt="">

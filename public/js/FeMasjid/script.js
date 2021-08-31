@@ -25,17 +25,15 @@ function hideAll() {
 $(document).ready(function () {
   hideAll()
 
-
   $("#kebersihan").click(function (e) {
     e.preventDefault();
     if ($("#kebersihan").text() == "Show") {
       hideAll()
+      $("#kebersihan_content").addClass("bg-warning");
       $(".kebersihan_epl").show("slow");
-      // $('html,body').animate({
-      //   scrollTop: $("#kebersihan_epl_side").offset().top
-      // },'slow');
-        $("#kebersihan").html("Hide")
-    } else if($("#kebersihan").text() == "Hide") {
+      $("#kebersihan").html("Hide")
+    } else if ($("#kebersihan").text() == "Hide") {
+      $("#kebersihan_content").removeClass("bg-warning");
       $('.kebersihan_epl').hide();
       $("#kebersihan").html("Show")
     }
