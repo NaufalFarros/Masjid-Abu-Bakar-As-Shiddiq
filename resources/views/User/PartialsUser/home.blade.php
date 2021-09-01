@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <!-- Tempusdominus Bootstrap 4 -->
+    
     <link rel="stylesheet"
         href="{{ asset('AdminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
     <!-- daterange picker -->
@@ -336,7 +337,7 @@
                  <div class="donation">
                      <h1>Bantu Kami Dalam Memberikan Pelayan Terbaik</h1>
                      <p>Dengan Bantuan dan Do'a Masyarakat Kami Takmir Masjid  Akan Bekerja Semaksimal Mungkin Dalam Manyediakan dan Memberikan Pelayanan </p>
-                     <button class="btn rounded-pill px-4">Mari Beramal Jariyah:)</button>
+                     <a href="{{url('/donate')}}"><button class="btn rounded-pill px-4">Mari Beramal Jariyah:)</button></a>
                  </div>
              </div>
              <div class="container container shadow subcribe">

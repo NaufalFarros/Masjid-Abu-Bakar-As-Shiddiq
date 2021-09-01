@@ -414,11 +414,13 @@ footer .contact p {
   margin: 15px 15px 15px 15px;
   background-color: white;
 }
+
 .card-takmirs h3{
    color: black;
    font-size: x-large;
    font-weight: bold;
 }
+
 .card-takmirs h4{
    font-size: large;
    font-weight: bold;
@@ -428,6 +430,18 @@ footer .contact p {
   justify-content: center;
   text-align: center;
   flex-wrap: wrap;
+}
+
+.card-bg {
+  background-color: #168827;
+}
+.list-card-takmirs .card-bg .card-takmirs-content{
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 10rem;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 15px 15px 15px 15px;
 }
 
 .btn-hide{
@@ -482,8 +496,7 @@ footer .contact p {
   margin: auto;
 } */
 .card-profile-masjid {
-  box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
-  border-radius: 20px;
+  box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2); 
   padding: 50px;
   position: relative;
   background-color: var(--main);
@@ -572,8 +585,17 @@ footer .contact p {
   text-align: center;
 }
 
-
-
+/* Halaman service */
+.list-group .title{
+  background-color: var(--main);
+  text-align: center;
+  color: white;
+}
+.list-group .title:hover{
+  background-color: var(--sf-main);
+  text-align: center;
+  
+}
 
 
 /* css untuk responsive */
@@ -653,7 +675,14 @@ footer .contact p {
     display: block;
     margin-bottom: 20px;
   }
-
+.list-card-takmirs .card-bg .card-takmirs-content{
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 10rem;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 15px 15px 15px 15px;
+}
   
 
 .container-card-takmirs button{

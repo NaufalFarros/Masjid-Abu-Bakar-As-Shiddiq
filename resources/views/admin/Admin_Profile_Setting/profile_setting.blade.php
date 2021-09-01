@@ -47,7 +47,7 @@
                         <div class="card-body box-profile">
                             <div class="text-center">
                                 <img class="profile-user-img img-fluid img-circle"
-                                    src="{{ asset('AdminLTE/dist/img/user4-128x128.jpg') }}" alt="User profile picture">
+                                    src="" alt="User profile picture">
                             </div>
 
                             <h3 class="profile-username text-center">{{ Auth::user()->name }} </h3>
@@ -83,21 +83,26 @@
                                 <li class="nav-item"><a class="nav-link" href="#settings2" data-toggle="tab">Ubah
                                         Password</a>
                                 </li>
+                                <li class="nav-item"><a class="nav-link" href="#settings3" data-toggle="tab">Ubah
+                                        Foto Profil</a>
+                                </li>
                             </ul>
                         </div><!-- /.card-header -->
                         <div class="card-body">
                             <div class="tab-content">
 
                                 <div class="tab-pane" id="settings1">
-                                    <form class="form-horizontal" action="{{ route('profile-setting.update', Auth::user()->id) }}" method="POST">
+                                    <form class="form-horizontal"
+                                        action="{{ route('profile-setting.update', Auth::user()->id) }}" method="POST">
                                         @csrf
                                         @method('PUT')
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control @error('name')
-                                                            is-invalid
-                                                    @enderror" id="inputName" name="name" placeholder="Name" value="{{Auth::user()->name}}" required>
+                                                                    is-invalid
+                                                        @enderror" id="inputName" name="name" placeholder="Name"
+                                                    value="{{ Auth::user()->name }}" required>
                                             </div>
                                             @error('name')
                                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -107,64 +112,88 @@
                                             <label for="Username" class="col-sm-2 col-form-label">Username</label>
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control @error('username')
-                                                    is-invalid
-                                                @enderror" id="Username" name="username"
-                                                    placeholder="Username" value="{{Auth::user()->username}}" required>
+                                                            is-invalid
+                                                    @enderror" id="Username" name="username" placeholder="Username"
+                                                    value="{{ Auth::user()->username }}" required>
                                             </div>
-                                             @error('username')
+                                            @error('username')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
 
                                         <div class="form-group row">
                                             <div class="offset-sm-2 col-sm-10">
-                                                <button type="submit" class="btn btn-danger">Submit</button>
+                                                <button type="submit" class="btn btn-danger">Simpan</button>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
                                 <div class="tab-pane" id="settings2">
-                                    <form class="form-horizontal" action="{{route('profile-setting.update',Auth::user()->id)}}" method="POST">
+                                    <form class="form-horizontal"
+                                        action="{{ route('profile-setting.update', Auth::user()->id) }}" method="POST">
                                         @csrf
                                         @method('PUT')
                                         <div class="form-group row">
                                             <label for="password" class="col-sm-2 col-form-label">Password Baru</label>
                                             <div class="col-sm-10">
                                                 <input type="password" class="form-control @error('password')
-                                                    is-invalid
-                                                @enderror" id="password"
-                                                    placeholder="Password Baru" name="password" required>
+                                                            is-invalid
+                                                    @enderror" id="password" placeholder="Password Baru" name="password"
+                                                    required>
                                             </div>
                                             @error('password')
-                                                    <div class="invalid-feedback">
-                                                        {{ $message}}
-                                                    </div>
-                                            @enderror      
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="form-group row">
                                             <label for="password2" class="col-sm-2 col-form-label">Ketik Ualang Password
                                                 Baru</label>
                                             <div class="col-sm-10">
                                                 <input type="password" class="form-control @error('password_confirmation')
-                                                    is-invalid
-                                                @enderror" id="password2"
-                                                    placeholder=" Ketik Ulang Password Baru" name="password_confirmation" required>
+                                                            is-invalid
+                                                    @enderror" id="password2" placeholder=" Ketik Ulang Password Baru"
+                                                    name="password_confirmation" required>
                                             </div>
                                             @error('password_confirmation')
-                                                    <div class="invalid-feedback">
-                                                        {{ $message}}
-                                                    </div>
-                                            @enderror  
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
 
                                         <div class="form-group row">
                                             <div class="offset-sm-2 col-sm-10">
-                                                <button type="submit" class="btn btn-danger">Submit</button>
+                                                <button type="submit" class="btn btn-danger">Simpan</button>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
 
+
+                                <div class="tab-pane" id="settings3">
+                                    <form class="form-horizontal"
+                                        action="{{ route('profile-setting.update', Auth::user()->id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="form-group row">
+                                            <label for="customeFile"> Ubah Foto Profil</label>
+                                            <div >
+                                            <input type="file" name="image">
+                                            <label class="custom-file-label" for="customFile">Pilih Foto</label>
+                                            </div>
+                                        </div>
+                                        
+
+
+                                        <div class="form-group row">
+                                            <div class="offset-sm-2 col-sm-10">
+                                                <button type="submit" class="btn btn-danger">Simpan</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                             <!-- /.tab-content -->
                         </div><!-- /.card-body -->
@@ -186,7 +215,13 @@
     <!-- Bootstrap 4 -->
     <script src="{{ asset('AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-
+    <!-- bs-custom-file-input -->
+<script src="{{asset('AdminLTE/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
+{{-- <script>
+$(function () {
+  bsCustomFileInput.init();
+});
+</script> --}}
 
 
 

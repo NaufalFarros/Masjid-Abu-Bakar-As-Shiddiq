@@ -12,7 +12,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/FeMasjid/style.css')}}">
-    <title>MAsjid Abu Bakar As Shiddiq</title>
+    <title>Masjid Abu Bakar As Shiddiq</title>
+
     @yield('head')
 </head>
 
@@ -32,7 +33,7 @@
 
     <div class="search-wrapper d-none" id="search-wrapper">
         <div class="search">
-            <input type="text" class="form-control search-input" placeholder="Recipient's username" aria-label="Cari"
+            <input type="text" class="form-control search-input" placeholder="Search" aria-label="Cari"
                 aria-describedby="basic-addon2">
 
             <div class="float-end search-action">

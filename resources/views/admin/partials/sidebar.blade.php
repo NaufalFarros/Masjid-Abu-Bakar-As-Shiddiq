@@ -145,7 +145,7 @@
                      </ul>
                  </li>
                    <li class="nav-item">
-                     <a href="{{ route('profile-setting.index') }}" class="nav-link">
+                     <a href="{{ url('profile-setting') }}" class="nav-link">
                          <i class="fas fa-user-cog"></i>
                          <p>
                              Profile Setting

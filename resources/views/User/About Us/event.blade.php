@@ -43,8 +43,11 @@
                     </div>
                     <div class="col-md my-3">
                         <h4>Judul : </h4>
+                        <p>Hataman Minggu Kliwon</p>
                         <h4>Tanggal : </h4>
-                        <p>Deskripsi :</p>
+                        <p>28-09-2021</p>
+                        <h4>DESKRIPSI :</h4>
+                        <p>Bertempat Di Masjid Abu bakar</p>
                     </div>
                 </div>
 

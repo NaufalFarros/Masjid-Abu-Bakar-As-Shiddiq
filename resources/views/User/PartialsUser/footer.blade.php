@@ -15,13 +15,13 @@
                         <div class="col">
 
                             <a href="https://goo.gl/maps/xZmTC9G3UB5wS2Gp9" target="_blank">
-                           <button class="btn btn-primary btn-md"><i class="fas fa-map-marked-alt"></i> Lokasi Masjid</button>
+                           <button class="btn btn-success btn-md"><i class="fas fa-map-marked-alt"></i> Lokasi Masjid</button>
                             </a>
 
                             
                         </div>
                         <div class="col">
-                            <button class="btn btn-primary btn-md"><i class="fas fa-globe-americas"></i> Website</button>
+                            <button class="btn btn-success btn-md"><i class="fas fa-globe-americas"></i> Website</button>
                         </div>
                     </div>
                 </div>

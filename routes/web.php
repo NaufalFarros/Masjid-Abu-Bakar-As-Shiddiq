@@ -55,7 +55,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('/users', AdminusersController::class)->middleware('admin:admin');
     // Profile Setting
     Route::resource('/profile-setting', ProfilesettingController::class);
-
+    // Route::get('/profile-setting', [ProfilesettingController::class,'index']);
+    
 
     Route::get('/kas-masjid/pemasukan', [PemasukanController::class, 'index'])->middleware('admin:admin|bendahara');
     Route::get('/kas-masjid/pengeluaran', [PengeluaranController::class, 'index'])->middleware('admin:admin|bendahara');

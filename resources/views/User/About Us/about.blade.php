@@ -18,7 +18,7 @@
         </div>
 
         <div class="container shadow card-sejarah-masjid">
-            <h4>Sejarah Masjid</h4>
+            <h4 class="text-center">Sejarah Masjid</h4>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, laborum aspernatur quaerat qui consequatur
                 similique, ex quod reiciendis ducimus exercitationem commodi magni dicta beatae eum quae? Ipsum deleniti
                 quis hic. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus molestiae quas eaque optio
@@ -203,7 +203,55 @@
                     </div>
                 </div>
 
+<<<<<<< Updated upstream
                 <div class="list-card-takmirs" id="humas_epl">
+=======
+                <div class="list-card-takmirs  kebersihan_epl " id="kebersihan_epl_bottom">
+                    <div class="card-bg">
+                        <div class="card-takmirs-content">
+                        <img class="card-img" src="{{ asset('image/kebersihan.png') }}" alt="">
+                        <div class="container-card-takmirs">
+                            <h3>Kebersihan 1</h3>
+                            <h4>Bpk. Saripin </h4>
+                            <p>091231231388</p>
+                            <p> Jaln Kaca Piring</p>
+                        </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-bg">
+                        <div class="card-takmirs-content">
+                        <img class="card-img" src="{{ asset('image/kebersihan.png') }}" alt="">
+                        <div class="container-card-takmirs">
+                            <h3>Kebersihan 2</h3>
+                            <h4>Bpk. Anton </h4>
+                            <p>091231231388</p>
+                            <p> Jaln Kaca Piring</p>
+                        </div>
+                    </div>
+                    </div>
+                    
+                    <div class="card-takmirs">
+                        <img class="card-img" src="{{ asset('image/kebersihan.png') }}" alt="">
+                        <div class="container-card-takmirs">
+                            <h3>Kebersihan 3</h3>
+                            <h4>Bpk. David </h4>
+                            <p>091231231388</p>
+                            <p> Jaln Kaca Piring</p>
+                        </div>
+                    </div>
+                    <div class="card-takmirs">
+                        <img class="card-img" src="{{ asset('image/kebersihan.png') }}" alt="">
+                        <div class="container-card-takmirs">
+                            <h3>Kebersihan 4</h3>
+                            <h4>Bpk. Kir </h4>
+                            <p>091231231388</p>
+                            <p> Jaln Kaca Piring</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-card-takmirs " id="humas_epl">
+>>>>>>> Stashed changes
                     <div class="card-takmirs">
                         <img class="card-img" src="{{ asset('image/humas.jpg') }}" alt="">
                         <div class="container-card-takmirs">
@@ -214,7 +262,7 @@
                         </div>
                     </div>
 
-                    <div class="card-takmirs">
+                    <div class="card-takmirs ">
                         <img class="card-img" src="{{ asset('image/humas.jpg') }}" alt="">
                         <div class="container-card-takmirs">
                             <h3>Humas 2</h3>

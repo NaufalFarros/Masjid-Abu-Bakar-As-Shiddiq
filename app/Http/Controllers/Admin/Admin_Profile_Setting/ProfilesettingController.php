@@ -8,10 +8,14 @@ use Illuminate\Validation\Rules;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ProfilesettingController extends Controller
 {
+
+    
+
     /**
      * Display a listing of the resource.
      *
@@ -108,7 +112,22 @@ class ProfilesettingController extends Controller
             Alert::success('Ubah Password', 'Ubah Password Berhasil');
             return redirect('/admin/profile-setting')->with('edit', 'Data Berhasil di Edit');
 
+        }
 
+        if($request->image != '')
+        {
+            dd($request->hasFile('image'));
+            $photo = file($request->image) ;
+            $newFileName = auth()->user()->id . '-' .$photo ;
+            //pindah foto ke folder profile-photo di storage
+            // Storage::putFileAs('profile-photo', $request->image ,$newFileName);
+           
+            //simpan nama ke database
+            auth()->user()->update([
+                'profile_photo_path' => 'profile-photo' .$newFileName,
+            ]);
+            Alert::success('Ubah Password', 'Ubah Foto Berhasil');
+            return redirect('/admin/profile-setting');
         }
        
     }
