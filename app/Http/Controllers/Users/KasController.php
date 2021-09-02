@@ -1,34 +1,28 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Kas_Masjid;
+namespace App\Http\Controllers\users;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use App\Models\kas_masjid;
-use Illuminate\Http\Request;
 
-class RekapController extends Controller
+class KasController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware(['auth']);
-    }
     public function index()
     {
-        $rekap = kas_masjid::all();
-        return view('admin.Kas_Masjid.rekap',compact('rekap'));
-        
+        $startDate = Carbon::today();
+        $endDate = Carbon::today()->addDays(-7);
+        // $kasWeek = kas_masjid::whereBetween('tanggal', [$startDate, $endDate])->orderBy('tanggal','asc')->get();
+        $kasWeek = kas_masjid::where('tanggal', '<=', $endDate)->get();
+        return view('user.PartialsUser.home',compact('kasWeek'));
     }
-    function datarekap(){
-        $data_rkp = kas_masjid::all();
-        return response()->json([
-            'rekap' => $data_rkp 
-        ]);
-    }
+
     /**
      * Show the form for creating a new resource.
      *

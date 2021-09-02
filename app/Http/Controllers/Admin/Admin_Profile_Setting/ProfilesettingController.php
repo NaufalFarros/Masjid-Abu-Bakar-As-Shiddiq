@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Admin_Profile_Setting;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use App\Http\Controllers\Controller;
@@ -14,7 +15,10 @@ use RealRashid\SweetAlert\Facades\Alert;
 class ProfilesettingController extends Controller
 {
 
-    
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    }
 
     /**
      * Display a listing of the resource.
@@ -45,7 +49,27 @@ class ProfilesettingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $photo = $request->image;
+        $photo = $request->file('image')->extension();
+        if ($request->image != null) {
+            // dd($photo);
+            $length = 25 ;
+            $name = Str::random($length);
+            $newFileName = auth()->user()->id . '-'. $name .'.' .$photo;
+            $this->validate($request, ['image' => 'required|file|max:5000']);
+            $path = Storage::putFileAs('public/profile-photo/', $request->file('image'), $newFileName);            //pindah foto ke folder profile-photo di storage
+            // Storage::putFileAs('profile-photo/', $request->image ,$newFileName);
+            
+
+            //simpan nama ke database
+          
+            auth()->user()->update([
+                'profile_photo_path' => 'profile-photo/'.$newFileName,
+            ]);
+        
+            Alert::success('Ubah Foto', 'Ubah Foto Berhasil');
+            return redirect('/admin/profile-setting');
+        }
     }
 
     /**
@@ -77,13 +101,13 @@ class ProfilesettingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         // dd($request);
-        if( $request->name != '' && $request->username != '' ){
+        if( $request->name != null && $request->username != null ){
             $request->validate([
                 'name' => 'required|string|min:3|max:100',
-                'username' => 'required|string|min:6|max:100|unique:users,username,' . $id,
+                'username' => 'required|string|min:6|max:100|unique:users,username,' . auth()->user()->id,
             ], [
                 'nama.required' => 'Nama Harus Di Isi',
                 'nama.min' => 'Nama Minimal 3 Huruf',
@@ -92,11 +116,11 @@ class ProfilesettingController extends Controller
                 'username.min' => 'Username Harus Minimal 6',
                 'username.unique' => 'Username Sudah Ada Silahkan Membuat Username Lain',
             ]);
-            User::find($id)->update($request->all());
+            auth()->user()->update($request->all());
             Alert::success('Edit Profil', 'Data Profil Berhasil Dirubah');
             return redirect('/admin/profile-setting')->with('edit', 'Data Berhasil di Edit');
         }
-         if( $request->password != '') 
+         if( $request->password != null) 
         {
             $request->validate([      
                  'password'=> ['required','min:6','confirmed', Rules\Password::defaults()],
@@ -106,7 +130,7 @@ class ProfilesettingController extends Controller
                 'password.confirmed' => 'Password Konfirmasi Tidak Cocok ',
             ]);
 
-            User::find($id)->update([
+            auth()->user()->update([
                 'password' => Hash::make($request->password),
             ]);
             Alert::success('Ubah Password', 'Ubah Password Berhasil');
@@ -114,21 +138,7 @@ class ProfilesettingController extends Controller
 
         }
 
-        if($request->image != '')
-        {
-            dd($request->hasFile('image'));
-            $photo = file($request->image) ;
-            $newFileName = auth()->user()->id . '-' .$photo ;
-            //pindah foto ke folder profile-photo di storage
-            // Storage::putFileAs('profile-photo', $request->image ,$newFileName);
-           
-            //simpan nama ke database
-            auth()->user()->update([
-                'profile_photo_path' => 'profile-photo' .$newFileName,
-            ]);
-            Alert::success('Ubah Password', 'Ubah Foto Berhasil');
-            return redirect('/admin/profile-setting');
-        }
+     
        
     }
 

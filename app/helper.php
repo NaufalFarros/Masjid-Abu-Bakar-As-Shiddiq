@@ -14,7 +14,10 @@ function hideEmailAddress($email)
     }
 }
 
-
+function hideUsername($username){
+   $hideUsername=  preg_replace("/(?!^).(?!$)/", "*",$username);
+    return $hideUsername ;
+}
 
 
 ?>

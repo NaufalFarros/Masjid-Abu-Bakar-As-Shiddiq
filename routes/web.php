@@ -1,14 +1,16 @@
 <?php
 
-use App\Http\Controllers\Admin\Admin_Profile_Setting\ProfilesettingController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\users\KasController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\Kas_Masjid\RekapController;
 use App\Http\Controllers\Admin\Kas_Masjid\PemasukanController;
 use App\Http\Controllers\Admin\Laporan\LapkasmasjidController;
 use App\Http\Controllers\Admin\Admin_Users\AdminusersController;
 use App\Http\Controllers\Admin\Kas_Masjid\PengeluaranController;
+use App\Http\Controllers\Admin\Admin_Profile_Setting\ProfilesettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +23,10 @@ use App\Http\Controllers\Admin\Kas_Masjid\PengeluaranController;
 |
 */
 
-Route::get('/', function () {
-    return view('User.PartialsUser.home');
-});
+Route::get('/', [KasController::class,'index']);
+// Route::get('/', function () {
+//     return view('User.PartialsUser.home');
+// });
 Route::get('/about', function () {
     return view('User.About Us.about');
 });
@@ -54,8 +57,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     // Route::get('/admin-users/hapus/{id}', [AdminusersController::class,'destroy']);
     Route::resource('/users', AdminusersController::class)->middleware('admin:admin');
     // Profile Setting
-    Route::resource('/profile-setting', ProfilesettingController::class);
-    // Route::get('/profile-setting', [ProfilesettingController::class,'index']);
+    // Route::resource('/profile-setting', ProfilesettingController::class);
+    Route::get('/profile-setting', [ProfilesettingController::class,'index']);
+    Route::post('/profile-setting',[ProfilesettingController::class,'update']);
+    Route::post('/profile-setting',[ProfilesettingController::class,'store']);
     
 
     Route::get('/kas-masjid/pemasukan', [PemasukanController::class, 'index'])->middleware('admin:admin|bendahara');
@@ -85,7 +90,34 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 });
 
 
+Route::get('/setup', function () {
 
+    Artisan::call('config:cache');
+    Artisan::call('route:cache');
+    Artisan::call('view:cache');
+
+    return 'DONE'; //Return anything
+});
+
+Route::get('/clear', function () {
+
+    Artisan::call('route:clear');
+    Artisan::call('config:clear');
+    Artisan::call('cache:clear');
+
+    return 'DONE'; //Return anything
+});
+
+// Route::get('/symlink', function () {
+
+//     $link = Artisan::call('storage:link');
+
+//     if ($link) {
+//         return "yes";
+//     }
+
+//     return "nope";
+// });
 
 // require __DIR__ . '/auth.php';
 

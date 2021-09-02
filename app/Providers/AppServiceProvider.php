@@ -25,20 +25,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Blade::directive('currency', function ( $expression ) {
+            Blade::directive('currency', function ( $expression ) {
             return "Rp. <?php echo number_format($expression,0,',','.'); ?>";
           });
 
           Blade::directive('datetime', function ($expression) {
               return "<?php echo ($expression)->format('d-m-Y'); ?>";
           });
-          Blade::directive('datetime', function ($expression) {
-              return "<?php echo ($expression)->format('m/d/Y H:i'); ?>";
-          });
-
           
-
-        Paginator::useBootstrap();
+       
     }
 
     

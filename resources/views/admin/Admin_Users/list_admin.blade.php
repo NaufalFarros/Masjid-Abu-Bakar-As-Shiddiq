@@ -72,7 +72,7 @@
                                         <tr>
                                             <th scope="row">{{ $loop->iteration }}</th>
                                             <td>{{ $d->name }}</td>
-                                            <td>{{ $d->username }}</td>
+                                            <td>{{ hideUsername($d->username) }}</td>
                                             <td>{{ hideEmailAddress($d->email)}}</td>
                                             <td>{{ $d->role }}</td>
                                             <td>
