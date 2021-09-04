@@ -2,8 +2,12 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
             <div class="container-fluid container-lg py-2">
-                <img src="{{asset('image/logo-masjid.png')}}" style="width: 50px" alt="">
-                <a class="navbar-brand" href="#">ABU BAKAR AS-SHIDDIQ</a>
+                <a class="navbar-brand" href="#">
+                    <img src="{{asset('image/logo-masjid.png')}}" style="width: 50px" alt="">
+                    <p class="m-0 d-inline">
+                        ABU BAKAR AS-SHIDDIQ
+                    </p>
+                </a>
                 <div>
                     <i class="fas fa-search d-lg-none d-inline-block btn-search"></i>
                     <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"

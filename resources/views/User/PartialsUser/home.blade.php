@@ -141,48 +141,48 @@
          </section>
 
          <section class="prayer-times">
+             <h4>Waktu Sholat</h4>
              <div class="row">
                  <div class="col-md ps-5 ps-md-0">
                      <div class="float-md-end">
-                         <h3>WIB,</h3>
+                         <h3>Jember,</h3>
                          <h5>Indonesia</h5>
                      </div>
                  </div>
-                 <div class="col-md-7 px-5" id="row">
-                     <h3>Waktu Sholat</h3>
-                     {{-- <h5><span>5:15</span> Sunrise</h5> --}}
+                 <div class="col-md-7 px-5">
+                     <h3>Jam</h3>
+                     <h5><span>5:15</span> WIB</h5>
                      <div class="row times mt-4">
-                         {{-- <div class="col">
+                         <div class="col">
                              <img src="{{ asset('image/fajr.png') }}" alt="">
-                             <h5 id="name">SUBUH</h5>
-                             <h5 id="time">1:40</h5>
+                             <h5>SUBUH</h5>
+                             <h5 id="subuh">--:--</h5>
                          </div>
                          <div class="col">
                              <img src="{{ asset('image/zhur.png') }}" alt="">
-                             <h5>ZHUR</h5>
-                             <h5>1:30<span id="time">pm</span></h5>
+                             <h5>ZUHUR</h5>
+                             <h5 id="zuhur">--:--</h5>
                          </div>
                          <div class="col">
                              <img src="{{ asset('image/asr.png') }}" alt="">
-                             <h5>ASR</h5>
-                             <h5>4:30<span id="time">pm</span></h5>
+                             <h5>ASAR</h5>
+                             <h5 id="asar">--:--</h5>
                          </div>
                          <div class="col">
                              <img src="{{ asset('image/maghrib.png') }}" alt="">
-                             <h5>MAGHRIB</h5>
-                             <h5>6:30<span>pm</span></h5>
+                             <h5>MAGRIB</h5>
+                             <h5 id="magrib">--:--</h5>
                          </div>
                          <div class="col">
                              <img src="{{ asset('image/isha.png') }}" alt="">
-                             <h5>ISHA</h5>
-                             <h5>8:00<span>pm</span></h5>
-                         </div> --}}
+                             <h5>ISYA'</h5>
+                             <h5 id="isya">--:--</h5>
+                         </div>
                      </div>
                  </div>
              </div>
-             
-
          </section>
+
 
          <section class="event">
              <h4>Events</h4>
@@ -287,21 +287,21 @@
          <section class="kas">
              <h4>Kas Masjid Abu Bakar As-Shiddiq</h4>
              <div class="card">
-                <div class="row p-3">
-                    <div class="col-md-6">
-                        <h4>Total Pemasukan :@currency($kasWeek->sum('pemasukan')) </h4>
-                        <h4>Total Pengeluaran : @currency($kasWeek->sum('pengeluaran')) </h4>
-                    </div>
-                    <div class="col-md-6">
-                        <h4>Saldo Minggu Lalu : @currency($kasWeek->sum('pemasukan') - $kasWeek->sum('pengeluaran')) </h4>
-                        <h4>Total Saldo : @currency($kasWeek->sum('pemasukan') - $kasWeek->sum('pengeluaran')) </h4>
-                    </div>
-                </div>
-                {{-- <div class=" col-md-6 my-4 mx-5">
+                 <div class="row p-3">
+                     <div class="col-md-6">
+                         <h4>Total Pemasukan :@currency($kasWeek->sum('pemasukan')) </h4>
+                         <h4>Total Pengeluaran : @currency($kasWeek->sum('pengeluaran')) </h4>
+                     </div>
+                     <div class="col-md-6">
+                         <h4>Saldo Minggu Lalu : @currency($kasWeek->sum('pemasukan') - $kasWeek->sum('pengeluaran')) </h4>
+                         <h4>Total Saldo : @currency($kasWeek->sum('pemasukan') - $kasWeek->sum('pengeluaran')) </h4>
+                     </div>
+                 </div>
+                 {{-- <div class=" col-md-6 my-4 mx-5">
                     <div class="">        
                     </div>
                 </div> --}}
-                
+
                  <!-- /.card-header -->
                  <div class="card-body">
                      <table id="example1" class="table table-bordered table-striped">
@@ -404,7 +404,8 @@
      <script src="{{ asset('AdminLTE/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
      <script src="{{ asset('AdminLTE/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
      {{-- Jss Praytime --}}
-    <script src="{{asset('js/FeMasjid/prayTime.js')}}"></script>
+     {{-- <script src="{{asset('js/FeMasjid/prayTime.js')}}"></script> --}}
+     <script src="{{ asset('js/FeMasjid/api/PrayTime.js') }}"></script>
 
      <script>
          $("#example1").DataTable({

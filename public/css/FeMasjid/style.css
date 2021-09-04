@@ -43,6 +43,11 @@ h5 {
   float: right;
 }
 
+.nav-item, .get-involved, .btn-search, .search-input, .search-action, .submit-search, .carousel-button, .btn-show-details,
+.card-list .title, .event p, footer p {
+  font-size: 0.8rem;
+}
+
 /* css untuk navbar */
 .navbar-toggler-icon {
   width: 1.3rem;
@@ -67,9 +72,9 @@ h5 {
   color: var(--st-black);
 }
 
-.nav-item, .get-involved, .btn-search, .search-input, .search-action, .submit-search, .carousel-button, .btn-show-details,
-.card-list .title, .event p, footer p {
-  font-size: 0.8rem;
+.navbar-brand p {
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
 .get-involved {
@@ -180,6 +185,7 @@ h5 {
 
 .prayer-times .times img {
   width: 35px;
+  height: 35px;
 }
 
 .prayer-times .times span {
