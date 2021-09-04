@@ -552,6 +552,10 @@ footer .contact p {
   height: 450px;
 }
 
+.hal-event .event-carousel {
+  background-image: linear-gradient(var(--main), white);
+}
+
 .hal-event .carousel-control-prev-icon,
 .hal-event .carousel-control-next-icon {
   height: 100px;
