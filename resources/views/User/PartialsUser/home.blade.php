@@ -151,7 +151,7 @@
                  </div>
                  <div class="col-md-7 px-5">
                      <h3>Jam</h3>
-                     <h5><span>5:15</span> WIB</h5>
+                     <h5><span id="time">--:--</span> WIB</h5>
                      <div class="row times mt-4">
                          <div class="col">
                              <img src="{{ asset('image/fajr.png') }}" alt="">
