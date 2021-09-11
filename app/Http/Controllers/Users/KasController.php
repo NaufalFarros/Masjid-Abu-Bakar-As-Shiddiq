@@ -16,10 +16,13 @@ class KasController extends Controller
      */
     public function index()
     {
-        $startDate = Carbon::today();
-        $endDate = Carbon::today()->addDays(-7);
-        // $kasWeek = kas_masjid::whereBetween('tanggal', [$startDate, $endDate])->orderBy('tanggal','asc')->get();
-        $kasWeek = kas_masjid::where('tanggal', '<=', $endDate)->get();
+        // $semuaSaldo = kas_masjid::all();
+        // $startDate = date('2021-9-3');
+        // $endDate = date('2021-8-27');
+        $kasWeek = kas_masjid::whereBetween('tanggal', [Carbon::now()->subDay(6)->format('Y-m-d'), Carbon::now()->format('Y-m-d')])->orderBy('tanggal','desc')->get();
+        // dd($kasWeek);
+
+        // $kasWeek = kas_masjid::whereDay('tanggal','>' ,Carbon::now())->orderBy('tanggal','asc')->get();
         return view('user.PartialsUser.home',compact('kasWeek'));
     }
 

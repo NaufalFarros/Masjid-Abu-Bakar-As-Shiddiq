@@ -180,8 +180,7 @@
                      </div>
                  </div>
              </div>
-             <iframe id="iframe" title="prayerWidget" class="widget-m-top" style=" height: 358px; border: 1px solid #ddd;"
-                 scrolling="no" src="https://www.islamicfinder.org/prayer-widget/1642588/shafi/11/0/20.0/18.0"> </iframe>
+             
 
          </section>
 
@@ -285,10 +284,24 @@
              </div>
          </section>
 
-         <section class="___class_+?121___">
+         <section class="kas">
              <h4>Kas Masjid Abu Bakar As-Shiddiq</h4>
              <div class="card">
-
+                <div class="row p-3">
+                    <div class="col-md-6">
+                        <h4>Total Pemasukan :@currency($kasWeek->sum('pemasukan')) </h4>
+                        <h4>Total Pengeluaran : @currency($kasWeek->sum('pengeluaran')) </h4>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Saldo Minggu Lalu : @currency($kasWeek->sum('pemasukan') - $kasWeek->sum('pengeluaran')) </h4>
+                        <h4>Total Saldo : @currency($kasWeek->sum('pemasukan') - $kasWeek->sum('pengeluaran')) </h4>
+                    </div>
+                </div>
+                {{-- <div class=" col-md-6 my-4 mx-5">
+                    <div class="">        
+                    </div>
+                </div> --}}
+                
                  <!-- /.card-header -->
                  <div class="card-body">
                      <table id="example1" class="table table-bordered table-striped">
@@ -390,7 +403,8 @@
      <script src="{{ asset('AdminLTE/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
      <script src="{{ asset('AdminLTE/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
      <script src="{{ asset('AdminLTE/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
-
+     {{-- Jss Praytime --}}
+    <script src="{{asset('js/FeMasjid/prayTime.js')}}"></script>
 
      <script>
          $("#example1").DataTable({
