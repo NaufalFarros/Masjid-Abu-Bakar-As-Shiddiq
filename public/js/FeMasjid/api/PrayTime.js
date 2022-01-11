@@ -1,6 +1,6 @@
 var url = "https://api.myquran.com/v1/sholat/jadwal/1607/";
 var today = new Date();
-var todayDate = today.getFullYear() + '/' + today.getMonth() + '/' + today.getDate();
+var todayDate = today.getFullYear() + '/' + (today.getMonth()+1) + '/' + today.getDate();
 $("#time").html(today.getHours()+":"+today.getMinutes())
 
 $.get(url + todayDate, function (data) {
