@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\saldo;
 use App\Models\kas_masjid;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
@@ -21,11 +23,19 @@ class HomeController extends Controller
         $this->middleware(['auth']);
     }
     public function index()
-    {
+    {   
+        // $saldo = saldo::whereBetween('tanggal', [Carbon::now()->subDay(6)->format('Y-m-d'), Carbon::now()->format('Y-m-d')])->get();
+         $saldo = saldo::orderBy('tanggal','asc')->first();
+        if (!$saldo) {
+            $saldo = (array)$saldo;
+            $saldo['saldo'] = 0;
+            $saldo = (object)$saldo;
+        }
+        //  $home = kas_masjid::whereBetween('tanggal', [Carbon::now()->subDay(6)->format('Y-m-d'), Carbon::now()->format('Y-m-d')])->orderBy('tanggal', 'asc')->get();
          $home = kas_masjid::all();
          $user = User::all();                
-        //  dd($kasmasjid);
-         return view('admin.partials.home',compact('home','user'));
+        //  dd($saldo);
+         return view('admin.partials.home',compact('home','user','saldo'));
     }
 
     /**

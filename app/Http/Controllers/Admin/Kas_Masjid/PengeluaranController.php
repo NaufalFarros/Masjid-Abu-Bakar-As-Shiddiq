@@ -26,7 +26,7 @@ class PengeluaranController extends Controller
         return view('admin.Kas_Masjid.pengeluaran');
     }
     public function datapengeluaran(){
-        $get_data = kas_masjid::join('users','users.id','=','kas_masjids.user_id')->where('jenis', "keluar")->get(['users.name','kas_masjids.*']);
+        $get_data = kas_masjid::join('users','users.id','=','kas_masjids.user_id')->where('jenis', "keluar")->orderBy('tanggal','asc')->get(['users.name','kas_masjids.*']);
          return response()->json([
                 'pengeluaran' => $get_data,
     
@@ -164,6 +164,7 @@ class PengeluaranController extends Controller
                 // $data_edit->tanggal = $request->input('tanggal');
                 $data_edit->tanggal = Carbon::createFromFormat('d/m/Y', $request->tanggal)->format('Y/m/d');
                 $data_edit->jenis = 'keluar';
+                $data_edit->user_id = Auth::user()->id;
                 $data_edit->update();
                 return response()->json([
                     'status' => 200,

@@ -39,8 +39,9 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-             
-              <h2> @currency($home->sum('pemasukan') - $home->sum('pengeluaran'))</h2>
+  
+<h2>  @currency($saldo->saldo + $home->sum('pemasukan') - $home->sum('pengeluaran')) </h2>
+
               
             </div>
             <!-- /.card-body -->

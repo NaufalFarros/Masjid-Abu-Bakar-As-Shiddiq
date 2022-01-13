@@ -65,6 +65,12 @@
                 <tr>
                     <td></td>
                     <td></td>
+                    <th scope="row"> SALDO AWAL </th>
+                    <td colspan="2"><p class="text-bold">= @currency($saldo->saldo)</p></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
                     <th scope="row" >TOTAL PEMASUKAN  </th>
                     <td > <p class="text-bold">=  @currency($data->sum('pemasukan'))</p> </td>
                     <td></td>
@@ -80,7 +86,7 @@
                     <td></td>
                     <td></td>
                     <th scope="row" colspan="">TOTAL SALDO KAS MASJID </th>
-                    <td colspan="2"> <p class="text-bold">= @currency($data->sum('pemasukan')- $data->sum('pengeluaran'))</p></td>
+                    <td colspan="2"> <p class="text-bold">= @currency( $saldo->saldo + $data->sum('pemasukan')- $data->sum('pengeluaran'))</p></td>
 
                 </tr>
             </tbody>

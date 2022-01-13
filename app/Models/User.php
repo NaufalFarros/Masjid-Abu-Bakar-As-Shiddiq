@@ -56,5 +56,8 @@ class User extends Authenticatable implements MustVerifyEmail
        return $this->hasMany(kas_masjid::class);
    }
 
-
+   public function saldo()
+   {
+       return $this->hasMany(saldo::class);
+   }
 }

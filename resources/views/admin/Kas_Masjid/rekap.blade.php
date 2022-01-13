@@ -36,6 +36,9 @@
             <div class="small-box bg-info">
                 <div class="inner">
                     <h4><i class="fas fa-file-alt"></i> Saldo Kas Masjid</h4>
+                    <div>
+                        <h4>Saldo Awal : @currency($saldo->saldo)</h4>
+                    </div>
                     <div class="bg-white">
                         <hr>
                     </div>
@@ -45,7 +48,7 @@
                     <div class="bg-white">
                         <hr>
                     </div>
-                    <h4 id="">Saldo Akhir : @currency($rekap->sum('pemasukan') - $rekap->sum('pengeluaran')) </h4>
+                    <h4 id="">Saldo Akhir : @currency( $saldo->saldo  + $rekap->sum('pemasukan') - $rekap->sum('pengeluaran')) </h4>
                 </div>
 
             </div>

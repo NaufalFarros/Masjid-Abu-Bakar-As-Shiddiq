@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use App\Models\kas_masjid;
+use App\Models\saldo;
+use App\Models\photoGalery;
 
 class KasController extends Controller
 {
@@ -19,11 +21,24 @@ class KasController extends Controller
         // $semuaSaldo = kas_masjid::all();
         // $startDate = date('2021-9-3');
         // $endDate = date('2021-8-27');
-        $kasWeek = kas_masjid::whereBetween('tanggal', [Carbon::now()->subDay(6)->format('Y-m-d'), Carbon::now()->format('Y-m-d')])->orderBy('tanggal','desc')->get();
-        // dd($kasWeek);
 
+      
+        $saldoMinggulalu = saldo::whereBetween('tanggal', [Carbon::now()->subDay(7)->format('Y-m-d'), Carbon::now()->format('Y-m-d')])->orderBy('tanggal','asc')->first();
+        if (!$saldoMinggulalu) {
+            $saldoMinggulalu = (array)$saldoMinggulalu;
+            $saldoMinggulalu['saldo'] = 0;
+            $saldoMinggulalu = (object)$saldoMinggulalu;
+        }
+        // $saldoMinggulalu = saldo::latest()->first();
+        $kasWeek = kas_masjid::whereBetween('tanggal', [Carbon::now()->subDay(7)->format('Y-m-d'), Carbon::now()->subDay(1)->format('Y-m-d')])->orderBy('tanggal','asc')->get();
+        // dd($saldoMinggulalu);
+       
         // $kasWeek = kas_masjid::whereDay('tanggal','>' ,Carbon::now())->orderBy('tanggal','asc')->get();
-        return view('user.PartialsUser.home',compact('kasWeek'));
+
+        $photo = photoGalery::paginate(3);
+
+        return view('user.PartialsUser.home',compact('kasWeek','saldoMinggulalu','photo'));
+
     }
 
     /**

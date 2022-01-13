@@ -169,5 +169,6 @@ class AdminusersController extends Controller
        $delete->delete();
        Alert::success('Menghapus Data', 'Data Berhasil Di Hapus');
         return redirect('/admin/users');
+        
     }
 }

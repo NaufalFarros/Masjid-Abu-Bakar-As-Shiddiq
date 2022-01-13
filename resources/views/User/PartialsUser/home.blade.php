@@ -293,8 +293,11 @@
                          <h4>Total Pengeluaran : @currency($kasWeek->sum('pengeluaran')) </h4>
                      </div>
                      <div class="col-md-6">
-                         <h4>Saldo Minggu Lalu : @currency($kasWeek->sum('pemasukan') - $kasWeek->sum('pengeluaran')) </h4>
-                         <h4>Total Saldo : @currency($kasWeek->sum('pemasukan') - $kasWeek->sum('pengeluaran')) </h4>
+                         {{-- @foreach ($saldoMinggu as $s ) --}}
+                            
+                         <h4>Saldo Minggu Lalu : @currency($saldoMinggulalu->saldo) </h4>
+                         {{-- @endforeach --}}
+                         <h4>Total Saldo : @currency( $saldoMinggulalu->saldo   + $kasWeek->sum('pemasukan') - $kasWeek->sum('pengeluaran')) </h4>
                      </div>
                  </div>
                  {{-- <div class=" col-md-6 my-4 mx-5">
@@ -346,7 +349,17 @@
              <h4>Photo Gallery</h4>
              <button class="rounded-pill btn-show-details">Show all</button>
              <div class="row mt-5 pt-4">
-                 <div class="col-md-4 my-3">
+                
+                @foreach ($photo as $p )
+                <div class="col-md-4 my-3">
+                    <div class="rounded overflow-hidden image-wrapper">
+                        <img src="{{'/storage/'.$p->photo_galery_path}}" alt="">
+                    </div>
+                </div>
+                @endforeach
+                
+                
+                 {{-- <div class="col-md-4 my-3">
                      <div class="rounded overflow-hidden image-wrapper">
                          <img src="{{ asset('image/BDwLWz.png') }}" alt="">
                      </div>
@@ -355,12 +368,7 @@
                      <div class="rounded overflow-hidden image-wrapper">
                          <img src="{{ asset('image/BDwLWz.png') }}" alt="">
                      </div>
-                 </div>
-                 <div class="col-md-4 my-3">
-                     <div class="rounded overflow-hidden image-wrapper">
-                         <img src="{{ asset('image/BDwLWz.png') }}" alt="">
-                     </div>
-                 </div>
+                 </div> --}}
              </div>
          </div>
      </section>

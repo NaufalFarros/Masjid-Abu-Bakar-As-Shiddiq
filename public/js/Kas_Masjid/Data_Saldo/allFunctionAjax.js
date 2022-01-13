@@ -1,5 +1,5 @@
          //Delete Data 
-            $(document).on("click", "#hapus_data_pm", function (e) {
+            $(document).on("click", "#hapus_data_saldo", function (e) {
                 e.preventDefault();
                 var id_hps = $(this).data("id");
                 // console.log(id_hps);
@@ -15,7 +15,7 @@
                     if (result.isConfirmed) {
                          $.ajax({
                              type: "DELETE",
-                             url: "/admin/data-pemasukan/delete/" +id_hps,
+                             url: "/admin/data-saldo/delete/" + id_hps,
                              success: function (response) {
                                  if (response.status == 200) {
                                      Swal.fire(
@@ -23,7 +23,7 @@
                                          "Data Berhasil Di Hapus",
                                          "success"
                                      );
-                                     datapemasukan();
+                                     datasaldo();
                                  }
                              },
                          });     
@@ -42,13 +42,13 @@
             
   
         // Edit(update) btn proses
-        $(document).on('click', '#edit_pemasukan', function(e) {
+        $(document).on('click', '#edit_saldo', function(e) {
             e.preventDefault();
             $(this).text("Updating");
-            var id_pm = $('#edit_pm_id').val();
+            var id_saldo = $('#edit_saldo_id').val();
             var data= {
                     'keterangan': $('#keterangan_edit').val(),
-                    'pemasukan': $('#pemasukan_edit').val(),
+                    'saldo': $('#saldo_edit').val(),
                     'tanggal': $('#tanggal_edit').val(),             
             }     
             // console.log(data);
@@ -60,7 +60,7 @@
                 
             $.ajax({
                 type: "PUT",
-                url: "/admin/data-pemasukan/update/"+id_pm,
+                url: "/admin/data-saldo/update/"+id_saldo,
                 data: data,
                 dataType: "json",
                 success: function(response) {
@@ -73,12 +73,12 @@
                                     "</li>");
                                 // console.log(response.errors);
                             });
-                            $('#edit_pemasukan').text("Update");
+                            $('#edit_saldo').text("Update");
                         }else if(response.status == 404){
                                 $('#fails_message').html("");
                                 $('#fails_message').addClass("alert alert-danger");
                                 $('#fails_message').text(response.message);
-                                $('#edit_pemasukan').text("Update");
+                                $('#edit_saldo').text("Update");
                             
                         }else{
                             $('#modal-edit').modal('hide');
@@ -93,8 +93,8 @@
                             $('#updateform_errList').html("");
                             $('#updateform_errList').removeClass('alert alert-danger');
                             $('#modal-edit').find('input').val("");
-                            $('#edit_pemasukan').text("Update");
-                            datapemasukan();
+                            $('#edit_saldo').text("Update");
+                            datasaldo();
                         }
                 }
             });
@@ -103,25 +103,25 @@
 
 
         // Edit Ajax with/open modal
-        $(document).on('click', '#edit_data_pm', function(e) {
+        $(document).on('click', '#edit_data_saldo', function(e) {
             e.preventDefault();
-            var id_pm = $(this).data('id');
+            var id_saldo = $(this).data('id');
             // console.log(id_pm);
             $('#modal-edit').modal('show');
             $.ajax({
                 type: "GET",
-                url: "/admin/data-pemasukan/edit/" + id_pm,
+                url: "/admin/data-saldo/edit/" + id_saldo,
                 success: function(response) {
-                    // console.log(response);
+                    console.log(response);
                     if (response.status == 404) {
                         $('#fails_message').html("");
                         $('#fails_message').addClass("alert alert-danger");
                         $('#fails_message').text(response.message);
                     } else {
-                        $('#edit_pm_id').val(response.data_edit.id);
-                        $('#keterangan_edit').val(response.data_edit.keterangan);
-                        $('#pemasukan_edit').val(convertToRupiah(response.data_edit.pemasukan));
-                        $('#tanggal_edit').val(formatDate(response.data_edit.tanggal));
+                        $('#edit_saldo_id').val(response.data_edit_saldo.id);
+                        $('#keterangan_edit').val(response.data_edit_saldo.keterangan);
+                        $('#saldo_edit').val(convertToRupiah(response.data_edit_saldo.saldo));
+                        $('#tanggal_edit').val(formatDate(response.data_edit_saldo.tanggal));
                     }
                 }
             });
@@ -160,47 +160,47 @@
         //GET Data with ajax from json / Refresh data
            
             $(document).ready(function() {
-                datapemasukan();
+                datasaldo();
             });
     
-        function datapemasukan() {
+        function datasaldo() {
             var tablebody = "";
             $.ajax({
                 type: "GET",
-                url: "/admin/data-pemasukan",
+                url: "/admin/data-saldo",
                 dataType: "json",
                 success: function(response) {
                     var total = 0;
                     var nomor = 0 ;
-                    // console.log(response.pemasukan);
-                    $.each(response.pemasukan, function (index, element) { 
-                         total += element.pemasukan                   
+                    // console.log(response.saldo);
+                    $.each(response.saldo, function (index, element) { 
+                         total = element.saldo                   
                             tablebody += `<tr>
                                                 <td>` + (nomor += 1) + `</td>
                                                 <td>` + formatDate(element.tanggal) + `</td>
                                                 <td>` + element.keterangan + `</td>
-                                                <td>` + convertToRupiah(element.pemasukan) + `</td>
+                                                <td>` + convertToRupiah(element.saldo) + `</td>
                                                 <td>` + (element.name)+ `</td>
                                                 <td>
-                                                    <a class="btn btn-primary btn-sm" id="edit_data_pm" data-id="` +
+                                                    <a class="btn btn-primary btn-sm" id="edit_data_saldo" data-id="` +
                                 element.id + `"> 
                                                         <i class="fas fa-edit">Edit</i> </a>
-                                                    <a  class="btn btn-danger btn-sm" data-id="`+element.id+`" id="hapus_data_pm"> 
+                                                    <a  class="btn btn-danger btn-sm" data-id="`+element.id+`" id="hapus_data_saldo"> 
                                                         <i class="fas fa-trash-alt">Hapus</i> </a>
                                                 </td>
                                             </tr>`
                     });
                     $("#total").text(convertToRupiah(total));
                     var tbody = $("#tablebody");
-                    $("#tb_pemasukan").DataTable().destroy();
+                    $("#tb_saldo").DataTable().destroy();
                     tbody.html(tablebody);
-                    $("#tb_pemasukan").DataTable({
+                    $("#tb_saldo").DataTable({
                         "responsive": true,
                         "lengthChange": true,
                         "autoWidth": false,
                         "buttons": ["pdf", "print", "colvis"],
-                    }).buttons().container().appendTo('#tb_pemasukan_wrapper .col-md-6:eq(0)');
-                    $("#tb_pemasukan").DataTable().draw();
+                    }).buttons().container().appendTo('#tb_saldo_wrapper .col-md-6:eq(0)');
+                    $("#tb_saldo").DataTable().draw();
 
                 }
 
@@ -223,26 +223,26 @@
  //Tambah Data
    
         $(document).ready(function() {
-
-
-            $('#simpan_pemasukan').click(function(e) {
+            $("#simpan_saldo").click(function (e) {
                 e.preventDefault();
                 var data = {
-                    'keterangan': $('#add_keterangan').val(),
-                    'pemasukan': $('#add_pemasukan').val(),
-                    'tanggal': $('#add_tanggal').val(),
-                }
+                    keterangan: $("#add_keterangan").val(),
+                    saldo: $("#add_saldo").val(),
+                    tanggal: $("#add_tanggal").val(),
+                };
                 // console.log(data);
 
                 $.ajaxSetup({
                     headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                            "content"
+                        ),
+                    },
                 });
 
                 $.ajax({
                     type: "POST",
-                    url: "/admin/data-pemasukan/add",
+                    url: "/admin/data-saldo/add",
                     data: data,
                     dataType: "json",
                     success: function (response) {
@@ -271,7 +271,7 @@
                             });
 
                             $("#modal-default").find("input").val("");
-                            datapemasukan();
+                            datasaldo();
                         }
                     },
                 });
@@ -284,25 +284,32 @@
 
 //On Key Up Format Uang
    
-        $('#add_pemasukan,#pemasukan_edit').keyup(function(e) {
+        $("#add_saldo,#saldo_edit").keyup(function (e) {
             // tambahkan 'Rp.' pada saat form di ketik
             // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-            $('#add_pemasukan,#pemasukan_edit').val(formatRupiah(this.value, 'Rp. '));
+            $("#add_saldo,#saldo_edit").val(
+                formatRupiah(this.value, "Rp. ")
+            );
             /* Fungsi formatRupiah */
             function formatRupiah(angka, prefix) {
-                var number_string = angka.replace(/[^,\d]/g, '').toString(),
-                    split = number_string.split(','),
+                var number_string = angka.replace(/[^,\d]/g, "").toString(),
+                    split = number_string.split(","),
                     sisa = split[0].length % 3,
                     rupiah = split[0].substr(0, sisa),
                     ribuan = split[0].substr(sisa).match(/\d{3}/gi);
 
                 // tambahkan titik jika yang di input sudah menjadi angka ribuan
                 if (ribuan) {
-                    separator = sisa ? '.' : '';
-                    rupiah += separator + ribuan.join('.');
+                    separator = sisa ? "." : "";
+                    rupiah += separator + ribuan.join(".");
                 }
-                rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-                return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+                rupiah =
+                    split[1] != undefined ? rupiah + "," + split[1] : rupiah;
+                return prefix == undefined
+                    ? rupiah
+                    : rupiah
+                    ? "Rp. " + rupiah
+                    : "";
             }
         });
     

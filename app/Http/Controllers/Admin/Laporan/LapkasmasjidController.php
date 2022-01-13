@@ -6,13 +6,14 @@ namespace App\Http\Controllers\Admin\Laporan;
 
 
 
+use Error;
 use Carbon\Carbon;
+use App\Models\saldo;
 use App\Models\kas_masjid;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Error;
 
 class LapkasmasjidController extends Controller
 {
@@ -31,8 +32,14 @@ class LapkasmasjidController extends Controller
     }
 
        public function DownloadSemuapdf(){
+        $saldo = saldo::orderBy('tanggal','asc')->first();
+        if (!$saldo) {
+            $saldo = (array)$saldo;
+            $saldo['saldo'] = 0;
+            $saldo = (object)$saldo;
+        }
         $data = kas_masjid::all();
-            return view('admin.Laporan.Kas-Masjid.download-pdf',compact('data'));
+            return view('admin.Laporan.Kas-Masjid.download-pdf',compact('data','saldo'));
         }
 
    public function DownloadPeriode(Request $request){
@@ -53,11 +60,18 @@ class LapkasmasjidController extends Controller
             'tglakhir.required' => 'Tanggal Akhir Harus Di Isi'
         ]);
             
-           if( $request->tglawal != '' && $request->tglakhir != ''){
+           if( $request->tglawal != null && $request->tglakhir != null){
             $from = Carbon::createFromFormat('d-m-Y', $request->tglawal)->format('Y/m/d');
-            $to = Carbon::createFromFormat('d-m-Y', $request->tglakhir)->format('Y/m/d'); 
+            $to = Carbon::createFromFormat('d-m-Y', $request->tglakhir)->format('Y/m/d');
+            $saldo = saldo::where('tanggal', 'asc')->first();
+            if (!$saldo) {
+                $saldo = (array)$saldo;
+                $saldo['saldo'] = 0;
+                $saldo = (object)$saldo;
+            }
+            // dd($saldo);
             $dataPeriode = kas_masjid::whereBetween('tanggal',[$from,$to])->orderBy('tanggal','asc')->get();
-                return view('admin.Laporan.Kas-Masjid.download-pdf-periode',compact('dataPeriode'));
+                return view('admin.Laporan.Kas-Masjid.download-pdf-periode',compact('dataPeriode','saldo'));
            }
         
 

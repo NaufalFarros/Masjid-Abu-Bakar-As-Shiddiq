@@ -30,6 +30,6 @@ protected $dates = [
     {
         return $this->belongsTo(User::class);
     }
-
+    
 
 }

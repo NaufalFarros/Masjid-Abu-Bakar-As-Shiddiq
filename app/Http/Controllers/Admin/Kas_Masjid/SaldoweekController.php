@@ -2,42 +2,37 @@
 
 namespace App\Http\Controllers\Admin\Kas_Masjid;
 
-use Carbon\Carbon;
-use App\Models\User;
-use App\Models\kas_masjid;
+use App\Models\saldo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-// use RealRashid\SweetAlert\Facades\Alert;
 
-class PemasukanController extends Controller
+class SaldoweekController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware(['auth']);
-    }
-     
     public function index()
     {
-        // $pemasukan = kas_masjid::all();
-      
-        return view('admin.Kas_Masjid.pemasukan');
-        
+        return view('admin.Kas_Masjid.saldo');
     }
 
-    public function datapemasukan()
-    {
-        $pemasukan = kas_masjid::join('users', 'users.id', '=', 'kas_masjids.user_id')->where('jenis', "masuk")->orderBy('tanggal','asc')->get(['users.name','kas_masjids.*']);
-        return response()->json([
-            'pemasukan' => $pemasukan,
-        ]);
 
+    public function datasaldo()
+    {
+        $saldo = saldo::join('users', 'users.id', '=', 'saldos.user_id')->orderBy('tanggal','asc')->get(['users.name', 'saldos.*']);
+        return response()->json([
+            'saldo' => $saldo,
+        ]);
     }
 
     /**
@@ -58,14 +53,13 @@ class PemasukanController extends Controller
      */
     public function store(Request $request)
     {
-        
         $validator = validator::make($request->all(), [
             'keterangan' => 'required|max:100',
-            'pemasukan' => 'required',
+            'saldo' => 'required',
             'tanggal' => 'required',
         ], [
             'keterangan.required' => 'Keterangan Harus Di Isi',
-            'pemasukan.required' => 'Pemasukan Harus Di Isi',
+            'saldo.required' => 'Saldo Harus Di Isi',
             'tanggal.required' => 'Tanggal Harus Di Isi',
         ]);
 
@@ -77,45 +71,23 @@ class PemasukanController extends Controller
             ]);
         } else {
             // menghilangkan string selain angka
-            $angka = $request->pemasukan;
+            $angka = $request->saldo;
             $result = preg_replace("/[^0-9]/", "", $angka);
             // Format Tanggal Masuk
 
-            $data_masuk = new kas_masjid;
+            $data_masuk = new saldo;
             $data_masuk->keterangan = $request->input('keterangan');
-            $data_masuk->pemasukan = $result;
-            $data_masuk->pengeluaran = 0;
+            $data_masuk->saldo = $result;
             // $data_masuk->tanggal = $request->input('tanggal');
             $data_masuk->tanggal = Carbon::createFromFormat('d/m/Y', $request->tanggal)->format('Y/m/d');
-            $data_masuk->jenis = 'masuk';
             $data_masuk->user_id = Auth::user()->id;
             $data_masuk->save();
             return response()->json([
                 'status' => 200,
-                'message' => 'Tambah Data Pemasukan Berhasil',
+                'message' => 'Tambah Data Saldo Berhasil',
 
             ]);
         }
-        // return redirect('/kas-masjid/pemasukan');
-
-
-
-
-
-
-        // return kas_masjid::create([
-        //         'keterangan' => $request['keterangan'],
-        //         'pemasukan' => $result,
-        //         'pengeluaran' => '0',
-        //         'tanggal' => $request['tanggal'],
-        //         'jenis' => 'masuk',
-        //     ]);
-
-        // Alert::success('Tambah Data', 'Berhasil Menambah Data');
-
-
-        // kas_masjid::create($request->all());
-
     }
 
     /**
@@ -137,11 +109,11 @@ class PemasukanController extends Controller
      */
     public function edit($id)
     {
-        $edit_data_pemasukan = kas_masjid::find($id);
-        if ($edit_data_pemasukan) {
+        $edit_data_saldo = saldo::find($id);
+        if ($edit_data_saldo) {
             return response()->json([
                 'status' => 200,
-                'data_edit' => $edit_data_pemasukan,
+                'data_edit_saldo' => $edit_data_saldo,
 
             ]);
         } else {
@@ -164,11 +136,11 @@ class PemasukanController extends Controller
     {
         $validator = validator::make($request->all(), [
             'keterangan' => 'required|max:100',
-            'pemasukan' => 'required',
+            'saldo' => 'required',
             'tanggal' => 'required',
         ], [
             'keterangan.required' => 'Keterangan Harus Di Isi',
-            'pemasukan.required' => 'Pemasukan Harus Di Isi',
+            'saldo.required' => 'saldo Harus Di Isi',
             'tanggal.required' => 'Tanggal Harus Di Isi',
         ]);
 
@@ -180,26 +152,23 @@ class PemasukanController extends Controller
         } else {
 
             // menghilangkan string selain angka
-            $angka = $request->pemasukan;
+            $angka = $request->saldo;
             $result = preg_replace("/[^0-9]/", "", $angka);
-                // Format Tanggal Masuk  
-            
-            $data_edit = kas_masjid::find($id);         
-            if ($data_edit) {                  
+            // Format Tanggal Masuk  
+
+            $data_edit = saldo::find($id);
+            if ($data_edit) {
                 $data_edit->keterangan = $request->input('keterangan');
-                $data_edit->pemasukan = $result;
-                $data_edit->pengeluaran = 0;
+                $data_edit->saldo = $result;
                 // $data_edit->tanggal = $request->input('tanggal');
                 $data_edit->tanggal = Carbon::createFromFormat('d/m/Y', $request->tanggal)->format('Y/m/d');
-                $data_edit->jenis = 'masuk';
                 $data_edit->user_id = Auth::user()->id;
                 $data_edit->update();
                 return response()->json([
                     'status' => 200,
-                    'message' => 'Edit Data Pemasukan Berhasil',
+                    'message' => 'Edit Data Saldo Berhasil',
                 ]);
-            } else 
-            {
+            } else {
                 return response()->json([
                     'status' => 404,
                     'message' => 'Data tidak ditemukan',
@@ -217,12 +186,11 @@ class PemasukanController extends Controller
      */
     public function destroy($id)
     {
-        $data_delete = kas_masjid::find($id);
+        $data_delete = saldo::find($id);
         $data_delete->delete();
-            return response()->json([
-                'status' => 200,
-                'message' => 'Hapus Data Berhasil',
-            ]);
-        
+        return response()->json([
+            'status' => 200,
+            'message' => 'Hapus Data Berhasil',
+        ]);
     }
 }

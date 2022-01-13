@@ -57,6 +57,14 @@
                      </a>
                  </li>
                  @endif
+                 <li class="nav-item">
+                     <a href="{{ route('photos.index') }}" class="nav-link">
+                         <i class="far fa-images"></i>
+                         <p>
+                             Tambah Photo Masjid
+                         </p>
+                     </a>
+                 </li>
                  {{-- Kas Masjid --}}
                  <li class="nav-item">
                      <a href="#" class="nav-link">
@@ -69,6 +77,12 @@
                      <ul class="nav nav-treeview">
                          @if ( Auth::user()->role == 'admin' || Auth::user()->role == 'bendahara' )
                              
+                         <li class="nav-item">
+                             <a href=" {{ url('admin/kas-masjid/saldo')}}" class="nav-link">
+                                 <i class="far fa-circle nav-icon"></i>
+                                 <p> Saldo / Minggu  </p>
+                             </a>
+                         </li>
                          <li class="nav-item">
                              <a href=" {{ url('admin/kas-masjid/pemasukan') }}" class="nav-link">
                                  <i class="far fa-circle nav-icon"></i>
@@ -91,7 +105,8 @@
                      </ul>
                  </li>
                  {{-- Kas Sosial --}}
-                 <li class="nav-item">
+                 @if ( Auth::user()->role == 'admin')
+                     <li class="nav-item">
                      <a href="#" class="nav-link">
                          <i class="nav-icon fas fa-hand-holding-usd"></i>
                          <p>
@@ -120,6 +135,8 @@
                          </li>
                      </ul>
                  </li>
+                 @endif
+                
                  {{-- Laporan --}}
                  <li class="nav-item">
                      <a href="#" class="nav-link">
