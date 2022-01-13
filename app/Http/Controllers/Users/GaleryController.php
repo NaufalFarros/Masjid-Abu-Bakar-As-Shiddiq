@@ -11,6 +11,6 @@ class GaleryController extends Controller
     
     public function index(){
         $photo = photoGalery::all();
-        return view('User.Galery.galery',compact('photo'));
+        return view('User.About Us.galery',compact('photo'));
     }
 }

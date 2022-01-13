@@ -270,6 +270,10 @@ h5 {
   padding: 2rem;
 }
 
+.photo-page {
+  background-image: none;
+}
+
 .photo .image-wrapper {
   height: 290px;
   display: flex;
@@ -395,7 +399,8 @@ footer .contact p {
   width: 95%;
   height: 20%;
   background-color: var(--main);
-  padding: 1rem;
+  padding: 1.5rem;
+  border-radius: 0.25rem;
 }
 
 .search-action {
