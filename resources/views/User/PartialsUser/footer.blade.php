@@ -7,11 +7,11 @@
             </div>
             <div class="row contact">
                 <div class="col">
-                    <a href="" target="_blank"> <button class="btn btn-success btn-sm my-3"><i
+                    <a href="" target="_blank"> <button class="btn btn-success w-75 btn-sm my-3"><i
                                 class="fab fa-whatsapp"></i> 123123897123 ( ketua Takmir )</button> </a>
-                    <a href="" target="_blank"> <button class="btn btn-success btn-sm my-3"><i
+                    <a href="" target="_blank"> <button class="btn btn-success w-75 btn-sm my-3"><i
                                 class="fab fa-whatsapp"></i> 123123897123 ( Wakil Takmir )</button> </a>
-                    <a href="https://wa.me/6282235236662" target="_blank"><button class="btn btn-success btn-sm my-3"><i
+                    <a href="https://wa.me/6282235236662" target="_blank"><button class="btn btn-success w-75 btn-sm my-3"><i
                                 class="fab fa-whatsapp"></i> 082235236662 ( Admin )</button></a>
                 </div>
 
