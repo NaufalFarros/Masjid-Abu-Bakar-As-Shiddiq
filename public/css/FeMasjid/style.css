@@ -307,6 +307,14 @@ h5 {
   margin-top: 20px;
 }
 
+.donation-page h3 {
+  font-size: 19px;
+}
+
+.donation-page .px {
+  padding-left: 180px;
+}
+
 /* css untuk bagian subcribe */
 .subcribe {
   border-radius: 20px;
