@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Kas_Masjid\PengeluaranController;
 use App\Http\Controllers\Admin\Admin_Profile_Setting\ProfilesettingController;
 use App\Http\Controllers\Admin\Kas_Masjid\SaldoweekController;
 use App\Http\Controllers\Admin\Photo_Masjid\PhotoController;
+use App\Http\Controllers\Users\GaleryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +31,7 @@ Route::get('/', [KasController::class,'index']);
 // Route::get('/', function () {
 //     return view('User.PartialsUser.home');
 // });
-
+Route::get('/galery',[GaleryController::class,'index']);
 
 Route::get('/about', function () {
     return view('User.About Us.about');
