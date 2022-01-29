@@ -171,7 +171,7 @@ class EventadminController extends Controller
         foreach($photo as $p){
             // dd($p);
         //    $remove = str::remove('"','}', $p);
-            Storage::disk('local')->delete('public/'. $p);
+            Storage::disk('local')->delete('public/photo-event/'. basename($p['photo_event_path']));
             // dd($p);
         }
         
