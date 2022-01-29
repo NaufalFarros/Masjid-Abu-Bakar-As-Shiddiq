@@ -9,6 +9,7 @@ use App\Models\photoGalery;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
+
 class PhotoController extends Controller
 {
     /**
@@ -115,16 +116,18 @@ class PhotoController extends Controller
     public function destroy($id)
     {
 
-        // $delete = photoGalery::find($id);
-        // $delete->delete();
+     
+        // $data = photoGalery::findorfail($id);
+        // $image_path = public_path('/photo_masjid/') . $data->photo_galery_path;
+        //     if($image_path != ''){
+        //             @unlink($image_path);
+        //     }
+            
+        // $data->delete();
         $data = photoGalery::findorfail($id);
-        $image_path = public_path('/photo_masjid/') . $data->photo_galery_path;
-            if($image_path != ''){
-                    @unlink($image_path);
-            }
-            // Storage::delete($image_path);
-    
-        $data->delete();
+        Storage::disk('local')->delete('public/photo-masjid/'.basename($data->photo_galery_path));
+         $data->delete();
+        
         Alert::success('Menghapus Foto', 'Foto Berhasil Di Hapus');
         return redirect('/admin/photos');
         

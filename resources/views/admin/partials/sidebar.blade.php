@@ -58,6 +58,14 @@
                  </li>
                  @endif
                  <li class="nav-item">
+                    <a href="{{ route('event.index') }}" class="nav-link">
+                        <i class="fas fa-calendar-alt"></i>
+                        <p>
+                            Tambah Event
+                        </p>
+                    </a>
+                </li>
+                 <li class="nav-item">
                      <a href="{{ route('photos.index') }}" class="nav-link">
                          <i class="far fa-images"></i>
                          <p>

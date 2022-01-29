@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\Laporan\LapkasmasjidController;
 use App\Http\Controllers\Admin\Admin_Users\AdminusersController;
 use App\Http\Controllers\Admin\Kas_Masjid\PengeluaranController;
 use App\Http\Controllers\Admin\Admin_Profile_Setting\ProfilesettingController;
+use App\Http\Controllers\Admin\Event_Admin\EventadminController;
 use App\Http\Controllers\Admin\Kas_Masjid\SaldoweekController;
 use App\Http\Controllers\Admin\Photo_Masjid\PhotoController;
 use App\Http\Controllers\Users\GaleryController;
@@ -64,11 +65,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('/users', AdminusersController::class)->middleware('admin:admin');
     
     Route::resource('/photos', PhotoController::class)->middleware('admin:admin');
+    //event 
+    
+    Route::resource('/event', EventadminController::class);
     // Profile Setting
     // Route::resource('/profile-setting', ProfilesettingController::class);
+    
     Route::get('/profile-setting', [ProfilesettingController::class,'index']);
     Route::post('/profile-setting',[ProfilesettingController::class,'update']);
-    Route::post('/profile-setting',[ProfilesettingController::class,'store']);
+    // Route::post('/profile-setting',[ProfilesettingController::class,'store']);
     
 
     Route::get('/kas-masjid/pemasukan', [PemasukanController::class, 'index'])->middleware('admin:admin|bendahara');

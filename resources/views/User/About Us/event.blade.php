@@ -72,6 +72,8 @@
                                 <button class="rounded-pill btn-show-details">View Details</button>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-lg-6 pe-4">
                         <div class="row p-4 border align-items-center mb-3 rounded">
                             <div class="col">
                                 <div class="border-end">
@@ -88,7 +90,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 ps-4">
+                    <div class="col-lg-6 pe-4">
                         <div class="row p-4 border align-items-center mb-3 rounded">
                             <div class="col">
                                 <div class="border-end">
@@ -104,6 +106,8 @@
                                 <button class="rounded-pill btn-show-details">View Details</button>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-lg-6 pe-4">
                         <div class="row p-4 border align-items-center mb-3 rounded">
                             <div class="col">
                                 <div class="border-end">

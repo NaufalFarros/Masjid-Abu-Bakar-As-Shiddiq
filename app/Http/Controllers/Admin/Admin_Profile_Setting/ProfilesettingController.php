@@ -49,27 +49,7 @@ class ProfilesettingController extends Controller
      */
     public function store(Request $request)
     {
-        // $photo = $request->image;
-        $photo = $request->file('image')->extension();
-        if ($request->image != null) {
-            // dd($photo);
-            $length = 25 ;
-            $name = Str::random($length);
-            $newFileName = auth()->user()->id . '-'. $name .'.' .$photo;
-            $this->validate($request, ['image' => 'required|file|max:5000']);
-            $path = Storage::putFileAs('public/profile-photo/', $request->file('image'), $newFileName);            //pindah foto ke folder profile-photo di storage
-            // Storage::putFileAs('profile-photo/', $request->image ,$newFileName);
-            
-
-            //simpan nama ke database
-          
-            auth()->user()->update([
-                'profile_photo_path' => 'profile-photo/'.$newFileName,
-            ]);
         
-            Alert::success('Ubah Foto', 'Ubah Foto Berhasil');
-            return redirect('/admin/profile-setting');
-        }
     }
 
     /**
@@ -104,6 +84,53 @@ class ProfilesettingController extends Controller
     public function update(Request $request)
     {
         // dd($request);
+        
+        // $photo = $request->image;
+        
+
+        $photo = $request->file('image')->extension();
+        if ($request->image != null) {
+            // dd($photo);
+            $oldphoto = auth()->user()->profile_photo_path;
+            dd($oldphoto);
+            Storage::disk('local')->delete('public/profile-photo/'.basename($oldphoto));
+
+            $length = 25 ;
+            $name = Str::random($length);
+            $newFileName = auth()->user()->id . '-'. $name .'.' .$photo;
+            $this->validate($request, ['image' => 'required|file|max:5000']);
+            $path = Storage::putFileAs('public/profile-photo/', $request->file('image'), $newFileName);            //pindah foto ke folder profile-photo di storage
+            // Storage::putFileAs('profile-photo/', $request->image ,$newFileName);
+            
+
+            //simpan nama ke database
+           
+
+            auth()->user()->update([
+                'profile_photo_path' => 'profile-photo/'.$newFileName,
+            ]);
+            
+
+            
+            
+           
+            
+            
+            
+
+        
+            Alert::success('Ubah Foto', 'Ubah Foto Berhasil');
+            return redirect('/admin/profile-setting');
+
+          
+
+    
+
+            
+        }
+
+
+
         if( $request->name != null && $request->username != null ){
             $request->validate([
                 'name' => 'required|string|min:3|max:100',

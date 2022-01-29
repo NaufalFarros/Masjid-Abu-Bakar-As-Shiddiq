@@ -33,7 +33,7 @@
                         <div class="card-body">
                             <!-- Date -->
                             <div class="col-6">
-                                <form action="{{route('users.store')}}" method="post">
+                                <form action="{{route('users.store')}}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
                                         <label for="nama">Nama</label>
