@@ -17,11 +17,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Tambah Event Masjid </h1>
+                    <h1>Edit Event Masjid </h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Tambah Event Masjid</a></li>
+                        <li class="breadcrumb-item"><a href="#">Edit Event Masjid</a></li>
                     </ol>
                 </div>
             </div>
@@ -34,20 +34,21 @@
                 <div class="col-md-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Tambah Event Masjid</h3>
+                            <h3 class="card-title">Edit Event Masjid</h3>
                         </div>
                         <div class="card-body">
                             <!-- Date -->
                             <div class="col-6">
-                                <form action="{{ route('event.store') }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('event.update',$edit->id) }}" method="post" enctype="multipart/form-data">
                                     @csrf
+                                    @method('put')
                                     <div class="form-group">
                                         <label for="Judul">Judul</label>
                                         <input type="text"
                                             class="form-control @error('judul')
                                             is-invalid
                                         @enderror"
-                                            id="Judul" value="{{ old('judul') }}" aria-describedby="emailHelp"
+                                            id="Judul" value="{{ $edit->judul }}" aria-describedby="emailHelp"
                                             placeholder="Judul Event" name="judul">
                                         @error('judul')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -61,8 +62,8 @@
                                         <div class="input-group date" id="reservationdate" data-target-input="nearest">
                                             <input type="text" class="form-control datetimepicker-input  @error('tanggal')
                                             is-invalid
-                                        @enderror"
-                                                data-target="#reservationdate" name="tanggal" />
+                                        @enderror" 
+                                                data-target="#reservationdate" name="tanggal"/>
                                             <div class="input-group-append" data-target="#reservationdate"
                                                 data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -78,7 +79,7 @@
                                         <textarea class="form-control @error('deskripsi')
                                         is-invalid
                                     @enderror " rows="3" placeholder="Deskripsi ..."
-                                            name="deskripsi" >{{old('deskripsi') }}</textarea>
+                                            name="deskripsi">{{$edit->deskripsi}}</textarea>
                                            
                                             @error('deskripsi')
                                             <div class="invalid-feedback">{{ $message }}</div>

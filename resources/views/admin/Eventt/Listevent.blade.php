@@ -92,7 +92,7 @@
                                             </td>
                                             <td>
                                                 <form action="{{route('event.destroy', $d->id)}}" method="post">
-                                                    <a href=""
+                                                    <a href="{{ route('event.edit', $d->id)}}"
                                                         class="btn btn-warning btn-sm">
                                                         <i class="fas fa-user-edit"></i> Edit
                                                     </a>

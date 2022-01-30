@@ -88,11 +88,11 @@ class ProfilesettingController extends Controller
         // $photo = $request->image;
         
 
-        $photo = $request->file('image')->extension();
         if ($request->image != null) {
             // dd($photo);
+            $photo = $request->file('image')->extension();
             $oldphoto = auth()->user()->profile_photo_path;
-            dd($oldphoto);
+            // dd($oldphoto);
             Storage::disk('local')->delete('public/profile-photo/'.basename($oldphoto));
 
             $length = 25 ;

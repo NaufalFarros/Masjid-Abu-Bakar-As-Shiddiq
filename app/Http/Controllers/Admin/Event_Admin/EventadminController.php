@@ -26,9 +26,9 @@ class EventadminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         $data = event::all();
-        return view('admin.Eventt.Listevent',compact('data'));
+        return view('admin.Eventt.Listevent', compact('data'));
     }
 
     /**
@@ -52,13 +52,13 @@ class EventadminController extends Controller
         // dd($request);
         $request->validate([
             'judul' => 'required|string|max:200',
-            'tanggal' => 'required',
+            'tanggal' => 'required|date_format:d/m/Y',
             'deskripsi' => 'required|string|max:300',
         ]);
 
         $event = event::create([
             'judul' => $request->judul,
-            'tanggal' => $request -> tanggal = Carbon::createFromFormat('d/m/Y', $request->tanggal)->format('Y/m/d'),
+            'tanggal' => $request->tanggal = Carbon::createFromFormat('d/m/Y', $request->tanggal)->format('Y/m/d'),
             'deskripsi' => $request->deskripsi,
         ]);
         $event->save();
@@ -67,7 +67,7 @@ class EventadminController extends Controller
 
 
         // $photo = $request->file('images')->extension();
-       
+
         // dd($request->image);
         // if ($request->hasfile('images')) {
         //     $images = $request->file('images');
@@ -80,7 +80,7 @@ class EventadminController extends Controller
         //         $this->validate($request, ['image' => 'required|file|max:5000']);
         //         $path = Storage::putFileAs('public/photo-event/', $request->file('image'), $newFileName);            //pindah foto ke folder profile-photo di storage
         //         // Storage::putFileAs('profile-photo/', $request->image ,$newFileName);
-               
+
 
         //         //simpan nama ke database
 
@@ -91,28 +91,28 @@ class EventadminController extends Controller
         //         $save->save();
         //     }
         // }
-       
-       
-       
-       
+
+
+
+
         $request->validate([
             'images' => 'required|max:5000',
-          ]);
-  
+        ]);
+
         //   dd($request->File('images'));
-          if ($request->hasfile('images')) {
-              $images = $request->file('images');
-              foreach($images as $image) {
-                  $length = 20; 
-                  $name = auth()->user()->id . '-' . str::random($length) .'.'. $image->extension();
-                  $path = $image->storeAs('photo-event', $name, 'public');
-  
-                  photo_event::create([
-                      'photo_event_path' => $path,
-                      'event_id' => $id_event,
-                    ]);
-              }
-           }
+        if ($request->hasfile('images')) {
+            $images = $request->file('images');
+            foreach ($images as $image) {
+                $length = 20;
+                $name = auth()->user()->id . '-' . str::random($length) . '.' . $image->extension();
+                $path = $image->storeAs('photo-event', $name, 'public');
+
+                photo_event::create([
+                    'photo_event_path' => $path,
+                    'event_id' => $id_event,
+                ]);
+            }
+        }
 
 
 
@@ -139,7 +139,8 @@ class EventadminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $edit = event::findorfail($id);
+        return view('admin.Eventt.edit_event', compact('edit'));
     }
 
     /**
@@ -151,7 +152,72 @@ class EventadminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'judul' => 'required|string|max:200',
+            'tanggal' => 'required|date_format:d/m/Y',
+            'deskripsi' => 'required|string|max:300',
+        ]);
+
+        $event = event::find($id);
+        if ($event) {
+            $event->judul = $request->judul;
+            $event->tanggal =  Carbon::createFromFormat('d/m/Y', $request->tanggal)->format('Y/m/d');
+            $event->deskripsi = $request->deskripsi;
+
+            $event->update();
+            $id_event = $event->id;
+        }
+
+
+        $request->validate([
+            'images' => 'required|max:5000',
+        ]);
+
+        //   dd($request->File('images'));
+
+        $data_update = event::findorfail($id);
+        $photo = $data_update->photo()->get('photo_event_path');
+        // dd($photo);
+
+
+        foreach ($photo as $p) {
+            // dd($p);
+            //    $remove = str::remove('"','}', $p);
+            Storage::disk('local')->delete('public/photo-event/' . basename($p['photo_event_path']));
+            // dd(basename($p['photo_event_path']));
+        }
+
+
+        if ($request->hasfile('images')) {
+            
+            $images = $request->file('images');
+            foreach ($images as $image) {
+                $length = 20;
+                $name = auth()->user()->id . '-' . str::random($length) . '.' . $image->extension();
+                $path= $image->storeAs('photo-event', $name, 'public');
+                
+               
+                         $photos_data = event::findorfail($id);
+                    $photos_edit = $photos_data->photo()->unique();
+                    $photos_edit->update([
+                        'photo_event_path' => $path,
+                        'event_id' => $photos_data,
+                    ]);
+                    dd($photos_edit = $photos_data->photo()->unique());
+                
+                    
+
+                
+               
+                
+                
+
+            }
+        }
+        
+
+        Alert::success('Edit Data', 'Data Berhasil Di Edit');
+        return redirect('/admin/event');
     }
 
     /**
@@ -164,17 +230,17 @@ class EventadminController extends Controller
     {
         // dd($id);
         $data = event::findorfail($id);
-        $photo = $data->photo()->get('photo_event_path') ;
+        $photo = $data->photo()->get('photo_event_path');
         // dd($photo);
-       
 
-        foreach($photo as $p){
+
+        foreach ($photo as $p) {
             // dd($p);
-        //    $remove = str::remove('"','}', $p);
-            Storage::disk('local')->delete('public/photo-event/'. basename($p['photo_event_path']));
-            // dd($p);
+            //    $remove = str::remove('"','}', $p);
+            Storage::disk('local')->delete('public/photo-event/' . basename($p['photo_event_path']));
+            // dd(basename($p['photo_event_path']));
         }
-        
+
         $data->delete();
         Alert::success('Menghapus data', 'Data Berhasil Di Hapus');
         return redirect('/admin/event');
