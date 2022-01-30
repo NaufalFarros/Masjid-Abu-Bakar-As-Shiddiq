@@ -198,12 +198,13 @@ class EventadminController extends Controller
                 
                
                          $photos_data = event::findorfail($id);
-                    $photos_edit = $photos_data->photo()->unique();
+                    $photos_edit = $photos_data->photo('id');
+                    // dd($photos_edit);
+                    
                     $photos_edit->update([
                         'photo_event_path' => $path,
-                        'event_id' => $photos_data,
+                        'event_id' =>$id_event,
                     ]);
-                    dd($photos_edit = $photos_data->photo()->unique());
                 
                     
 
