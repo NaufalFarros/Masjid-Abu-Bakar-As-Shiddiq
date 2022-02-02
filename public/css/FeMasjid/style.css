@@ -236,7 +236,7 @@ h5 {
 }
 
 .upcoming-event h5 {
-  color: var(--st-black);
+  color: var(--sf-main);
 }
 
 /* css untuk carousel bawahnya event */

@@ -22,6 +22,10 @@ class HomeController extends Controller
     {
         $this->middleware(['auth']);
     }
+    // public function __construct()
+    // {
+    //     $this->middleware(['auth','verified']);
+    // }
     public function index()
     {   
         // $saldo = saldo::whereBetween('tanggal', [Carbon::now()->subDay(6)->format('Y-m-d'), Carbon::now()->format('Y-m-d')])->get();

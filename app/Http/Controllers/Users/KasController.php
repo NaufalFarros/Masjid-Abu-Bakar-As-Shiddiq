@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\kas_masjid;
 use App\Models\saldo;
 use App\Models\photoGalery;
+use App\Models\event;
 
 class KasController extends Controller
 {
@@ -37,7 +38,24 @@ class KasController extends Controller
 
         $photo = photoGalery::paginate(3);
 
-        return view('user.PartialsUser.home',compact('kasWeek','saldoMinggulalu','photo'));
+
+        $event = event::orderBy('tanggal','asc')->paginate(4);
+        // $event = event::where('tanggal' ,'', Carbon::now() )->paginate(4);
+        
+        
+        $upcomingEvent = event::where('tanggal' ,'>', Carbon::now() )->paginate(3);
+        // dd($upcomingEvent);
+
+
+        return view('user.PartialsUser.home',compact('kasWeek','saldoMinggulalu','photo','event','upcomingEvent'));
+
+
+
+
+    }
+
+
+    public function showEvent($id){
 
     }
 

@@ -73,6 +73,14 @@
                          </p>
                      </a>
                  </li>
+                 <li class="nav-item">
+                     <a href="{{route('takmir.index')}}" class="nav-link">
+                        <i class="fas fa-users"></i>
+                         <p>
+                             Tambah Pengurus Takmir
+                         </p>
+                     </a>
+                 </li>
                  {{-- Kas Masjid --}}
                  <li class="nav-item">
                      <a href="#" class="nav-link">

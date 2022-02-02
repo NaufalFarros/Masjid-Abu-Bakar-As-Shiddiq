@@ -1,6 +1,7 @@
  @extends('User.web')
 
  @section('head')
+ 
      <!-- DataTables -->
      <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
      <link rel="stylesheet"
@@ -189,67 +190,27 @@
              <button class="rounded-pill btn-show-details">Show all</button>
              <div class="row m-auto mt-5 pt-4">
                  <div class="col-lg-8 pe-4">
-                     <div class="row p-4 border align-items-center mb-3 rounded">
-                         <div class="col">
-                             <div class="border-end">
-                                 <h5 class="date">Feb 22</h5>
-                                 <p class="day">Tues</p>
+                     @foreach ($event as $e)
+
+                         <div class="row p-4 border align-items-center mb-3 rounded">
+                             <div class="col">
+                                 <div class="border-end">
+                                     <h5 class="date" id="date">@datetime($e->tanggal)</h5>
+                                     <p class="day" id="day">{{$e->tanggal->translatedFormat('l j F Y')}}</p>
+                                 </div>
+                             </div>
+                             <div class="col-6">
+                                 <h5>{{ $e->judul }}</h5>
+                                 <p>{{$e->deskripsi}}, Masjid Abu Bakar As-Shiddiq</p>
+                             </div>
+                             <div class="col">
+                                 <a href="{{url('/event/'.$e->id)}}"><button class="rounded-pill btn-show-details">View Details</button></a>
                              </div>
                          </div>
-                         <div class="col-6">
-                             <h5>Dua Tawassul</h5>
-                             <p>5.30pm, Balishira Resort</p>
-                         </div>
-                         <div class="col">
-                             <button class="rounded-pill btn-show-details">View Details</button>
-                         </div>
-                     </div>
-                     <div class="row p-4 border align-items-center mb-3 rounded">
-                         <div class="col">
-                             <div class="border-end">
-                                 <h5 class="date">Feb 22</h5>
-                                 <p class="day">Tues</p>
-                             </div>
-                         </div>
-                         <div class="col-6">
-                             <h5>Dua Tawassul</h5>
-                             <p>5.30pm, Balishira Resort</p>
-                         </div>
-                         <div class="col">
-                             <button class="rounded-pill btn-show-details">View Details</button>
-                         </div>
-                     </div>
-                     <div class="row p-4 border align-items-center mb-3 rounded">
-                         <div class="col">
-                             <div class="border-end">
-                                 <h5 class="date">Feb 22</h5>
-                                 <p class="day">Tues</p>
-                             </div>
-                         </div>
-                         <div class="col-6">
-                             <h5>Dua Tawassul</h5>
-                             <p>5.30pm, Balishira Resort</p>
-                         </div>
-                         <div class="col">
-                             <button class="rounded-pill btn-show-details">View Details</button>
-                         </div>
-                     </div>
-                     <div class="row p-4 border align-items-center mb-3 rounded">
-                         <div class="col">
-                             <div class="border-end">
-                                 <h5 class="date">Feb 22</h5>
-                                 <p class="day">Tues</p>
-                             </div>
-                         </div>
-                         <div class="col-6">
-                             <h5>Dua Tawassul</h5>
-                             <p>5.30pm, Balishira Resort</p>
-                         </div>
-                         <div class="col">
-                             <button class="rounded-pill btn-show-details">View Details</button>
-                         </div>
-                     </div>
-                 </div>
+                     @endforeach
+                     {{ $event->links()  }}
+                    </div>
+                 
                  <div class="col-lg upcoming-event">
                      <div class="border rounded p-4">
                          <h5>Upcoming</h5>
@@ -257,18 +218,22 @@
                          <div id="carouselExampleIndicators2" class="carousel slide mt-3" data-bs-ride="carousel">
 
                              <div class="carousel-inner rounded border overflow-hidden">
-                                 <div class="carousel-item active">
-                                     <img src="{{ asset('image/BDwLWz.png') }}" class="d-block w-100" alt="...">
-                                     <h5 class="p-4">The Ten Most Common Misconceptions about Islam</h5>
+                                {{-- <div class="carousel-item active">
+                                    <img src="{{ asset('image/BDwLWz.png') }}" class="d-block w-100" alt="...">
+                                    <h5 class="p-4">The Ten Most Common Misconceptions about Islam</h5>
+                                </div> --}}
+                                
+                                 @foreach ($upcomingEvent as $key => $upEvent )
+                                   
+                                 
+                                 <div class="carousel-item {{$key == 0 ? 'active' : '' }} ">
+                                     @foreach ($upEvent->photo as $p )
+                                     <img src="{{ '/storage/'.$p->photo_event_path}}" class="d-block w-100" alt="...">
+                                     @endforeach
+                                     <h5 class="p-4 ">{{$upEvent->judul}}</h5>
+                                     <h5 class="p-4">{{$upEvent->tanggal->translatedFormat('l j F Y')}}</h5>
                                  </div>
-                                 <div class="carousel-item">
-                                     <img src="{{ asset('image/BDwLWz.png') }}" class="d-block w-100" alt="...">
-                                     <h5 class="p-4">The Ten Most Common Misconceptions about Islam</h5>
-                                 </div>
-                                 <div class="carousel-item">
-                                     <img src="{{ asset('image/BDwLWz.png') }}" class="d-block w-100" alt="...">
-                                     <h5 class="p-4">The Ten Most Common Misconceptions about Islam</h5>
-                                 </div>
+                                 @endforeach
                              </div>
                              <div class="carousel-indicators">
                                  <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="0"
@@ -422,5 +387,13 @@
              "lengthChange": false,
              "autoWidth": false,
          }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+     </script>
+
+     <script>
+         const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+         const d = $('date').val();
+         let day = weekday[d.getDay()];
+         document.getElementById("day").innerHTML = day;
      </script>
  @endsection

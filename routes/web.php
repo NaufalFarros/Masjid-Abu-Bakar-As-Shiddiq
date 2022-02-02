@@ -14,6 +14,8 @@ use App\Http\Controllers\Admin\Admin_Profile_Setting\ProfilesettingController;
 use App\Http\Controllers\Admin\Event_Admin\EventadminController;
 use App\Http\Controllers\Admin\Kas_Masjid\SaldoweekController;
 use App\Http\Controllers\Admin\Photo_Masjid\PhotoController;
+use App\Http\Controllers\Admin\Takmir_Masjid\TakmirController;
+use App\Http\Controllers\EventUser\EventController;
 use App\Http\Controllers\Users\GaleryController;
 
 /*
@@ -37,9 +39,13 @@ Route::get('/galery',[GaleryController::class,'index']);
 Route::get('/about', function () {
     return view('User.About Us.about');
 });
-Route::get('/event', function () {
-    return view('User.About Us.event');
-});
+
+//event 
+Route::get('/event',[EventController::class,'index']);
+Route::get('/event/{id}',[EventController::class,'Show']);
+
+
+
 Route::get('/donate', function () {
     return view('User.About Us.donate');
 });
@@ -48,6 +54,7 @@ Route::get('/service', function () {
 });
 
 Auth::routes();
+Auth::routes(['verify' => true]);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -69,6 +76,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     
     Route::resource('/event', EventadminController::class);
     // Profile Setting
+
+    Route::resource('/takmir', TakmirController::class);
+
     // Route::resource('/profile-setting', ProfilesettingController::class);
     
     Route::get('/profile-setting', [ProfilesettingController::class,'index']);

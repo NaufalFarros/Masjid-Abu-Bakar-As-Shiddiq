@@ -189,32 +189,31 @@ class EventadminController extends Controller
 
 
         if ($request->hasfile('images')) {
-            
+
             $images = $request->file('images');
+            $length = 20;
+            
+            $photos_data = event::findorfail($id);
+            $photos_edit = $photos_data->photo()->get('id');    // Ambil list id photo event
+            $photo_event_index = 0; // index id pada list
+        
             foreach ($images as $image) {
-                $length = 20;
                 $name = auth()->user()->id . '-' . str::random($length) . '.' . $image->extension();
-                $path= $image->storeAs('photo-event', $name, 'public');
-                
-               
-                         $photos_data = event::findorfail($id);
-                    $photos_edit = $photos_data->photo('id');
-                    // dd($photos_edit);
-                    
-                    $photos_edit->update([
-                        'photo_event_path' => $path,
-                        'event_id' =>$id_event,
-                    ]);
-                
-                    
-
-                
-               
-                
-                
-
+                $path = $image->storeAs('photo-event', $name, 'public');
+        
+                // Update photo event berdasarkan id pada photo list di photos_edit
+                photo_event::where('id', $photos_edit[$photo_event_index]->id)
+                ->update([
+                    'photo_event_path' => $path,
+                    'event_id' => $id_event,
+                ]);
+        
+                $photo_event_index += 1; // Update index list
+        
             }
         }
+        
+        
         
 
         Alert::success('Edit Data', 'Data Berhasil Di Edit');

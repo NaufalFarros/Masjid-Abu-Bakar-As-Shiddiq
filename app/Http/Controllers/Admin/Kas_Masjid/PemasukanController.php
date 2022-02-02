@@ -33,7 +33,9 @@ class PemasukanController extends Controller
 
     public function datapemasukan()
     {
+       
         $pemasukan = kas_masjid::join('users', 'users.id', '=', 'kas_masjids.user_id')->where('jenis', "masuk")->orderBy('tanggal','asc')->get(['users.name','kas_masjids.*']);
+      
         return response()->json([
             'pemasukan' => $pemasukan,
         ]);
