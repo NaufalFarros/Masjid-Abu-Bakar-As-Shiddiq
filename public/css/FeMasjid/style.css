@@ -193,6 +193,44 @@ h5 {
   font-weight: 400;
 }
 
+.khotib .row{
+  border: solid 1px var(--sf-white);
+  padding: 20px;
+}
+
+.khotib .col {
+  align-self: center;
+}
+
+.khotib img {
+  width: auto;
+  height: 512px;
+  max-width: 512px;
+  margin: auto;
+  display: block;
+  border-radius: 100%;
+}
+
+.khotib h2 {
+  color: var(--main);
+  font-size: 36px;
+}
+
+.khotib h5 {
+  margin-top: -0.8rem;
+  margin-bottom: -0.1rem;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.khotib h5 span {
+  font-size: 22px;
+}
+
+.khotib h1 {
+  font-size: 38px;
+}
+
 /* css untuk event */
 .event h5, .event p {
   margin: 0;

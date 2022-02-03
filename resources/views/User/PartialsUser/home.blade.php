@@ -184,6 +184,21 @@
              </div>
          </section>
 
+        <section class="khotib">
+            <div class="row rounded m-auto">
+                <div class="col">
+                    <img src="http://1.bp.blogspot.com/-Wy6pewmPiTQ/Uu312vTkMSI/AAAAAAAAApk/siLoCtFVAUk/s1600/TopNews0279_448.jpg" alt="">
+                </div>
+                <div class="col">
+                    <h2>Khotib</h2>
+                    <h5><span>Jumat</span>, 4 Feb 2022</h5>
+                    <h1>SYEIKH MUHAMMAD ALI</h1>
+
+                    <h5 class="mt-4">Khudbah Jumat Dimulai pada</h5>
+                    <h2 class="text-dark">11.40</h2>
+                </div>
+            </div>
+        </section>
 
          <section class="event">
              <h4>Events</h4>
