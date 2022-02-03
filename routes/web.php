@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\Kas_Masjid\SaldoweekController;
 use App\Http\Controllers\Admin\Photo_Masjid\PhotoController;
 use App\Http\Controllers\Admin\Takmir_Masjid\TakmirController;
 use App\Http\Controllers\EventUser\EventController;
+use App\Http\Controllers\userAbout\AboutController;
 use App\Http\Controllers\Users\GaleryController;
 
 /*
@@ -36,9 +37,7 @@ Route::get('/', [KasController::class,'index']);
 // });
 Route::get('/galery',[GaleryController::class,'index']);
 
-Route::get('/about', function () {
-    return view('User.About Us.about');
-});
+Route::get('/about',[AboutController::class,'index']);
 
 //event 
 Route::get('/event',[EventController::class,'index']);

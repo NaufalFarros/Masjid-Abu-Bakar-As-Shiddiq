@@ -54,8 +54,7 @@ class TakmirController extends Controller
             'nama' => 'required|string|min:3|max:100',
             'alamat' => 'required|string|min:3|max:400',
             'nomor' => 'required|string|numeric|min:12',
-            'jabatan'=> 'in:ketua takmir,wakil ketua,bendahara,sekretaris,kebersihan,humas,
-            imam,ustadz,muadzin,penasehat,khatib,remas,ubudiyah,pelindung',
+            'jabatan'=> 'in:ketua takmir,wakil ketua,bendahara,sekretaris,kebersihan,humas,imam,ustadz,muadzin,penasehat,khatib,remas,ubudiyah,pelindung',
         ],[
             'jabatan.in' => 'Bidang Harus Di isi'
         ]);

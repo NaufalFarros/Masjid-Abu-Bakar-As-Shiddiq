@@ -43,7 +43,7 @@ class KasController extends Controller
         // $event = event::where('tanggal' ,'', Carbon::now() )->paginate(4);
         
         
-        $upcomingEvent = event::where('tanggal' ,'>', Carbon::now() )->paginate(3);
+        $upcomingEvent = event::where('tanggal' ,'>', Carbon::now() )->orderby('tanggal','asc')->paginate(3);
         // dd($upcomingEvent);
 
 

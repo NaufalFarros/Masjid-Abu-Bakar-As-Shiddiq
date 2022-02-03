@@ -208,7 +208,7 @@
                              </div>
                          </div>
                      @endforeach
-                     {{ $event->links()  }}
+                     {{ $event->links('pagination::bootstrap-4')  }}
                     </div>
                  
                  <div class="col-lg upcoming-event">
@@ -227,9 +227,9 @@
                                    
                                  
                                  <div class="carousel-item {{$key == 0 ? 'active' : '' }} ">
-                                     @foreach ($upEvent->photo as $p )
-                                     <img src="{{ '/storage/'.$p->photo_event_path}}" class="d-block w-100" alt="...">
-                                     @endforeach
+                                    
+                                     <img src="{{ '/storage/'.$upEvent->photo[0]->photo_event_path}}" class="d-block w-100" alt="...">
+                                     
                                      <h5 class="p-4 ">{{$upEvent->judul}}</h5>
                                      <h5 class="p-4">{{$upEvent->tanggal->translatedFormat('l j F Y')}}</h5>
                                  </div>
