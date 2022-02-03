@@ -1,6 +1,20 @@
 @extends('User.web')
 
 @section('content')
+    <script>
+        function getDay(d, i) {
+            day = new Date(d);
+            var daylist = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+            document.getElementById("day"+i).innerHTML = daylist[day.getDay()];
+        }
+
+        function getDate(d, i) {
+            day = new Date(d);
+            var monthlist = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+            document.getElementById("date"+i).innerHTML = day.getDate() + " " + monthlist[day.getMonth()] + " " + day.getFullYear();
+        }
+    </script>
+
     <section class="donation-subcribe text-center">
         <div class="donation-wrapper">
             <div class="donation">
@@ -65,17 +79,15 @@
             </div>
 
 
-            <div class="container">
+            <div class="container event">
                 <div class="row mt-5 mx-auto">
-                    @foreach ($event as $e)
-
-
+                    @foreach ($event as $i => $e)
                         <div class="col-lg-6 pe-4">
-                            <div class="row p-4 border align-items-center mb-3 rounded">
+                            <div class="row p-4 border align-items-center mb-3 rounded event-box">
                                 <div class="col">
                                     <div class="border-end">
-                                        <h5 class="date">@datetime($e->tanggal)</h5>
-                                        <p class="day">{{ $e->tanggal->translatedFormat('l j F Y') }}</p>
+                                        <h5 class="day" id={{"day".$i}}><script>getDay("{{$e->tanggal}}", "{{$i}}")</script></h5>
+                                        <p class="date" id={{"date".$i}}><script>getDate("{{$e->tanggal}}", "{{$i}}")</script></p>
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -83,7 +95,7 @@
                                     <p>{{ $e->deskripsi }}, Masjid Abu Bakar As-Shiddiq</p>
                                 </div>
                                 <div class="col">
-                               <a href="{{('/event/'.$e->id)}}">  <button class="rounded-pill btn-show-details">View Details</button></a> 
+                                    <a href="{{('/event/'.$e->id)}}">  <button class="rounded-pill btn-show-details">View Details</button></a> 
                                 </div>
                             </div>
                         </div>

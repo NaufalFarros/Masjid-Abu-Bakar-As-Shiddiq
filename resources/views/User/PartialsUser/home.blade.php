@@ -16,6 +16,20 @@
      <!-- jQuery -->
      <script src="{{ asset('AdminLTE/plugins/jquery/jquery.min.js') }}"></script>
 
+    <script>
+        function getDay(d, i) {
+            day = new Date(d);
+            var daylist = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+            document.getElementById("day"+i).innerHTML = daylist[day.getDay()];
+        }
+
+        function getDate(d, i) {
+            day = new Date(d);
+            var monthlist = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+            document.getElementById("date"+i).innerHTML = day.getDate() + " " + monthlist[day.getMonth()] + " " + day.getFullYear();
+        }
+    </script>
+
  @endsection
  @section('content')
 
@@ -205,13 +219,13 @@
              <button class="rounded-pill btn-show-details">Show all</button>
              <div class="row m-auto mt-5 pt-4">
                  <div class="col-lg-8 pe-4">
-                     @foreach ($event as $e)
+                     @foreach ($event as $i => $e)
 
                          <div class="row p-4 border align-items-center mb-3 rounded">
                              <div class="col">
                                  <div class="border-end">
-                                     <h5 class="date" id="date">@datetime($e->tanggal)</h5>
-                                     <p class="day" id="day">{{$e->tanggal->translatedFormat('l j F Y')}}</p>
+                                     <h5 class="day" id={{"day".$i}}><script>getDay("{{$e->tanggal}}", "{{$i}}")</script></h5>
+                                     <p class="date" id={{"date".$i}}><script>getDate("{{$e->tanggal}}", "{{$i}}")</script></p>
                                  </div>
                              </div>
                              <div class="col-6">
@@ -402,13 +416,5 @@
              "lengthChange": false,
              "autoWidth": false,
          }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-     </script>
-
-     <script>
-         const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-         const d = $('date').val();
-         let day = weekday[d.getDay()];
-         document.getElementById("day").innerHTML = day;
      </script>
  @endsection

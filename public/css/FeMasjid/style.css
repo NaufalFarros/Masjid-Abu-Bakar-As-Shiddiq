@@ -44,7 +44,7 @@ h5 {
 }
 
 .nav-item, .get-involved, .btn-search, .search-input, .search-action, .submit-search, .carousel-button, .btn-show-details,
-.card-list .title, .event p, footer p {
+.card-list .title, footer p {
   font-size: 0.8rem;
 }
 
@@ -246,6 +246,7 @@ h5 {
 
 .event p {
   color: var(--sf-black);
+  font-size: 0.9rem;
 }
 
 /* css untuk carousel upcoming event */
