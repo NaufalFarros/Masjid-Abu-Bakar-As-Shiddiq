@@ -1,11 +1,12 @@
 @extends('admin.index')
 
 @section('head')
-   
+<link rel="stylesheet" href="{{ asset('AdminLTE/plugins/daterangepicker/daterangepicker.css') }}">
+
 @endsection
 
 @section('content')
- 
+
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
@@ -33,20 +34,21 @@
                         <div class="card-body">
                             <!-- Date -->
                             <div class="col-6">
-                                <form action="{{route('photos.store')}}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('photos.store') }}" method="post" enctype="multipart/form-data">
                                     @csrf
-                                     <div class="form-group row">
-                                            <div class="custom-file">
-                                                <input type="file" accept="image/png, image/jpeg" class="custom-file-input" id="exampleInputFile" name="image" required>
-                                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                            </div>
+                                    <div class="form-group row">
+                                        <div class="custom-file">
+                                            <input type="file" accept="image/png, image/jpeg" class="custom-file-input"
+                                                id="exampleInputFile" name="image" required>
+                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                         </div>
+                                    </div>
                                     <button type="submit" class="btn btn-primary">Simpan</button>
                                 </form>
                             </div>
                         </div>
                         <!-- /.card -->
-                     
+
 
                     </div>
 
@@ -67,13 +69,13 @@
     <script src="{{ asset('AdminLTE/plugins/jquery/jquery.min.js') }}"></script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    
-    
+
+
     <!-- bs-custom-file-input -->
     <script src="{{ asset('AdminLTE/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
-<script>
-$(function () {
-  bsCustomFileInput.init();
-});
-</script>
+    <script>
+        $(function() {
+            bsCustomFileInput.init();
+        });
+    </script>
 @endsection

@@ -73,6 +73,7 @@
                          </p>
                      </a>
                  </li>
+
                  <li class="nav-item">
                      <a href="{{route('takmir.index')}}" class="nav-link">
                         <i class="fas fa-users"></i>
@@ -81,6 +82,16 @@
                          </p>
                      </a>
                  </li>
+
+                 <li class="nav-item">
+                     <a href="{{route('khatib.index')}}" class="nav-link">
+                        <i class="fas fa-users"></i>
+                         <p>
+                             Tambah Jadwal Khatib
+                         </p>
+                     </a>
+                 </li>
+
                  {{-- Kas Masjid --}}
                  <li class="nav-item">
                      <a href="#" class="nav-link">

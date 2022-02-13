@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Kas_Masjid\PengeluaranController;
 use App\Http\Controllers\Admin\Admin_Profile_Setting\ProfilesettingController;
 use App\Http\Controllers\Admin\Event_Admin\EventadminController;
 use App\Http\Controllers\Admin\Kas_Masjid\SaldoweekController;
+use App\Http\Controllers\Admin\Khatib\khatibController;
 use App\Http\Controllers\Admin\Photo_Masjid\PhotoController;
 use App\Http\Controllers\Admin\Takmir_Masjid\TakmirController;
 use App\Http\Controllers\EventUser\EventController;
@@ -77,6 +78,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     // Profile Setting
 
     Route::resource('/takmir', TakmirController::class);
+
+    Route::resource('/khatib', khatibController::class);
 
     // Route::resource('/profile-setting', ProfilesettingController::class);
     
